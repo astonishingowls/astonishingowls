@@ -131,6 +131,9 @@ You must have a deployed website setup.
 - [ ] Configure automatic deployment of your master branch using Azure, Heroku, Meteor, etc
 
 ### Team Communication
+Sara - Scrum Master
+Canh - Product Owner
+John, Sara, Canh - Dev Team
 
 #### New Code
 
