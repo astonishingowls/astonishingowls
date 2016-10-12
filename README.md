@@ -203,4 +203,7 @@ Implement 2-3 of the following:
 [4]:http://en.wikipedia.org/wiki/Scrum_(software_development)#Development_team
 [5]:https://www.hipchat.com/
 [6]:https://slack.com/
+<<<<<<< HEAD
 >>>>>>> chore(readme): adding readme
+=======
+>>>>>>> f369c61d5fc2f751991c6e5fe8eeba88792e140a
