@@ -66,9 +66,9 @@ This repo contains templates that you'll use as a guide to successfully document
 
 #### Role Assignment
 As a group, decide which team members will fulfill each of the three core scrum roles.
-  - [ ] [Product Owner][2]
-  - [ ] [Scrum Master][3]
-  - [ ] [Development Team][4]
+  - [ Canh ] [Product Owner][2]
+  - [ Sara ] [Scrum Master][3]
+  - [ Canh, Sara, John] [Development Team][4]
   - [ ] Fill out the Team section in the README with this info.
 
 #### Project Organization
@@ -131,9 +131,6 @@ You must have a deployed website setup.
 - [ ] Configure automatic deployment of your master branch using Azure, Heroku, Meteor, etc
 
 ### Team Communication
-Sara - Scrum Master
-Canh - Product Owner
-John, Sara, Canh - Dev Team
 
 #### New Code
 
