@@ -1,15 +1,18 @@
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('currencies', 'root', '', {
-    dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
-    port: 3306 // or 5432 (for postgres)
+//set up database
+var mongoose = require('mongoose');
+var mongodb = require('mongodb');
+
+var dbUrl = process.env.MONGOURI || 'mongodb://heroku_s13dqq10:c5b7hlbujuecnetp4mppna4p43@ds057386.mlab.com:57386/heroku_s13dqq10'
+
+mongoose.connect(dbUrl, function(err, res) {
+  if (err) console.error('ERROR connecting to: ' + dbUrl + '. ' + err)
+  else console.log('Successfully connected to: ' + dbUrl)
 });
 
-sequelize
-    .authenticate()
-    .then(function (err) {
-        console.log('Connection has been established successfully.');
-    }, function (err) {
-        console.log('Unable to connect to the database:', err);
-    });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  console.log('Mongodb connection open');
+});
 
-module.exports = sequelize;
+module.exports = db;

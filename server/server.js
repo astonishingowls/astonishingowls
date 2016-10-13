@@ -10,9 +10,21 @@ app.use(bodyparser.json());
 
 app.use(express.static(__dirname + '/../client'));
 
+// app.post('/posts', (req, res) => {
+
+//   var newUser = new database.User({
+//     "email": req.body.email,
+//     "password": req.body.password
+//   });
+  
+//   newUser.save(function(err) {
+//     if (err) console.log('Error on save!')
+//     else res.sendStatus(201)
+//   })
+// })
 
 
-http.createServer(app).listen(app.get('port'), function () {
+app.listen('port', function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
