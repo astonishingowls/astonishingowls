@@ -24,9 +24,9 @@ var paths = {
 };
 
 
-// gulp.task('default', function() {
-//   return gutil.log('Gulp is running!')
-// });
+gulp.task('default', function() {
+  return gutil.log('Gulp is running!')
+});
 
 
 
@@ -67,23 +67,14 @@ gulp.task('watch',function() {
     gulp.watch('.client/sass/**/*.scss',['styles']);
 });
 
-var tinylr;
-gulp.task('livereload', function() {
-  tinylr = require('tiny-lr')();
-  tinylr.listen(8000);
-});
-
 
 
 /***************************************
  *                Task Default Start
  ***************************************/
 
-
 // Use ES5 by default
-gulp.task('default', ['start','styles','livereload','watch'],function(){
-
-} );
+gulp.task('default', ['start','styles','watch']);
 
 /***************************************
  *                ES6
