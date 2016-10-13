@@ -67,12 +67,12 @@ gulp.task('watch',function() {
     gulp.watch('.client/sass/**/*.scss',['styles']);
 });
 
-
 var tinylr;
 gulp.task('livereload', function() {
   tinylr = require('tiny-lr')();
   tinylr.listen(8000);
 });
+
 
 
 /***************************************
