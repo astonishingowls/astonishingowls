@@ -4,6 +4,7 @@
   "description": "Greenfield",
   "main": "index.js",
   "scripts": {
+    "start": "gulp start",
     "start": "gulp styles",
     "start:es6": "gulp start:es6"
   },
