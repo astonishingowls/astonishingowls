@@ -3,6 +3,10 @@ var sass = require('gulp-sass');
 var clean = require('gulp-clean');
 var nodemon = require('gulp-nodemon');
 var babel = require('gulp-babel');
+var browserSync = require('browser-sync').create();
+var gutil = require('gulp-util');
+
+
 
 // The paths to our app files
 var paths = {
@@ -18,6 +22,12 @@ var paths = {
   },
   server: 'server/server.js'
 };
+
+
+// gulp.task('default', function() {
+//   return gutil.log('Gulp is running!')
+// });
+
 
 
 /***************************************
@@ -53,11 +63,27 @@ gulp.task('styles', function() {
 });
 
 //Watch task, it will sit and wait for files to be saved and then run our task
-gulp.task('default',function() {
+gulp.task('watch',function() {
     gulp.watch('.client/sass/**/*.scss',['styles']);
 });
 
 
+var tinylr;
+gulp.task('livereload', function() {
+  tinylr = require('tiny-lr')();
+  tinylr.listen(8000);
+});
+
+
+/***************************************
+ *                Task Default Start
+ ***************************************/
+
+
+// Use ES5 by default
+gulp.task('default', ['start','styles','livereload','watch'],function(){
+
+} );
 
 /***************************************
  *                ES6
