@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp start",
-    "start": "gulp styles",
     "start:es6": "gulp start:es6"
   },
   "repository": {
@@ -23,6 +22,13 @@
     "bower": "^1.7.9",
     "browser-sync": "^2.17.3",
     "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-shell": "^0.5.2",
+    "mongoose": "^4.6.3",
     "mysql": "^2.11.1",
     "node-sass": "^3.10.1",
     "request": "^2.75.0",
