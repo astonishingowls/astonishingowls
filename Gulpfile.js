@@ -3,6 +3,11 @@ var sass = require('gulp-sass');
 var clean = require('gulp-clean');
 var nodemon = require('gulp-nodemon');
 var babel = require('gulp-babel');
+var browserSync = require('browser-sync').create();
+var gutil = require('gulp-util');
+
+
+
 
 // The paths to our app files
 var paths = {
@@ -18,6 +23,24 @@ var paths = {
   },
   server: 'server/server.js'
 };
+
+// gulp.task('default', function() {
+//   return gutil.log('Gulp is running!')
+// });
+
+/***************************************
+ *                Gulp-Sass
+ ***************************************/
+gulp.task('styles', function() {
+    gulp.src('./client/sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError)) /**if there is an error parsing your sass by default it will just kill the gulp process, but with this option it will tell us where the error is**/
+        .pipe(gulp.dest('./client/styles/'));
+});
+
+//Watch task, it will sit and wait for files to be saved and then run our task
+gulp.task('watch',function() {
+    gulp.watch('./client/sass/*.scss',['styles']);
+});
 
 
 /***************************************
@@ -43,20 +66,24 @@ gulp.task('start', ['serve'], function () {
 });
 
 
+
+var tinylr;
+gulp.task('livereload', function() {
+  tinylr = require('tiny-lr')();
+  tinylr.listen(8000);
+});
+
+
+
 /***************************************
- *                Gulp-Sass
+ *                Task Default Start
  ***************************************/
-gulp.task('styles', function() {
-    gulp.src('./client/sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError)) /**if there is an error parsing your sass by default it will just kill the gulp process, but with this option it will tell us where the error is**/
-        .pipe(gulp.dest('./client/css/'));
-});
 
-//Watch task, it will sit and wait for files to be saved and then run our task
-gulp.task('default',function() {
-    gulp.watch('.client/sass/**/*.scss',['styles']);
-});
 
+// Use ES5 by default
+gulp.task('default', ['start','styles','livereload','watch'],function(){
+
+} );
 
 
 /***************************************
