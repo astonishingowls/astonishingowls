@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('currencies', 'root', '');
+var db = require('./db');
 
 // we define the models we need using js--we don't need a schema file!
 var User = db.define('User', {
