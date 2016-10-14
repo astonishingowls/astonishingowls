@@ -13,7 +13,7 @@ var paths = {
   src: {
     scripts: ['client/app/**/*.js'],
     html: ['client/app/**/*.html', 'client/index.html'],
-    styles: ['client/styles/style.css']
+    styles: ['client/styles/style.scss']
   },
   compiled: {
     scripts: ['compiled/app/**/*.js'],
@@ -24,9 +24,9 @@ var paths = {
 };
 
 
-gulp.task('default', function() {
-  return gutil.log('Gulp is running!')
-});
+// gulp.task('default', function() {
+//   return gutil.log('Gulp is running!')
+// });
 
 
 
