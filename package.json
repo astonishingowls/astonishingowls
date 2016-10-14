@@ -4,9 +4,9 @@
   "description": "Greenfield",
   "main": "index.js",
   "scripts": {
-    "start": "gulp start",
     "start": "gulp styles",
-    "start:es6": "gulp start:es6"
+    "start:es6": "gulp start:es6",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "gulp-clean": "^0.3.2",
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^2.3.2",
     "gulp-shell": "^0.5.2",
     "mongoose": "^4.6.3",
     "mysql": "^2.11.1",
