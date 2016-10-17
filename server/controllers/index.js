@@ -1,4 +1,8 @@
+//require the mongo database
 var db = require('../db');
+
+
+
 
 module.exports = {
     searches: {
