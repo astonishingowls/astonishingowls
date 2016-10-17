@@ -1,16 +1,8 @@
-angular.module('astonishingOwls.factory', []);
+angular.module('astonishingOwls.factory', [])
 
 .factory('Search', function($http){
 
-
-  // getall = /api/getAll "GET"
-
-  // getHistorical = /api/getHistorical "POST", input from html date
-
-  // getListOfCurrencies = /api/getListOfCurrencies "GET"
-
-  //getTimeSeries = /api/getTimeSeries "POST"
-
+  //Get all data and pinpoint to server api call
   var getall = function(){
     return $http({
       method: 'GET',
@@ -21,6 +13,7 @@ angular.module('astonishingOwls.factory', []);
     });
   }
 
+  //Receive user input data from input field, and pass data to server api call
   var getHistorical = function(userInput){
     return $http({
       method: 'POST',
@@ -39,6 +32,7 @@ angular.module('astonishingOwls.factory', []);
     });
   }
 
+  //Receive user input data from input field, and pass data to server api call
   var getTimeSeries = function(userInput){
     return $http({
       method: 'POST',
@@ -55,15 +49,15 @@ angular.module('astonishingOwls.factory', []);
   };
 })
 
-.factory('Auth',function ($http, $location, $window){
- //do something with Auth.
+// .factory('Auth',function ($http, $location, $window){
+//  //do something with Auth.
 
- //Sign up
-
-
- //Log in
+//  //Sign up
 
 
- //Log Out
-})
+//  //Log in
+
+
+//  //Log Out
+// })
 
