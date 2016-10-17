@@ -29,6 +29,13 @@
       };
       firebase.initializeApp(config);
     </script>
+    <script>
+      var provider = new firebase.auth.GoogleAuthProvider();
+
+      provider.addScope('https://www.googleapis.com/auth/plus.login');
+
+      firebase.auth().signInWithRedirect(provider);
+    </script>
 
     <script src="app/factory_functions/factory.js"></script>
     <script src="app/app.js"></script>
