@@ -1,6 +1,4 @@
 angular.module('astonishingOwls.factory', [])
-<<<<<<< HEAD
-
 .factory('Search', function($http){
 
   //Get all data and pinpoint to server api call
@@ -50,21 +48,6 @@ angular.module('astonishingOwls.factory', [])
   };
 })
 
-// .factory('Auth',function ($http, $location, $window){
-//  //do something with Auth.
-
-//  //Sign up
-
-
-//  //Log in
-
-
-//  //Log Out
-// })
-
-=======
-
-// .factory(); //to fill out here
 .factory('AuthService', ['$q', '$timeout', '$http',
         function ($q, $timeout, $http) {
 
@@ -183,4 +166,3 @@ angular.module('astonishingOwls.factory', [])
             }
 
         }]);
->>>>>>> firebase
