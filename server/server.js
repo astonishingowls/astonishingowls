@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyparser = require('body-parser');
-var http = require('http');
 var database = require('./db/dbmodels');
 
 var app = express();
@@ -8,6 +7,9 @@ app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
 
 app.use(express.static(__dirname + '/../client'));
+
+//configure out server with routing file in /server/config/api-router
+require('./config/api-router.js')(app, express);
 
 // app.post('/posts', (req, res) => {
 
