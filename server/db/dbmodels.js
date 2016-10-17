@@ -1,5 +1,6 @@
 var db = require('./db');
 var mongoose = require('mongoose');
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var models = {};
 
@@ -14,6 +15,7 @@ var searchSchema = new mongoose.Schema({
   "text": String
 });
 
+userSchema.plugin(passportLocalMongoose);
 
 models.User = mongoose.model('User', userSchema);
 models.Search = mongoose.model('Search', searchSchema);

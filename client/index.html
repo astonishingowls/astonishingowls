@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html ng-app='astonishingOwls'>
   <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-auth.js"></script>
   </head>
   <body>
     <h1>AstonishingOwls</h1>
     <div ng-view></div>
 
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
@@ -16,27 +17,8 @@
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-material/angular-material.js"></script>
 
-
-    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyBQXqpnL8kiLpbbi8nNb5UHEi3OvDKWOv4",
-        authDomain: "astonishingowls.firebaseapp.com",
-        databaseURL: "https://astonishingowls.firebaseio.com",
-        storageBucket: "astonishingowls.appspot.com",
-        messagingSenderId: "1084860296809"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script>
-      var provider = new firebase.auth.GoogleAuthProvider();
-
-      provider.addScope('https://www.googleapis.com/auth/plus.login');
-
-      firebase.auth().signInWithRedirect(provider);
-    </script>
-
+    <script src="app/dashboard/dashboard.js"></script>
+    <script src="app/auth/controllers.js"></script>
     <script src="app/factory_functions/factory.js"></script>
     <script src="app/app.js"></script>
   </body>
