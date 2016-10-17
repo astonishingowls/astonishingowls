@@ -1,23 +1,27 @@
+//----------------------------------*\
+// SCSS MIXINS
+//----------------------------------*/
+//@import 'mixins/position';
+//----------------------------------*\
+// CONFIG MODULES
+//----------------------------------*/
+// Config modules
+@import 'modules/variables';
+@import 'modules/clearfix';
+@import 'modules/defaults';
+@import 'modules/normalize';
+//----------------------------------*\
+// PARTIALS
+//----------------------------------*/
+//@import 'partials/home';
+//@import 'partials/footer';
+
+//----------------------------------*\
+// OBJECTS & MODULES
+//----------------------------------*/
+//@import 'modules/typography';
+
 body {
-  background: blue;
+  background: $charcoal;
+  color: $white;
 }
-
-div {
-  ul {
-    margin: 0;
-    color: blue;
-    padding: 0;
-    list-style: none;
-  }
-
-  li { display: inline-block;
-    color: red;
-  }
-
-  a {
-    display: block;
-    padding: 6px 12px;
-    text-decoration: none;
-  }
-}
-
