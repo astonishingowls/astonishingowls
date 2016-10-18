@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <nav>LOGO, NAV SECTION
+    <span ng-controller="logoutController"></span>
+      <a ng-click='logout()' class="btn btn-default">Logout</a>
+
+  </nav>
+  <br>
+
+  <div>SEARCH SECTION
+  <div>
+    <form name="currencyList">
+      <label for="repeatSelect"> select: </label>
+      <select name="repeatSelect" id="repeatSelect" ng-model="currencySelect">
+        <option ng-repeat="option in availableOptions.rates" value="{{option.rates}}">{{option}}</option>
+      </select>
+    </form>
+
+  <br>
+
+  <div>
+      get Historical
+      <form name="getHistoric" ng-submit="submitHistoricDate()">
+        <label for="getAll"> Date:<input type="text" ng-model='getHistoricalDate' placeholder="YYYY-MM-DD">
+        <button class="btn btn-default"  type='submit'>Submit</button>
+      </form>
+  </div>
+  <br>
+
+  <div>
+      get List Of Currencies
+        <form name="getListOfCurrencies" ng-submit="FILL_ME">
+
+        <button class="btn btn-default"  type='submit'>Get all List of Currencies</button>
+      </form>
+  </div>
+  <br>
+
+  <div>
+      get Time Series
+        <form ng-submit="getTimeSeries()">
+        <label for="getAll">
+        Start Date:<input type="text" ng-model='timeSeriesStart' placeholder="YYYY-MM-DD">
+        End Date:<input type="text" ng-model='timeSeriesEnd' placeholder="YYYY-MM-DD">
+        Symbol <input type="text" ng-model='timeSeriesSymbol' placeholder="XYZ">
+
+
+
+        <button class="btn btn-default"  type='submit'>Submit</button>
+      </form>
+  </div>
+  <br>
+
+
+  </div>
+
+
+  <footer>FOOTER SECTION</footer>
+</body>
+</html>
+
+

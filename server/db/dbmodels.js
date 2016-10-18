@@ -4,56 +4,25 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var models = {};
 
+//Uses passport-local-mongoose to create users with this schema
+//the passport module automatically hashes the user's inputted password for you
 var userSchema = new mongoose.Schema({
-  "id": Number,
-  "email": String,
-  "password": String
+  savedSearch: {
+      "currencies": String, // three-letter string, i.e. EUR
+      "historicalDate": String //in format 'YYYY-MM-DD'
+  }
 });
-
-var searchSchema = new mongoose.Schema({
-  "id": Number,
-  "text": String
-});
-
 userSchema.plugin(passportLocalMongoose);
-
 models.User = mongoose.model('User', userSchema);
-models.Search = mongoose.model('Search', searchSchema);
+
+
+// //Saved list of all searches. This links to individual users by creating the "user" array
+// //directly within the object
+// var searchSchema = new mongoose.Schema({
+//   "id": Number,
+//   "text": String, //this will represent currencies in comma-separated values, i.e. 'EUR,GBP,HKD'
+//   "historicalDate": String //has to be in this format: 'YYYY-MM-DD'
+// });
+// models.Search = mongoose.model('Search', searchSchema);
 
 module.exports = models;
-
-
-
-
-
-//OLD BELOW IN CASE WE WANT TO KEEP FOR WHATEVER REASON
-
-// // var Sequelize = require('sequelize');
-// var db = require('./db');
-
-// // we define the models we need using js--we don't need a schema file!
-// var User = db.define('User', {
-//     id: Sequelize.NUMBER,
-//     email: Sequelize.STRING,
-//     password: Sequelize.STRING
-// });
-
-// var Search = db.define('Search', {
-//     text: Sequelize.STRING
-// });
-
-// // puts a UserId column on each Search instance
-// // also gives us the `.setUser` method available
-// // after creating a new instance of Search
-// Search.belongsTo(User);
-// // enables bi-directional associations between Users and Searches
-// User.hasMany(Search);
-
-
-// User.sync();
-// Search.sync();
-// // creates these tables in MySQL if they don't already exist. Pass in {force: true}
-// // to drop any existing user and message tables and make new ones.
-
-// exports.User = User;
-// exports.Search = Search;
