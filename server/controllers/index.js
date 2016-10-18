@@ -4,67 +4,30 @@
 //require the mongoose schema models for users and searches
 var models = require('../db/dbmodels');
 
-//require this because we want to be able to grab the user
-var routes = require('../config/routes');
-
-
-console.log("routes.user++++++++++",routes.user);
-
 module.exports = {
-    searches: {
-        get: function (req, res) {
-           // db.Message.findAll({include: [db.User]})
-           //     .then(function (messages) {
-           //         res.json(messages);
-           //     });
 
+    get: function (req, res) {
 
-            User.findOne({ 'username': 'Ghost' }, 'name occupation', function (err, person) {
-              if (err) return handleError(err);
-              console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation) // Space Ghost is a talk show host.
-            })
-        },
-        // post: function (req, res) {
-        //    db.User.findOrCreate({where: {username: req.body.username}})
-        //        // findOrCreate returns multiple resutls in an array
-        //        // use spread to assign the array to function arguments
-        //        .spread(function (user, created) {
-        //            db.Message.create({
-        //                userid: user.get('id'),
-        //                text: req.body.message,
-        //                roomname: req.body.roomname
-        //            }).then(function (message) {
-        //                res.sendStatus(201);
-        //            });
-        //        });
-        // }
+        console.log("USER????? LINE 11",user);
+        console.log("REQ????? LINE 12",req);
+        models.User.findOne({ 'username': username }, function (err, data) {
+          if (err) console.error(err);
+        })
+        .then( (data) => res.send(data));
     },
 
-    // users: {
-    //     get: function (req, res) {
-    //        db.User.findAll()
-    //            .then(function (users) {
-    //                res.json(users);
-    //            });
-    //     },
-    //     post: function (req, res) {
-    //        db.User.findOrCreate({where: {username: req.body.username}})
-    //            // findOrCreate returns multiple resutls in an array
-    //            // use spread to assign the array to function arguments
-    //            .spread(function (user, created) {
-    //                res.sendStatus(created ? 201 : 200);
-    //            });
-    //     }
-    // }
+    post: function (req, res) {
+
+        console.log("USER????? LINE 25",user);
+        console.log("REQ????? LINE 26",req);
+        // User.findOne({ 'username': username }, function (err, data) {
+        //   if (err) console.error(err);
+        //   User.savedSearch.push(req.body.array); //this doesn't seem right.... confirm proper syntax!!!
+        // })
+        models.User.findByIdAndUpdate(req.user._id, {
+            $push: { savedSearch: req.body.John } //input from John
+        }, { 'new': true} )
+        .then( () => res.sendStatus(201));
+    }
+    
 };
-
-//Copying schema over just so that we have it
-
-// var searchSchema = new mongoose.Schema({
-//   "id": Number,
-//   "text": String, //this will represent currencies in comma-separated values, i.e. 'EUR,GBP,HKD'
-//   "historicalDate": String //has to be in this format: 'YYYY-MM-DD'
-//   "user": [
-//     {type: Schema.Types.ObjectId, ref: 'User'}
-//   ]
-// });
