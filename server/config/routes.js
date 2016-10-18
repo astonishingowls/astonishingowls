@@ -86,7 +86,7 @@ router.get('/database', (req, res) => { //clarify the endpoint with John on the 
 });
 
 router.post('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
-  controller.get()
+  controller.post()
   .then( () => res.sendStatus(201));
 });
 //End of database stuff
