@@ -7,9 +7,6 @@ var models = require('../db/dbmodels');
 //require this because we want to be able to grab the user
 var routes = require('../config/routes');
 
-
-console.log("routes.user++++++++++",routes.user);
-
 module.exports = {
     searches: {
         get: function (req, res) {

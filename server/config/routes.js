@@ -7,11 +7,14 @@ var database = require('../db/dbmodels');
 
 router.post('/register', function (req, res) {
     database.User.register(new database.User({
-        savedSearch: {
-            "currencies": null, // three-letter string, i.e. EUR
-            "historicalDate": null //in format 'YYYY-MM-DD'
-        },
-        username: req.body.username
+        username: req.body.username,
+        savedSearch: [
+          //Each is an object representing different points in time
+          { time: "downloaded", cxy: null, date: null, value: null}, //as of point in time downloaded
+          { time: "last week", cxy: null, date: null, value: null}, //as of one week ago
+          { time: "one month ago", cxy: null, date: null, value: null}, //as of last month
+          { time: "one year ago", cxy: null, date: null, value: null} //as of one year ago
+        ]
     }),
         req.body.password, function (err, account) {
             if (err) {
