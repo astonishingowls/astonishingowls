@@ -14,8 +14,9 @@ angular.module('astonishingOwls.factory', [])
 
   //Receive user input data from input field, and pass data to server api call
   var getHistorical = function(userInput){
+    console.log(userInput, ' : userInput factory.js•')
     return $http({
-      method: 'POST',
+      method: 'GET',
       url: '/api/getHistorical',
       data: userInput
     })
@@ -34,12 +35,14 @@ angular.module('astonishingOwls.factory', [])
   //Receive user input data from input field, and pass data to server api call
   var getTimeSeries = function(userInput){
     return $http({
-      method: 'POST',
+      method: 'GET',
       url: '/api/getTimeSeries',
       data: userInput
     })
   }
 
+  var testingGetAll = getall();
+  getall();
   return {
     getall: getall,
     getHistorical: getHistorical,

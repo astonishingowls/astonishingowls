@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+<body>
+  <nav>LOGO, NAV SECTION
+    <span ng-controller="logoutController"></span>
+      <a ng-click='logout()' class="btn btn-default">Logout</a>
+
+  </nav>
+  <br>
+
+  <div>SEARCH SECTION
+  <div>
+      get all rates
+      <form name="getAllCurr" ng-submit="getAllRates()">
+        <label for="getAll">
+        <button class="btn btn-default"  type='submit'>GetAllRates</button>
+      </form>
+  </div>
+  <br>
+
+  <div>
+      get Historical
+      <form name="getHistoric" ng-submit="submitHistoricDate()">
+        <label for="getAll"> Date:<input type="text" ng-model='getHistoricalDate' placeholder="YYYY-MM-DD">
+        <button class="btn btn-default"  type='submit'>Submit</button>
+      </form>
+  </div>
+  <br>
+
+  <div>
+      get List Of Currencies
+        <form name="getListOfCurrencies" ng-submit="FILL_ME">
+
+        <button class="btn btn-default"  type='submit'>Get all List of Currencies</button>
+      </form>
+  </div>
+  <br>
+
+  <div>
+      get Time Series
+        <form ng-submit="getTimeSeries()">
+        <label for="getAll">
+        Start Date:<input type="text" ng-model='timeSeriesStart' placeholder="YYYY-MM-DD">
+        End Date:<input type="text" ng-model='timeSeriesEnd' placeholder="YYYY-MM-DD">
+        Symbol <input type="text" ng-model='timeSeriesSymbol' placeholder="XYZ">
+
+
+
+        <button class="btn btn-default"  type='submit'>Submit</button>
+      </form>
+  </div>
+  <br>
+
+
+
+        <form name="saveSearch" ng-submit="FILL_ME">
+        <label for="saveCurrency"> Symbol <input type="text" ng-model='FILL_ME' placeholder="SYMBOL">
+        <button class="btn btn-default"  type='submit'>Submit</button>
+      </form>
+  </div>
+
+
+  <footer>FOOTER SECTION</footer>
+</body>
+</html>
+
+
