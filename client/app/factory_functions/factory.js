@@ -171,4 +171,17 @@ angular.module('astonishingOwls.factory', [])
 
             }
 
-        }]);
+        }])
+
+
+.factory('keysGrabber',function(){
+ return function(value, object){
+   for(var key in object){
+     if(object[key] == value){
+       return key;
+     }
+   }
+   return null;
+ }
+}); //end of keysGrabber
+
