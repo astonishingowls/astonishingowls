@@ -13,8 +13,10 @@
 //----------------------------------*\
 // PARTIALS
 //----------------------------------*/
-//@import 'partials/home';
-//@import 'partials/footer';
+@import 'partials/nav';
+@import 'partials/savedSearch';
+@import 'partials/search';
+@import 'partials/footer';
 
 //----------------------------------*\
 // OBJECTS & MODULES
@@ -24,4 +26,8 @@
 body {
   background: $charcoal;
   color: $white;
+}
+
+input {
+  color: black;
 }

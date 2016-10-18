@@ -4,64 +4,87 @@
   <meta charset="UTF-8">
   <title>Dashboard</title>
 </head>
-<body>
-  <nav>LOGO, NAV SECTION
-    <span ng-controller="logoutController"></span>
-      <a ng-click='logout()' class="btn btn-default">Logout</a>
+  <body>
+    <header class="navigation col-xs-12">
+      <div class="logo">
+        <img src="../../assets/logo.png"/>
+      </div>
+      <div class="logout">
+        <span ng-controller="logoutController"></span>
+        <a ng-click='logout()' class="btn btn-default">Logout</a>
+      </div>
+    </header>
 
-  </nav>
-  <br>
+    <div class="savedSearches col-xs-12 col-md-8">
+      <div class="search col-xs-12 col-md-6">
+        <div class="box">
+        </div>
+      </div>
 
-  <div>SEARCH SECTION
-  <div>
-    <form name="currencyList">
-      <label for="repeatSelect"> select: </label>
-      <select name="repeatSelect" id="repeatSelect" ng-model="currencySelect">
-        <option ng-repeat="option in availableOptions.rates" value="{{option.rates}}">{{option}}</option>
-      </select>
-    </form>
+      <div class="search col-xs-12 col-md-6">
+        <div class="box">
+        </div>
+      </div>
 
-  <br>
+      <div class="search col-xs-12 col-md-6">
+        <div class="box">
+        </div>
+      </div>
 
-  <div>
-      get Historical
-      <form name="getHistoric" ng-submit="submitHistoricDate()">
-        <label for="getAll"> Date:<input type="text" ng-model='getHistoricalDate' placeholder="YYYY-MM-DD">
-        <button class="btn btn-default"  type='submit'>Submit</button>
-      </form>
-  </div>
-  <br>
+      <div class="search col-xs-12 col-md-6">
+        <div class="box">
+        </div>
+      </div>
 
-  <div>
-      get List Of Currencies
-        <form name="getListOfCurrencies" ng-submit="FILL_ME">
+    </div>
 
-        <button class="btn btn-default"  type='submit'>Get all List of Currencies</button>
-      </form>
-  </div>
-  <br>
+    <div class="userSearch col-xs-12 col-md-4">
+      <div>
+        <form name="currencyList">
+          <label for="repeatSelect"> select: </label>
+          <select name="repeatSelect" id="repeatSelect" ng-model="currencySelect">
+            <option ng-repeat="option in availableOptions.rates" value="{{option.rates}}">{{option}}</option>
+          </select>
+        </form>
 
-  <div>
-      get Time Series
-        <form ng-submit="getTimeSeries()">
-        <label for="getAll">
-        Start Date:<input type="text" ng-model='timeSeriesStart' placeholder="YYYY-MM-DD">
-        End Date:<input type="text" ng-model='timeSeriesEnd' placeholder="YYYY-MM-DD">
-        Symbol <input type="text" ng-model='timeSeriesSymbol' placeholder="XYZ">
+        <div>
+          get Historical
+          <form name="getHistoric" ng-submit="submitHistoricDate()">
+            <label for="getAll"> Date:<input type="text" ng-model='getHistoricalDate' placeholder="YYYY-MM-DD">
+              <button class="btn btn-default" type='submit'>Submit</button>
+          </form>
+        </div>
+        <br>
 
+        <div>
+          get List Of Currencies
+          <form name="getListOfCurrencies" ng-submit="FILL_ME">
 
-
-        <button class="btn btn-default"  type='submit'>Submit</button>
-      </form>
-  </div>
-  <br>
-
-
-  </div>
+            <button class="btn btn-default" type='submit'>Get all List of Currencies</button>
+          </form>
+        </div>
+    </div>
 
 
-  <footer>FOOTER SECTION</footer>
-</body>
+  <!---->
+    <!--<div>-->
+        <!--get Time Series-->
+          <!--<form ng-submit="getTimeSeries()">-->
+          <!--<label for="getAll">-->
+          <!--Start Date:<input type="text" ng-model='timeSeriesStart' placeholder="YYYY-MM-DD">-->
+          <!--End Date:<input type="text" ng-model='timeSeriesEnd' placeholder="YYYY-MM-DD">-->
+          <!--Symbol <input type="text" ng-model='timeSeriesSymbol' placeholder="XYZ">-->
+  <!---->
+  <!---->
+  <!---->
+          <!--<button class="btn btn-default"  type='submit'>Submit</button>-->
+        <!--</form>-->
+    <!--</div>-->
+
+
+
+
+  </body>
 </html>
 
 
