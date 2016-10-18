@@ -4,16 +4,19 @@ var router = express.Router();
 var passport = require('passport');
 
 var database = require('../db/dbmodels');
+var controller = require('../controllers/index');
 
+
+//These are routers for authentication!!!
 router.post('/register', function (req, res) {
     database.User.register(new database.User({
         username: req.body.username,
         savedSearch: [
-          //Each is an object representing different points in time
-          { time: "downloaded", cxy: null, date: null, value: null}, //as of point in time downloaded
-          { time: "last week", cxy: null, date: null, value: null}, //as of one week ago
-          { time: "one month ago", cxy: null, date: null, value: null}, //as of last month
-          { time: "one year ago", cxy: null, date: null, value: null} //as of one year ago
+          // //Each is an object representing different points in time
+          // { time: "downloaded", cxy: null, date: null, value: null}, //as of point in time downloaded
+          // { time: "last week", cxy: null, date: null, value: null}, //as of one week ago
+          // { time: "one month ago", cxy: null, date: null, value: null}, //as of last month
+          // { time: "one year ago", cxy: null, date: null, value: null} //as of one year ago
         ]
     }),
         req.body.password, function (err, account) {
@@ -71,6 +74,22 @@ router.get('/status', function (req, res) {
         status: true
     });
 });
+
+//End of authentication stuff
+
+
+//These are routers for helper functions that ping the database
+
+router.get('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
+  controller.get()
+  .then( (arrayOfArrays) => res.send(arrayOfArrays))
+});
+
+router.post('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
+  controller.get()
+  .then( () => res.sendStatus(201));
+});
+//End of database stuff
 
 
 module.exports = router;
