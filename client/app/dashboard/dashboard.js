@@ -2,12 +2,8 @@ angular.module('astonishingOwls.search', [])
 .controller('searchCurrency', ['$scope', '$location', 'Search',
     function($scope, $location, Search){
 
-      $scope.getAllRates = function(){
-        Search.getall()
-        .then(function(res){
-          console.log(res.rates)
-        })
-      }
+      $scope.availableOptions = {}
+      $scope.listOfCurrency = {};
 
       $scope.submitHistoricDate = function(){
         var getHistoricalInput = $scope.getHistoricalDate;
@@ -16,7 +12,7 @@ angular.module('astonishingOwls.search', [])
 
         Search.getHistorical(getHistoricalInput)
         .then(function(res){
-          console.log(res)
+          console.log(res.rates)
 
         })
       }
@@ -28,7 +24,7 @@ angular.module('astonishingOwls.search', [])
         userInput.endDates = $scope.timeSeriesEnd
         userInput.symbols = $scope.timeSeriesSymbol
 
-        Search.getHistorical(userInput)
+        Search.getTimeSeries(userInput)
         .then(function(res){
           console.log(res)
         })
@@ -38,7 +34,8 @@ angular.module('astonishingOwls.search', [])
 
       //Initializin getall function when page is loaded.
       Search.getall().then(function(res){
-          console.log(res.rates)
+          console.log(res.rates, ' GETALL Initialize')
+          $scope.availableOptions.rates = res.rates;
         })
 
     }])

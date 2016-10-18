@@ -1,7 +1,7 @@
 angular.module('astonishingOwls.factory', [])
 .factory('Search', function($http){
 
-  //Get all data and pinpoint to server api call
+  //Get all data and pinpoint to server api call  /latest.json
   var getall = function(){
     return $http({
       method: 'GET',
@@ -13,12 +13,12 @@ angular.module('astonishingOwls.factory', [])
   }
 
   //Receive user input data from input field, and pass data to server api call
-  var getHistorical = function(userInput){
-    console.log(userInput, ' : userInput factory.js•')
+  var getHistorical = function(date){
+    // console.log(userInput, ' : userInput factory.js•')
     return $http({
       method: 'GET',
       url: '/api/getHistorical',
-      data: userInput
+      params: {date:date}
     })
   }
 
@@ -34,10 +34,13 @@ angular.module('astonishingOwls.factory', [])
 
   //Receive user input data from input field, and pass data to server api call
   var getTimeSeries = function(userInput){
+    console.log(userInput, ' :userInput factory.js')
     return $http({
       method: 'GET',
       url: '/api/getTimeSeries',
-      data: userInput
+      params: {"startDate": userInput.startDate,
+                "endDate": userInput.endDate,
+                "symbols": userInput.symbols}
     })
   }
 

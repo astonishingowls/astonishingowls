@@ -14,12 +14,13 @@
 
   <div>SEARCH SECTION
   <div>
-      get all rates
-      <form name="getAllCurr" ng-submit="getAllRates()">
-        <label for="getAll">
-        <button class="btn btn-default"  type='submit'>GetAllRates</button>
-      </form>
-  </div>
+    <form name="currencyList">
+      <label for="repeatSelect"> select: </label>
+      <select name="repeatSelect" id="repeatSelect" ng-model="currencySelect">
+        <option ng-repeat="option in availableOptions.rates" value="{{option.rates}}">{{option}}</option>
+      </select>
+    </form>
+
   <br>
 
   <div>
@@ -56,11 +57,6 @@
   <br>
 
 
-
-        <form name="saveSearch" ng-submit="FILL_ME">
-        <label for="saveCurrency"> Symbol <input type="text" ng-model='FILL_ME' placeholder="SYMBOL">
-        <button class="btn btn-default"  type='submit'>Submit</button>
-      </form>
   </div>
 
 
