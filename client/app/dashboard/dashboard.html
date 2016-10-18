@@ -39,58 +39,18 @@
     </div>
 
     <div class="userSearch col-xs-12 col-md-4">
-      <div>
-        <form name="currencyList" ng-submit="getSelectedCurrency()">
-          <label for="repeatSelect"> Currency List: </label>
+      <form name="currencyList" ng-submit="getSelectedCurrency()">
+        <label for="repeatSelect"> Currency List: </label>
+        <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'></select>
+        <div>Selected: {{selectedCurrency}}</div>
+        <div>Today:{{historyRate.todayRate}}</div>
+        <div>Week Ago:{{historyRate.sevenDaysAgo}}</div>
+        <div>30 days ago:{{historyRate.thirtyDaysAgo}}</div>
+        <div>365 days:{{historyRate.yearAgo}}<div>
+        <button class="btn btn-default"  type='submit'>Submit</button>
+      </form>
 
-            <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'>
-
-
-          </select>
-          <div>Selected: {{selectedCurrency}}</div>
-          <div>Today:{{historyRate.todayRate}}</div>
-          <div>Week Ago:{{historyRate.sevenDaysAgo}}</div>
-          <div>30 days ago:{{historyRate.thirtyDaysAgo}}</div>
-          <div>365 days:{{historyRate.yearAgo}}<div>
-          <button class="btn btn-default"  type='submit'>Submit</button>
-        </form>
-      </div>
-
-        <div>
-          get Historical
-          <form name="getHistoric" ng-submit="submitHistoricDate()">
-            <label for="getAll"> Date:<input type="text" ng-model='getHistoricalDate' placeholder="YYYY-MM-DD">
-              <button class="btn btn-default" type='submit'>Submit</button>
-          </form>
-        </div>
-        <br>
-
-<!--         <div>
-          get List Of Currencies
-          <form name="getListOfCurrencies" ng-submit="FILL_ME">
-
-            <button class="btn btn-default" type='submit'>Get all List of Currencies</button>
-          </form>
-        </div> -->
     </div>
-
-
-  <!---->
-    <!--<div>-->
-        <!--get Time Series-->
-          <!--<form ng-submit="getTimeSeries()">-->
-          <!--<label for="getAll">-->
-          <!--Start Date:<input type="text" ng-model='timeSeriesStart' placeholder="YYYY-MM-DD">-->
-          <!--End Date:<input type="text" ng-model='timeSeriesEnd' placeholder="YYYY-MM-DD">-->
-          <!--Symbol <input type="text" ng-model='timeSeriesSymbol' placeholder="XYZ">-->
-  <!---->
-  <!---->
-  <!---->
-          <!--<button class="btn btn-default"  type='submit'>Submit</button>-->
-        <!--</form>-->
-    <!--</div>-->
-
-
 
 
   </body>

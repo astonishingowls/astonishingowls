@@ -6,9 +6,6 @@ angular.module('astonishingOwls.search', [])
       $scope.listOfCurrency = {};
       $scope.historyRate = {};
       $scope.selectedCurrency = '';
-      // $scope.showSelectValue = function(mySelect) {
-      //   console.log(mySelect);
-      // }
 
       $scope.submitHistoricDate = function(){
         var getHistoricalInput = $scope.getHistoricalDate;
@@ -55,29 +52,23 @@ angular.module('astonishingOwls.search', [])
         var thirtyDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 30)));
         var yearAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 365)));
 
-        Search.getHistorical(sevenDaysAgo).then(function(res){
-
-          // console.log(res, ' LINE 61')
+        Search.getall().then(function(res){
           var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
-          console.log(inputCurrency, ' inputCUrrency++');
-          console.log(res.data.rates.inputCurrency, ' rates.input')
+          $scope.historyRate.todayRate = res.rates[inputCurrency];
+        })
+
+        Search.getHistorical(sevenDaysAgo).then(function(res){
+          var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
           $scope.historyRate.sevenDaysAgo = res.data.rates[inputCurrency];
         })
 
-
-
         Search.getHistorical(thirtyDaysAgo).then(function(res){
-          // console.log(res, ' LINE 61')
           var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
-          console.log(inputCurrency, ' inputCUrrency++');
-          console.log(res.data.rates.inputCurrency, ' rates.input')
           $scope.historyRate.thirtyDaysAgo = res.data.rates[inputCurrency];
         })
+
         Search.getHistorical(yearAgo).then(function(res){
-          // console.log(res, ' LINE 61')
           var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
-          console.log(inputCurrency, ' inputCUrrency++');
-          console.log(res.data.rates.inputCurrency, ' rates.input')
           $scope.historyRate.yearAgo = res.data.rates[inputCurrency];
         })
 
