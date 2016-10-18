@@ -7,7 +7,7 @@ angular.module('astonishingOwls', [
 .config(function ($routeProvider) {
   $routeProvider
       .when('/', {
-          templateUrl: 'app/dashboard/dashboard.html',
+          templateUrl: 'app/auth/home.html',
           access: {restricted: true}
       })
       .when('/login', {
