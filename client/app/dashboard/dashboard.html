@@ -40,12 +40,21 @@
 
     <div class="userSearch col-xs-12 col-md-4">
       <div>
-        <form name="currencyList">
-          <label for="repeatSelect"> select: </label>
-          <select name="repeatSelect" id="repeatSelect" ng-model="currencySelect">
-            <option ng-repeat="option in availableOptions.rates" value="{{option.rates}}">{{option}}</option>
+        <form name="currencyList" ng-submit="getSelectedCurrency()">
+          <label for="repeatSelect"> Currency List: </label>
+
+            <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'>
+
+
           </select>
+          <div>Selected: {{selectedCurrency}}</div>
+          <div>Today:{{historyRate.todayRate}}</div>
+          <div>Week Ago:{{historyRate.sevenDaysAgo}}</div>
+          <div>30 days ago:{{historyRate.thirtyDaysAgo}}</div>
+          <div>365 days:{{historyRate.yearAgo}}<div>
+          <button class="btn btn-default"  type='submit'>Submit</button>
         </form>
+      </div>
 
         <div>
           get Historical
@@ -56,13 +65,13 @@
         </div>
         <br>
 
-        <div>
+<!--         <div>
           get List Of Currencies
           <form name="getListOfCurrencies" ng-submit="FILL_ME">
 
             <button class="btn btn-default" type='submit'>Get all List of Currencies</button>
           </form>
-        </div>
+        </div> -->
     </div>
 
 
