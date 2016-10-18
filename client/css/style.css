@@ -381,6 +381,43 @@ textarea {
   font: inherit;
   /* 2 */ }
 
+header {
+  background-color: #333844;
+  height: 100px;
+  margin-bottom: 15px; }
+  header .logo {
+    display: inline-block;
+    padding-top: 5px; }
+    header .logo img {
+      width: 85px; }
+  header .logout {
+    float: right;
+    padding-top: 30px; }
+    header .logout a {
+      border: 2px solid white;
+      background: none;
+      color: white;
+      border-radius: 25px;
+      width: 150px; }
+      header .logout a:hover {
+        background: white;
+        color: #333844;
+        border: 2px solid white; }
+
+.savedSearches {
+  padding: 10px; }
+  .savedSearches .box {
+    border: 1px solid #424545;
+    height: 150px;
+    margin: 5px; }
+
+.userSearch {
+  padding: 10px;
+  border: 1px solid #FFF; }
+
 body {
-  background: #262a33;
+  background: #1d2027;
   color: #FFF; }
+
+input {
+  color: black; }
