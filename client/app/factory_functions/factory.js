@@ -1,6 +1,29 @@
 angular.module('astonishingOwls.factory', [])
 .factory('Search', function($http){
 
+
+
+  //adding these two functions for testing purposes only!!!
+  var postDB = function(data){
+    return $http({
+      method: 'POST',
+      url: '/database'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
   //Get all data and pinpoint to server api call  /latest.json
   var getall = function(){
     return $http({
