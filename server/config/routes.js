@@ -1,3 +1,4 @@
+//The following is the server-side router logic for Authentication
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
@@ -5,7 +6,13 @@ var passport = require('passport');
 var database = require('../db/dbmodels');
 
 router.post('/register', function (req, res) {
-    database.User.register(new database.User({username: req.body.username}),
+    database.User.register(new database.User({
+        username: req.body.username,
+        savedSearch: {
+            currencies: null, // three-letter string, i.e. EUR
+            historicalDate: null //in format 'YYYY-MM-DD'
+          }
+    }),
         req.body.password, function (err, account) {
             if (err) {
                 return res.status(500).json({
@@ -36,6 +43,7 @@ router.post('/login', function (req, res, next) {
                     err: 'Could not log in user'
                 });
             }
+            console.log("who is my user????????",user); //TEST!!!
             res.status(200).json({
                 status: 'Login successful!'
             });

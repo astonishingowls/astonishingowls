@@ -1,0 +1,20 @@
+<div ng-controller="refresh"> 
+  <button class="button button2" ng-click="download()">Refresh today's rates!</button>
+  <p> FX rates last updated: {{ updated }} </p>
+  <p>Base Currency:</p>
+  <select ng-model="selectedbaseCxy" ng-options="y for (x, y) in dropdown" ng-change="setBase()"></select>
+  <p>Target Currency:</p>
+  <select ng-model="selectedforeignCxy" ng-options="y for (x, y) in dropdown" ng-change="setForeign()"></select>
+  <p ng-show="selectedbaseCxy !== null && selectedforeignCxy !== null" >So you're converting from the <strong>{{selectedbaseCxy}}</strong> to the <strong>{{selectedforeignCxy}}</strong>!</p>
+</div>
+
+
+
+<div ng-controller="calculate"><br/>
+  <p> How much you wanna buy? </p>
+  <form ng-submit="getConversion()">
+    <input type="number" ng-model="amount"><br/>
+    <input class="button3" type="submit" id="submit" value="Convert my money, convert it now!!!!!" />
+  </form>
+  <p ng-show="result !== 0">{{baseCxy}}{{amount}} will get you {{foreignCxy}}{{result}}</p>
+</div>

@@ -1,6 +1,7 @@
 angular.module('astonishingOwls', [
     'astonishingOwls.factory',
     'astonishingOwls.auth',
+    'astonishingOwls.search',
     'ngRoute'
 ])
 
@@ -9,6 +10,10 @@ angular.module('astonishingOwls', [
       .when('/', {
           templateUrl: 'app/auth/home.html',
           access: {restricted: true}
+      })
+      .when('/dashboard', {
+          templateUrl: 'app/dashboard/dashboard.html',
+          controller: 'refresh'
       })
       .when('/login', {
           templateUrl: 'app/auth/login.html',
