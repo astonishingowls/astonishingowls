@@ -7,6 +7,10 @@ var models = {};
 //Uses passport-local-mongoose to create users with this schema
 //the passport module automatically hashes the user's inputted password for you
 var userSchema = new mongoose.Schema({
+  savedSearch: {
+      "currencies": String, // three-letter string, i.e. EUR
+      "historicalDate": String //in format 'YYYY-MM-DD'
+  }
 });
 userSchema.plugin(passportLocalMongoose);
 models.User = mongoose.model('User', userSchema);

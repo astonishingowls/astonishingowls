@@ -7,11 +7,11 @@ var database = require('../db/dbmodels');
 
 router.post('/register', function (req, res) {
     database.User.register(new database.User({
-        username: req.body.username,
         savedSearch: {
-            currencies: null, // three-letter string, i.e. EUR
-            historicalDate: null //in format 'YYYY-MM-DD'
-          }
+            "currencies": null, // three-letter string, i.e. EUR
+            "historicalDate": null //in format 'YYYY-MM-DD'
+        },
+        username: req.body.username
     }),
         req.body.password, function (err, account) {
             if (err) {
@@ -23,9 +23,9 @@ router.post('/register', function (req, res) {
                 return res.status(200).json({
                     status: 'Registration successful!'
                 });
-            });
-        });
-});
+            }); 
+        }); 
+}); 
 
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {

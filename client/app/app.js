@@ -1,19 +1,14 @@
 angular.module('astonishingOwls', [
     'astonishingOwls.factory',
     'astonishingOwls.auth',
-    'astonishingOwls.search',
     'ngRoute'
 ])
 
 .config(function ($routeProvider) {
   $routeProvider
       .when('/', {
-          templateUrl: 'app/auth/home.html',
-          access: {restricted: true}
-      })
-      .when('/dashboard', {
           templateUrl: 'app/dashboard/dashboard.html',
-          controller: 'refresh'
+          access: {restricted: true}
       })
       .when('/login', {
           templateUrl: 'app/auth/login.html',
