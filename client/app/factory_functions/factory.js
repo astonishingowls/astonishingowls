@@ -1,18 +1,24 @@
 angular.module('astonishingOwls.factory', [])
+
 .factory('Search', function($http){
 
 
 
   //adding these two functions for testing purposes only!!!
   var postDB = function(data){
+    console.log("WHAT IS THE DATA",data);
     return $http({
       method: 'POST',
-      url: '/database'
+      url: '/database',
+      data: data
     })
     .then(function (resp) {
-      return resp.data;
+      console.log("what is the response???",resp);
+      // return resp;
     });
-  }
+  };
+
+  var getDB = function(){};
 
 
 
@@ -37,7 +43,6 @@ angular.module('astonishingOwls.factory', [])
 
   //Receive user input data from input field, and pass data to server api call
   var getHistorical = function(date){
-    // console.log(userInput, ' : userInput factory.js•')
     return $http({
       method: 'GET',
       url: '/api/getHistorical',
@@ -69,132 +74,136 @@ angular.module('astonishingOwls.factory', [])
 
   var testingGetAll = getall();
   getall();
+
   return {
     getall: getall,
     getHistorical: getHistorical,
     getListOfCurrencies: getListOfCurrencies,
-    getTimeSeries: getTimeSeries
+    getTimeSeries: getTimeSeries,
+    postDB: postDB,
+    getDB: getDB
   };
-})
+}) // End of Search factory
+
+
 
 .factory('AuthService', ['$q', '$timeout', '$http',
-        function ($q, $timeout, $http) {
+function ($q, $timeout, $http) {
 
-            // create user variable
-            var user = null;
+  // create user variable
+  var user = null;
 
-            // return available functions for use in the controllers
-            return ({
-                isLoggedIn: isLoggedIn,
-                getUserStatus: getUserStatus,
-                login: login,
-                logout: logout,
-                register: register
-            });
+  function isLoggedIn() {
+      if (user) {
+          return true;
+      } else {
+          return false;
+      }
+  }
 
-            function isLoggedIn() {
-                if (user) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+  function getUserStatus() {
+      return $http.get('/user/status')
+          // handle success
+          .success(function (data) {
+              if (data.status) {
+                  user = true;
+              } else {
+                  user = false;
+              }
+          })
+          // handle error
+          .error(function (data) {
+              user = false;
+          });
+  }
 
-            function getUserStatus() {
-                return $http.get('/user/status')
-                    // handle success
-                    .success(function (data) {
-                        if (data.status) {
-                            user = true;
-                        } else {
-                            user = false;
-                        }
-                    })
-                    // handle error
-                    .error(function (data) {
-                        user = false;
-                    });
-            }
+  function login(username, password) {
 
-            function login(username, password) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
 
-                // create a new instance of deferred
-                var deferred = $q.defer();
+      // send a post request to the server
+      $http.post('/user/login',
+          {username: username, password: password})
+          // handle success
+          .success(function (data, status) {
+              if (status === 200 && data.status) {
+                  user = true;
+                  deferred.resolve();
+              } else {
+                  user = false;
+                  deferred.reject();
+              }
+          })
+          // handle error
+          .error(function (data) {
+              user = false;
+              deferred.reject();
+          });
 
-                // send a post request to the server
-                $http.post('/user/login',
-                    {username: username, password: password})
-                    // handle success
-                    .success(function (data, status) {
-                        if (status === 200 && data.status) {
-                            user = true;
-                            deferred.resolve();
-                        } else {
-                            user = false;
-                            deferred.reject();
-                        }
-                    })
-                    // handle error
-                    .error(function (data) {
-                        user = false;
-                        deferred.reject();
-                    });
+      // return promise object
+      return deferred.promise;
 
-                // return promise object
-                return deferred.promise;
+  }
 
-            }
+  function logout() {
 
-            function logout() {
+      // create a new instance of deferred
+      var deferred = $q.defer();
 
-                // create a new instance of deferred
-                var deferred = $q.defer();
+      // send a get request to the server
+      $http.get('/user/logout')
+          // handle success
+          .success(function (data) {
+              user = false;
+              deferred.resolve();
+          })
+          // handle error
+          .error(function (data) {
+              user = false;
+              deferred.reject();
+          });
 
-                // send a get request to the server
-                $http.get('/user/logout')
-                    // handle success
-                    .success(function (data) {
-                        user = false;
-                        deferred.resolve();
-                    })
-                    // handle error
-                    .error(function (data) {
-                        user = false;
-                        deferred.reject();
-                    });
+      // return promise object
+      return deferred.promise;
 
-                // return promise object
-                return deferred.promise;
+  }
 
-            }
+  function register(username, password) {
 
-            function register(username, password) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
 
-                // create a new instance of deferred
-                var deferred = $q.defer();
+      // send a post request to the server
+      $http.post('/user/register',
+          {username: username, password: password})
+          // handle success
+          .success(function (data, status) {
+              if (status === 200 && data.status) {
+                  deferred.resolve();
+              } else {
+                  deferred.reject();
+              }
+          })
+          // handle error
+          .error(function (data) {
+              deferred.reject();
+          });
 
-                // send a post request to the server
-                $http.post('/user/register',
-                    {username: username, password: password})
-                    // handle success
-                    .success(function (data, status) {
-                        if (status === 200 && data.status) {
-                            deferred.resolve();
-                        } else {
-                            deferred.reject();
-                        }
-                    })
-                    // handle error
-                    .error(function (data) {
-                        deferred.reject();
-                    });
+      // return promise object
+      return deferred.promise;
+  }
 
-                // return promise object
-                return deferred.promise;
+  // return available functions for use in the controllers
+  return ({
+      isLoggedIn: isLoggedIn,
+      getUserStatus: getUserStatus,
+      login: login,
+      logout: logout,
+      register: register
+  });
 
-            }
-
-        }])
+}]) // End of AuthService factory
 
 
 .factory('keysGrabber',function(){
@@ -207,4 +216,6 @@ angular.module('astonishingOwls.factory', [])
    return null;
  }
 }); //end of keysGrabber
+
+
 
