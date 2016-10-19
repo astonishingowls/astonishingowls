@@ -2,8 +2,8 @@ angular.module('astonishingOwls.search', [])
 
 
 .controller('searchCurrency', 
-['$scope', '$location', 'Search','keysGrabber','formatDate',
-function($scope, $location, Search, keysGrabber,formatDate){
+['$scope', '$location', 'Search','keysGrabber','formatDate','SharedVariables',
+function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   $scope.availableOptions = {}
   $scope.listOfCurrency = {};
@@ -11,6 +11,7 @@ function($scope, $location, Search, keysGrabber,formatDate){
   $scope.selectedCurrency = '';
   $scope.dates = {}; //will capture dates incl today, 1wk ago, 1mo ago, 1yr ago
   $scope.passedToDB = [];
+  $scope.downloadedData = [];
 
   $scope.getSelectedCurrency = function(){
 
@@ -66,15 +67,18 @@ function($scope, $location, Search, keysGrabber,formatDate){
       });
     })
 
-    console.log("THIS IS WHAT WE PASS TO THE DATABASE",$scope.passedToDB);
-
   } //end of .getSelectedCurrency function
 
 
   $scope.postToDB = function(){
-    console.log("++++++just reconfirming $scope.passedToDB",$scope.passedToDB);
     Search.postDB($scope.passedToDB);
     $scope.passedToDB = [];
+    Search.getDB()
+    .then( (resp) => {
+      $scope.downloadedData = resp.data.savedSearch;
+      SharedVariables.setDownloadedData($scope.downloadedData);
+
+    });
   }; //end of .postToDB function
 
 
@@ -117,16 +121,4 @@ function($scope, $location, Search, keysGrabber,formatDate){
 
 
 
-.factory('formatDate',function(){
-  //format date to YYYY-MM-DD
-  return function(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
-  }
-}); //end of keysGrabber
 
