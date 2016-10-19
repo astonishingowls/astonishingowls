@@ -2,8 +2,8 @@ angular.module('astonishingOwls.search', [])
 
 
 .controller('searchCurrency', 
-['$scope', '$location', 'Search','keysGrabber','formatDate',
-function($scope, $location, Search, keysGrabber,formatDate){
+['$scope', '$location', 'Search','keysGrabber','formatDate','SharedVariables',
+function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   $scope.availableOptions = {}
   $scope.listOfCurrency = {};
@@ -11,6 +11,7 @@ function($scope, $location, Search, keysGrabber,formatDate){
   $scope.selectedCurrency = '';
   $scope.dates = {}; //will capture dates incl today, 1wk ago, 1mo ago, 1yr ago
   $scope.passedToDB = [];
+  $scope.downloadedData = [];
 
   $scope.getSelectedCurrency = function(){
 
@@ -66,38 +67,42 @@ function($scope, $location, Search, keysGrabber,formatDate){
       });
     })
 
-    console.log("THIS IS WHAT WE PASS TO THE DATABASE",$scope.passedToDB);
-
   } //end of .getSelectedCurrency function
 
 
   $scope.postToDB = function(){
-    console.log("++++++just reconfirming $scope.passedToDB",$scope.passedToDB);
     Search.postDB($scope.passedToDB);
     $scope.passedToDB = [];
+    Search.getDB()
+    .then( (resp) => {
+      $scope.downloadedData = resp.data.savedSearch;
+      SharedVariables.setDownloadedData($scope.downloadedData);
+      // console.log(SharedVariables.getData());
+
+    });
   }; //end of .postToDB function
 
 
 
-  //we don't use this yet.... this will be for historical trend analysis
-  $scope.submitHistoricDate = function(){
-    var getHistoricalInput = $scope.getHistoricalDate;
-    Search.getHistorical(getHistoricalInput)
-    .then(function(res){
-    })
-  }
+  // //we don't use this yet.... this will be for historical trend analysis
+  // $scope.submitHistoricDate = function(){
+  //   var getHistoricalInput = $scope.getHistoricalDate;
+  //   Search.getHistorical(getHistoricalInput)
+  //   .then(function(res){
+  //   })
+  // }
 
-  //we don't use this yet.... this will be for historical trend analysis
-  $scope.getTimeSeries = function(){
-    var userInput = {};
-    userInput.startDates = $scope.timeSeriesStart
-    userInput.endDates = $scope.timeSeriesEnd
-    userInput.symbols = $scope.timeSeriesSymbol
+  // //we don't use this yet.... this will be for historical trend analysis
+  // $scope.getTimeSeries = function(){
+  //   var userInput = {};
+  //   userInput.startDates = $scope.timeSeriesStart
+  //   userInput.endDates = $scope.timeSeriesEnd
+  //   userInput.symbols = $scope.timeSeriesSymbol
 
-    Search.getTimeSeries(userInput)
-    .then(function(res){
-    })
-  }
+  //   Search.getTimeSeries(userInput)
+  //   .then(function(res){
+  //   })
+  // }
 
 
   //Initializin getall function when page is loaded.
@@ -116,17 +121,19 @@ function($scope, $location, Search, keysGrabber,formatDate){
 }])
 
 
+.controller('dashboardView',function($scope,SharedVariables){
+  $scope.downloadedData = SharedVariables.getData();
+  $scope.manipulateData = [];
 
-.factory('formatDate',function(){
-  //format date to YYYY-MM-DD
-  return function(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+  $scope.update = function(){
+    $scope.downloadedData = SharedVariables.getData(); 
+    for (var i = 0; i < $scope.downloadedData.length; i++){
+      if($scope.downloadedData){}
+    }
+    console.log($scope.manipulateData);
+     
   }
-}); //end of keysGrabber
+    
+
+})
 
