@@ -6,15 +6,19 @@ angular.module('astonishingOwls.factory', [])
 
   //adding these two functions for testing purposes only!!!
   var postDB = function(data){
+    console.log("WHAT IS THE DATA",data);
     return $http({
       method: 'POST',
-      url: '/database'
+      url: '/database',
+      data: data
     })
     .then(function (resp) {
       console.log("what is the response???",resp);
-      return resp;
+      // return resp;
     });
-  }
+  };
+
+  var getDB = function(){};
 
 
 
@@ -76,7 +80,8 @@ angular.module('astonishingOwls.factory', [])
     getHistorical: getHistorical,
     getListOfCurrencies: getListOfCurrencies,
     getTimeSeries: getTimeSeries,
-    postDB: postDB
+    postDB: postDB,
+    getDB: getDB
   };
 }) // End of Search factory
 

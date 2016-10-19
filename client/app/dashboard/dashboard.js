@@ -76,10 +76,10 @@ function($scope, $location, Search, keysGrabber,formatDate){
   } //end of .getSelectedCurrency function
 
 
-  $scope.postToDB = function(){
-    console.log("++++++just reconfirming $scope.passedToDB",$scope.passedToDB);
-    Search.postDB($scope.passedToDB);
-  }; //end of .postToDB function
+  // $scope.postToDB = function(){
+  //   console.log("++++++just reconfirming $scope.passedToDB",$scope.passedToDB);
+  //   Search.postDB($scope.passedToDB);
+  // }; //end of .postToDB function
 
 
 
