@@ -2,9 +2,6 @@ angular.module('astonishingOwls.factory', [])
 
 .factory('Search', function($http){
 
-
-
-  //adding these two functions for testing purposes only!!!
   var postDB = function(data){
     console.log("WHAT IS THE DATA",data);
     return $http({

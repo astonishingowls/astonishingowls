@@ -30,12 +30,6 @@ module.exports = function(app,express){
     //Historical data are End-Of-Day values, and are currently available from Jan 1st, 1999.
     //NOTE: DATE IS IN YYYY-MM-DD FORMAT!!, i.e. '2001-02-16'
     //For more info: https://docs.openexchangerates.org/docs/historical-json
-    console.log(req, ' req')
-    console.log('\n\n=====================================================================\n\n')
-    console.log(res, ' res')
-    console.log('\n\n=====================================================================\n\n')
-
-    console.log(req.query.date, ' req.query.date') // undefined
     var url = 'https://openexchangerates.org/api/historical/'+req.query.date+'.json?app_id='+api_key;
     request(url, function(err,response,body){
       if(err){ console.error("error downloading data via getHistorical");}
@@ -63,9 +57,7 @@ module.exports = function(app,express){
     //Get historical exchange rates for a given time period, where available, using the time series /
     //bulk download API endpoint. Please read all the details before integrating.
     //For more info: https://docs.openexchangerates.org/docs/time-series-json
-    console.log(req, ' ================\n\n')
 
-    console.log(req.query, ' REQ.QUERY API-ROUTE')
     var url = 'https://openexchangerates.org/api/time-series.json'+
     '?app_id='+api_key+ //from above
     '&start='+req.query.startDate+ //in format YYYY-MM-DD

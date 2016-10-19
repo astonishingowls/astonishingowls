@@ -68,18 +68,14 @@ function($scope, $location, Search, keysGrabber,formatDate){
 
     console.log("THIS IS WHAT WE PASS TO THE DATABASE",$scope.passedToDB);
 
-
-    //just testing here for now... we won't use this... we'll instead use the 
-    //$scope.postToDB function I wrote outside of this function
-    Search.postDB($scope.passedToDB);
-
   } //end of .getSelectedCurrency function
 
 
-  // $scope.postToDB = function(){
-  //   console.log("++++++just reconfirming $scope.passedToDB",$scope.passedToDB);
-  //   Search.postDB($scope.passedToDB);
-  // }; //end of .postToDB function
+  $scope.postToDB = function(){
+    console.log("++++++just reconfirming $scope.passedToDB",$scope.passedToDB);
+    Search.postDB($scope.passedToDB);
+    $scope.passedToDB = [];
+  }; //end of .postToDB function
 
 
 

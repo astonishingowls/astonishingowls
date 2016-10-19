@@ -78,20 +78,4 @@ router.get('/status', function (req, res) {
 //End of authentication stuff
 
 
-//These are routers for helper functions that ping the database
-
-router.get('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
-  console.log("IS THIS HITTING???? Line 84");
-  controller.get()
-  .then( (arrayOfArrays) => res.send(arrayOfArrays))
-});
-
-router.post('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
-  console.log("IS THIS HITTING???? Line 90");
-  controller.post()
-  .then( () => res.sendStatus(201));
-});
-//End of database stuff
-
-
 module.exports = router;

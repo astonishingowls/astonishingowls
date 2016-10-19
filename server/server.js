@@ -10,11 +10,13 @@ var hash = require('bcrypt-nodejs');
 var path = require('path');
 var passport = require('passport');
 var localStrategy = require('passport-local');
+var controller = require('./controllers/index');
 
 
 var app = express();
 app.use(bodyparser.urlencoded({extended: true}));
-app.use(bodyparser.json());
+// app.use(bodyparser.json();
+app.use(bodyparser());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(require('express-session')({
@@ -29,6 +31,32 @@ app.use(express.static(__dirname + '/../client'));
 
 //configure out server with routing file in /server/config/api-router
 require('./config/api-router.js')(app, express);
+
+
+
+
+
+//These are routers for helper functions that ping the database
+
+app.get('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
+  console.log("IS THIS HITTING???? Line 84");
+  controller.get()
+  .then( (arrayOfArrays) => res.send(arrayOfArrays))
+});
+
+app.post('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
+  database.User.update(
+    { _id: req.user._id },
+    { $push: { savedSearch: req.body } }
+  )
+  .then( () => res.status(201).send(req.data));
+});
+//End of database stuff
+
+
+
+
+
 
 // configure passport
 passport.use(new localStrategy(database.User.authenticate()));
