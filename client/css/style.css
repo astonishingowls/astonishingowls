@@ -415,9 +415,26 @@ header {
   padding: 10px;
   border: 1px solid #FFF; }
 
+.footer {
+  text-align: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 15px;
+  padding: 1rem;
+  background-color: #333844; }
+  .footer p {
+    margin-top: 10px; }
+    .footer p i {
+      color: red; }
+
 body {
   background: #1d2027;
   color: #FFF; }
 
 input {
   color: black; }
+
+select#repeatSelect {
+  color: black !important; }
