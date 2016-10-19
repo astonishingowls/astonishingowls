@@ -35,22 +35,27 @@
         <div class="box">
         </div>
       </div>
-
     </div>
 
     <div class="userSearch col-xs-12 col-md-4">
-      <form name="currencyList" ng-submit="getSelectedCurrency()">
-        <label for="repeatSelect"> Currency List: </label>
-        <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'></select>
-        <div>Selected: {{selectedCurrency}}</div>
-        <div>Today:{{historyRate.todayRate}}</div>
-        <div>Week Ago:{{historyRate.sevenDaysAgo}}</div>
-        <div>30 days ago:{{historyRate.thirtyDaysAgo}}</div>
-        <div>365 days:{{historyRate.yearAgo}}<div>
-        <button class="btn btn-default"  type='submit'>Submit</button>
-      </form>
-
+        <form name="currencyList" ng-submit="getSelectedCurrency()">
+          <label for="repeatSelect"> Currency List: </label>
+          <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'></select>
+          <div class="details">
+            <p>Selected: {{selectedCurrency}}</p>
+            <p>Today:{{historyRate.todayRate}}</p>
+            <p>Week Ago:{{historyRate.sevenDaysAgo}}</p>
+            <p>30 days ago:{{historyRate.thirtyDaysAgo}}</p>
+            <p>365 days:{{historyRate.yearAgo}}</p>
+            <button class="btn btn-default"  type='submit'>Submit</button>
+          </div>
+        </form>
     </div>
+
+    <footer class="footer col-xs-12">
+      <p>Made with by <i class="fa fa-heart faa-pulse animated" aria-hidden="true"></i> Astonishing Owls Inc. </p>
+    </footer>
+
 
 
   </body>
