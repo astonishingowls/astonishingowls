@@ -38,13 +38,16 @@ require('./config/api-router.js')(app, express);
 
 //These are routers for helper functions that ping the database
 
-app.get('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
-  console.log("IS THIS HITTING???? Line 84");
-  controller.get()
-  .then( (arrayOfArrays) => res.send(arrayOfArrays))
+app.get('/database', (req, res) => {
+  var id = req.user._id;
+  database.User.findById(id, function (err, doc){
+    if(err){ console.log("Not appropriately getting info from the database"); }
+    console.log(doc);
+  })
+  .then( (arrayOfArrays) => res.status(200).send(arrayOfArrays));
 });
 
-app.post('/database', (req, res) => { //clarify the endpoint with John on the client side!!!!
+app.post('/database', (req, res) => {
   database.User.update(
     { _id: req.user._id },
     { $push: { savedSearch: req.body } }

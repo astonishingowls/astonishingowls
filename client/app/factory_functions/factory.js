@@ -1,30 +1,31 @@
 angular.module('astonishingOwls.factory', [])
 
+
 .factory('Search', function($http){
 
+
+  //DATABASE GET AND POST REQUESTS
+  var getDB = function(){
+    return $http({
+      method: 'GET',
+      url: '/database'
+    })
+    .then(function (resp) {
+      return resp;
+    });
+  };
+
   var postDB = function(data){
-    console.log("WHAT IS THE DATA",data);
     return $http({
       method: 'POST',
       url: '/database',
       data: data
     })
     .then(function (resp) {
-      console.log("what is the response???",resp);
-      // return resp;
     });
   };
 
-  var getDB = function(){};
-
-
-
-
-
-
-
-
-
+  //END OF DATABASE GET AND POST REQUEST
 
 
   //Get all data and pinpoint to server api call  /latest.json
@@ -212,7 +213,31 @@ function ($q, $timeout, $http) {
    }
    return null;
  }
-}); //end of keysGrabber
+}) //end of keysGrabber
 
 
+.factory('formatDate',function(){
+  //format date to YYYY-MM-DD
+  return function(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+  }
+}) //end of formatDate
 
+.factory('SharedVariables', function(){
+  var downloadedData = [1,2,3];
+  
+  return {
+    setDownloadedData: function(value) {
+      downloadedData = value;
+    },
+    getData: function(){
+      return downloadedData;
+    }
+  }
+}) //end of SharedVariables factory
