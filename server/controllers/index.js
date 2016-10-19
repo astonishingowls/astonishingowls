@@ -18,7 +18,7 @@ module.exports = {
 
     post: function (req, res) {
 
-        console.log("USER????? LINE 25",user);
+        console.log("USER????? LINE 25",req.user);
         console.log("REQ????? LINE 26",req);
         // User.findOne({ 'username': username }, function (err, data) {
         //   if (err) console.error(err);
