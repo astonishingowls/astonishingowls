@@ -11,7 +11,8 @@ angular.module('astonishingOwls.factory', [])
       url: '/database'
     })
     .then(function (resp) {
-      return resp.data;
+      console.log("what is the response???",resp);
+      return resp;
     });
   }
 
@@ -69,11 +70,13 @@ angular.module('astonishingOwls.factory', [])
 
   var testingGetAll = getall();
   getall();
+
   return {
     getall: getall,
     getHistorical: getHistorical,
     getListOfCurrencies: getListOfCurrencies,
-    getTimeSeries: getTimeSeries
+    getTimeSeries: getTimeSeries,
+    postDB: postDB
   };
 }) // End of Search factory
 
