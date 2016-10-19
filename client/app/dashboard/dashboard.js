@@ -77,31 +77,32 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     .then( (resp) => {
       $scope.downloadedData = resp.data.savedSearch;
       SharedVariables.setDownloadedData($scope.downloadedData);
+      // console.log(SharedVariables.getData());
 
     });
   }; //end of .postToDB function
 
 
 
-  //we don't use this yet.... this will be for historical trend analysis
-  $scope.submitHistoricDate = function(){
-    var getHistoricalInput = $scope.getHistoricalDate;
-    Search.getHistorical(getHistoricalInput)
-    .then(function(res){
-    })
-  }
+  // //we don't use this yet.... this will be for historical trend analysis
+  // $scope.submitHistoricDate = function(){
+  //   var getHistoricalInput = $scope.getHistoricalDate;
+  //   Search.getHistorical(getHistoricalInput)
+  //   .then(function(res){
+  //   })
+  // }
 
-  //we don't use this yet.... this will be for historical trend analysis
-  $scope.getTimeSeries = function(){
-    var userInput = {};
-    userInput.startDates = $scope.timeSeriesStart
-    userInput.endDates = $scope.timeSeriesEnd
-    userInput.symbols = $scope.timeSeriesSymbol
+  // //we don't use this yet.... this will be for historical trend analysis
+  // $scope.getTimeSeries = function(){
+  //   var userInput = {};
+  //   userInput.startDates = $scope.timeSeriesStart
+  //   userInput.endDates = $scope.timeSeriesEnd
+  //   userInput.symbols = $scope.timeSeriesSymbol
 
-    Search.getTimeSeries(userInput)
-    .then(function(res){
-    })
-  }
+  //   Search.getTimeSeries(userInput)
+  //   .then(function(res){
+  //   })
+  // }
 
 
   //Initializin getall function when page is loaded.
@@ -120,5 +121,19 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 }])
 
 
+.controller('dashboardView',function($scope,SharedVariables){
+  $scope.downloadedData = SharedVariables.getData();
+  $scope.manipulateData = [];
 
+  $scope.update = function(){
+    $scope.downloadedData = SharedVariables.getData(); 
+    for (var i = 0; i < $scope.downloadedData.length; i++){
+      if($scope.downloadedData){}
+    }
+    console.log($scope.manipulateData);
+     
+  }
+    
+
+})
 

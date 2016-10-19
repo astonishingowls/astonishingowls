@@ -230,11 +230,14 @@ function ($q, $timeout, $http) {
 }) //end of formatDate
 
 .factory('SharedVariables', function(){
-  var downloadedData = [];
+  var downloadedData = [1,2,3];
   
   return {
     setDownloadedData: function(value) {
-        downloadedData = value;
+      downloadedData = value;
+    },
+    getData: function(){
+      return downloadedData;
     }
   }
 }) //end of SharedVariables factory
