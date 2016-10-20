@@ -1,4 +1,4 @@
-angular.module('astonishingOwls.search', [])
+angular.module('astonishingOwls.search', ['chart.js'])
 
 
 .controller('searchCurrency', 
@@ -191,5 +191,6 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   } //end of $scope.update
     
 
-})
+}) //end of dashboardView
 
+.controller('charts',function(){})
