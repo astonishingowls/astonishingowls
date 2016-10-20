@@ -32,9 +32,10 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         date: $scope.dates.today, 
         value: $scope.historyRate.todayRate 
       });
+      console.log("today pushed")
     })
-
-    Search.getHistorical(sevenDaysAgo).then(function(res){
+    .then( () => {
+      Search.getHistorical(sevenDaysAgo).then(function(res){
       var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
       $scope.historyRate.sevenDaysAgo = res.data.rates[inputCurrency];
       $scope.passedToDB.push({ 
@@ -43,28 +44,34 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         date: $scope.dates.sevenDaysAgo, 
         value: $scope.historyRate.sevenDaysAgo 
       });
+      console.log("last week pushed")
+     })
     })
-
-    Search.getHistorical(thirtyDaysAgo).then(function(res){
-      var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
-      $scope.historyRate.thirtyDaysAgo = res.data.rates[inputCurrency];
-      $scope.passedToDB.push({ 
-        time: "last month", 
-        cxy: inputCurrency, 
-        date: $scope.dates.thirtyDaysAgo, 
-        value: $scope.historyRate.thirtyDaysAgo 
-      });
+    .then( () => {
+      Search.getHistorical(thirtyDaysAgo).then(function(res){
+        var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
+        $scope.historyRate.thirtyDaysAgo = res.data.rates[inputCurrency];
+        $scope.passedToDB.push({ 
+          time: "last month", 
+          cxy: inputCurrency, 
+          date: $scope.dates.thirtyDaysAgo, 
+          value: $scope.historyRate.thirtyDaysAgo 
+        });
+      console.log("last month pushed")
+      })
     })
-
-    Search.getHistorical(yearAgo).then(function(res){
-      var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
-      $scope.historyRate.yearAgo = res.data.rates[inputCurrency];
-      $scope.passedToDB.push({ 
-        time: "last year", 
-        cxy: inputCurrency, 
-        date: $scope.dates.yearAgo, 
-        value: $scope.historyRate.yearAgo 
-      });
+    .then( () => {
+      Search.getHistorical(yearAgo).then(function(res){
+        var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
+        $scope.historyRate.yearAgo = res.data.rates[inputCurrency];
+        $scope.passedToDB.push({ 
+          time: "last year", 
+          cxy: inputCurrency, 
+          date: $scope.dates.yearAgo, 
+          value: $scope.historyRate.yearAgo 
+        });
+      console.log("last year pushed")
+      })
     })
 
   } //end of .getSelectedCurrency function
@@ -127,8 +134,9 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   $scope.update = function(){
     $scope.downloadedData = SharedVariables.getData(); 
+    console.log($scope.downloadedData);
     for (var i = 0; i < $scope.downloadedData.length; i++){
-      if($scope.downloadedData){}
+      $scope.manipulateData.push($scope.downloadedData[i][0])
     }
     console.log($scope.manipulateData);
      
