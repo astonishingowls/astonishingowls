@@ -77,6 +77,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
           value: $scope.historyRate.yearAgo 
         });
       console.log("last year pushed")
+      $scope.historyRate.loaded = true;
       })
     })
 

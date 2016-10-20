@@ -36,19 +36,19 @@
 
     <div class="userSearch col-xs-12 col-md-4">
       <h1 class="title">New Search</h1>
-        <form name="currencyList" ng-submit="getSelectedCurrency()">
+        <form name="currencyList">
           <label for="repeatSelect"> Currency List: </label>
-          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency' ng-change='getKeys()'></select>
-          <div class="details">
-            <p>Query: {{ inputCurrency}} -- {{ selectedCurrency }}</p>
-            <p>Today: {{ historyRate.todayRate }}</p>
-            <p>Week Ago: {{ historyRate.sevenDaysAgo }}</p>
-            <p>30 days ago: {{ historyRate.thirtyDaysAgo }}</p>
-            <p>365 days: {{ historyRate.yearAgo}}</p>
-            <button class="btn btn-default" type='submit'>Submit</button>
+          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency' ng-change='getKeys(); getSelectedCurrency()'></select>
+          <div class="details" ng-show="historyRate.loaded">
+            <p>{{ inputCurrency}} -- {{ selectedCurrency }}</p>
+            <p>Today's Rate: {{ historyRate.todayRate }}</p>
+            <p>Last Week: {{ historyRate.sevenDaysAgo }}</p>
+            <p>Last Month: {{ historyRate.thirtyDaysAgo }}</p>
+            <p>Last Year: {{ historyRate.yearAgo}}</p>
+<!--             <button class="btn btn-default" type='submit'>Submit</button> -->
           </div>
         </form>
-        <a ng-click="postToDB()" class="btn btn-default">BUY BUY BUY!!!!!</a>
+        <a ng-show="historyRate.loaded" ng-click="postToDB()" class="btn btn-default">BUY!!!!!</a>
     </div>
 
 <!--     <footer class="footer col-xs-12">
