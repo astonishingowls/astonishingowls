@@ -84,7 +84,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     .then( (resp) => {
       $scope.downloadedData = resp.data.savedSearch;
       SharedVariables.setDownloadedData($scope.downloadedData);
-      // console.log(SharedVariables.getData());
+      console.log("line 87 ++++++++",SharedVariables.getData());
 
     });
   }; //end of .postToDB function
@@ -128,19 +128,37 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 }])
 
 
-.controller('dashboardView',function($scope,SharedVariables){
+.controller('dashboardView',function($scope, Search, SharedVariables){
   $scope.downloadedData = SharedVariables.getData();
   $scope.manipulateData = [];
+  $scope.initializing = true;
 
   $scope.update = function(){
-    $scope.downloadedData = SharedVariables.getData(); 
-    console.log($scope.downloadedData);
-    for (var i = 0; i < $scope.downloadedData.length; i++){
-      $scope.manipulateData.push($scope.downloadedData[i][0])
+    if($scope.initializing){
+      //you have to download the data directly from the database
+      Search.getDB()
+      .then( (resp) => {
+        console.log("response???? 141",resp);
+        $scope.downloadedData = resp.data.savedSearch;
+        SharedVariables.setDownloadedData($scope.downloadedData);
+        // console.log("downloadedData????????",$scope.downloadedData); 
+        for (var i = 0; i < $scope.downloadedData.length; i++){
+          $scope.manipulateData.push($scope.downloadedData[i][0])
+        }
+        console.log($scope.manipulateData);
+      });
+      $scope.initializing = false;
+    } else {
+      $scope.downloadedData = SharedVariables.getData(); 
+      console.log("line 153++++++++",$scope.downloadedData);
+      console.log("line 154++++++++",SharedVariables.getData());
+      $scope.manipulateData = [];
+      for (var i = 0; i < $scope.downloadedData.length; i++){
+        $scope.manipulateData.push($scope.downloadedData[i][0])
+      }
+      console.log($scope.manipulateData);
     }
-    console.log($scope.manipulateData);
-     
-  }
+  } //end of $scope.update
     
 
 })
