@@ -147,7 +147,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.manipulateData = [];
   $scope.initializing = true;
 
-  //for charts
+  //for bar charts
   $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
   $scope.labels = []; //labels for x axis
   $scope.series = ['Purchased','Market Value', 'Gain/Loss']; //data being downloaded, i.e. bought, current, gain/loss
@@ -201,7 +201,17 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       ]
     }
   };
-  //end of charts variables
+  $scope.optionsPie = {
+    tooltipEvents: [],
+    showTooltips: true,
+    tooltipCaretSize: 0,
+    onAnimationComplete: function () {
+        this.showTooltip(this.segments, true);
+    },
+};
+  //end of bar chart variables
+
+
 
   $scope.update = function(){
     //reinitialize charts data
