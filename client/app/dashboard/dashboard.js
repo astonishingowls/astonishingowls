@@ -12,6 +12,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.inputCurrency = ''; //it's the three letter keys
   $scope.passedToDB = [];
   $scope.downloadedData = [];
+  $scope.boughtAmount;
 
   $scope.refreshView = function(){
     //get keys for selected currency in dropdown list
@@ -34,7 +35,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         time: "today", 
         cxy: inputCurrency, 
         date: today, 
-        value: $scope.historyRate.todayRate 
+        value: $scope.historyRate.todayRate,
       });
       console.log("today pushed")
     })
@@ -85,11 +86,15 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   $scope.postToDB = function(){
     if($scope.passedToDB.length === 4){
+      console.log("passed to DB",$scope.passedToDB)
+      $scope.passedToDB[0].boughtAmount = $scope.boughtAmount;
       Search.postDB($scope.passedToDB);
       $scope.passedToDB = [];
       Search.getDB()
       .then( (resp) => {
         $scope.downloadedData = resp.data.savedSearch;
+        console.log("boughtAmount",$scope.boughtAmount);
+        console.log("downloadedData line 96",$scope.downloadedData);
         SharedVariables.setDownloadedData($scope.downloadedData);
         console.log("line 87 ++++++++",SharedVariables.getData());
       });

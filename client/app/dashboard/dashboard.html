@@ -19,7 +19,7 @@
     <div ng-controller="dashboardView" class="savedSearches col-xs-12 col-md-8">
       <div class="top-section col-xs-12">
         <h1 class="title">Saved Searches</h1>
-        <a ng-click="update()" class="btn btn-default">Update Data!</a>
+        <a ng-click="update()" class="btn btn-default">Update my positions!</a>
       </div>
       <div ng-repeat="item in manipulateData" class="col-xs-12 col-md-6">
         <div class="search col-xs-12">
@@ -27,8 +27,11 @@
             <ul>
               <li>Currency: {{ item.cxy }}</li>
               <li>Date bought: {{ item.date }}</li>
-              <li>Purchase value: {{ item.value }}</li>
-              <li>Current value: {{ item.refreshed }}</li>
+              <li>Purchase rate: {{ item.value }}</li>
+              <li>Current rate: {{ item.refreshed }}</li>
+              <li>Amount purchased (US-equivalent): {{ item.boughtAmount | number: 2}}</li>
+              <li>Market value (US-equivalent): {{ item.boughtAmount * item.refreshed / item.value | number: 2 }}</li>
+              <li>Gain / loss (US-equivalent): {{ item.boughtAmount * (item.refreshed / item.value - 1 ) | number: 2 }} </li>
             </ul>
           </div>
         </div>
@@ -53,9 +56,10 @@
           <a ng-show="historyRate.buttonShow" class="btn btn-default" 
             ng-click="historyRate.buttonShow = !historyRate.buttonShow">Add to positions</a>
           <div ng-hide="historyRate.buttonShow">
-            <p>How much would you want to buy?</p>
+            <p>How much would you want to buy? (Amounts in USD)</p>
             <input type="number" ng-model="boughtAmount">
-            <a ng-click="postToDB()">Confirm purchase</a>
+            <p> {{ boughtAmount }} </p>
+            <a class="btn btn-default" ng-click="postToDB(); historyRate.ratesLoaded = !historyRate.ratesLoaded">Confirm purchase</a>
           </div>
         </div>
         
