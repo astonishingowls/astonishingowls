@@ -88,16 +88,17 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     if($scope.passedToDB.length === 4){
       console.log("passed to DB",$scope.passedToDB)
       $scope.passedToDB[0].boughtAmount = $scope.boughtAmount;
-      Search.postDB($scope.passedToDB);
-      $scope.passedToDB = [];
-      Search.getDB()
-      .then( (resp) => {
-        $scope.downloadedData = resp.data.savedSearch;
-        console.log("boughtAmount",$scope.boughtAmount);
-        console.log("downloadedData line 96",$scope.downloadedData);
-        SharedVariables.setDownloadedData($scope.downloadedData);
-        console.log("line 87 ++++++++",SharedVariables.getData());
+      Search.postDB($scope.passedToDB)
+      .then( () => {//Sara, I promisified this because I think there was an async issue 
+        Search.getDB()
+        .then( (resp) => {
+          $scope.downloadedData = resp.data.savedSearch;
+          SharedVariables.setDownloadedData($scope.downloadedData);
+          console.log("line 87 ++++++++",SharedVariables.getData());
+        });
       });
+      $scope.passedToDB = [];
+
     } else {
       $scope.passedToDB = [];
       console.log("Please add something!")
