@@ -1,4 +1,4 @@
-angular.module('astonishingOwls.search', [])
+angular.module('astonishingOwls.search', ['chart.js'])
 
 
 .controller('searchCurrency', 
@@ -147,7 +147,80 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.manipulateData = [];
   $scope.initializing = true;
 
+  //for bar charts
+  $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
+  $scope.labels = []; //labels for x axis
+  $scope.series = ['Purchased','Market Value', 'Gain/Loss']; //data being downloaded, i.e. bought, current, gain/loss
+  $scope.costBasis = [];
+  $scope.marketValues = [];
+  $scope.gainLoss = [];
+  $scope.data = []; //array of array for each series
+  $scope.datasetOverride = [
+    {
+      yAxisID: 'y-axis-1',
+      label: "Bar chart",
+      borderWidth: 1,
+      type: 'bar'
+    },
+    {
+      yAxisID: 'y-axis-1',
+      label: "Bar chart",
+      borderWidth: 1,
+      type: 'bar'
+    },
+    {
+      yAxisID: 'y-axis-2',
+      label: "Line chart",
+      borderWidth: 3,
+      hoverBackgroundColor: "rgba(255,99,132,0.4)",
+      hoverBorderColor: "rgba(255,99,132,1)",
+      type: 'line'
+    }
+  ];
+  $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          ticks: {
+            beginAtZero: true
+          },
+          type: 'linear',
+          display: true,
+          position: 'left'
+        },
+        {
+          id: 'y-axis-2',
+          ticks: {
+            beginAtZero: true
+          },
+          type: 'linear',
+          display: true,
+          position: 'right'
+        }
+      ]
+    }
+  };
+  $scope.optionsPie = {
+    tooltipEvents: [],
+    showTooltips: true,
+    tooltipCaretSize: 0,
+    onAnimationComplete: function () {
+        this.showTooltip(this.segments, true);
+    },
+};
+  //end of bar chart variables
+
+
+
   $scope.update = function(){
+    //reinitialize charts data
+    $scope.labels = []; //repopulated after Search.getDB is called
+    $scope.costBasis = []; //repopulated after Search.getDB is called
+    $scope.marketValues = []; 
+    $scope.gainLoss = [];
+    $scope.data = []; 
+
     //set up "initializing" conditions, where if "initializing" is true:
     if($scope.initializing){
       //you have to download the data directly from the database
@@ -156,17 +229,17 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         console.log("response???? 141",resp);
         $scope.downloadedData = resp.data.savedSearch;
         SharedVariables.setDownloadedData($scope.downloadedData);
-        // console.log("downloadedData????????",$scope.downloadedData); 
-        for (var i = 0; i < $scope.downloadedData.length; i++){
+        for (var i = 0; i < $scope.downloadedData.length; i++){ //populates $scope.manipulateData
           $scope.manipulateData.push($scope.downloadedData[i][0])
         }
         console.log($scope.manipulateData);
+
       });
       $scope.initializing = false;
     } else { 
       //else you download the data from the updated results from the search bar through the shared factory
       $scope.downloadedData = SharedVariables.getData(); 
-      console.log("line 153++++++++",$scope.downloadedData);
+      console.log("line 153++++++++",$scope.manipulateData);
       console.log("line 154++++++++",SharedVariables.getData());
       $scope.manipulateData = [];
       for (var i = 0; i < $scope.downloadedData.length; i++){
@@ -182,14 +255,34 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     Search.getall().then( (res) => {
       console.log("res.rates????",res.rates);
       for(var i = 0; i < $scope.manipulateData.length; i++){
-        //code
         var cxySearch = $scope.manipulateData[i].cxy;
         $scope.manipulateData[i].refreshed = res.rates[cxySearch];
+        $scope.labels.push($scope.manipulateData[i].cxy); //populate labels array for charts
+        $scope.costBasis.push($scope.manipulateData[i].boughtAmount); //populate cost basis for charts
+        $scope.marketValues.push( //populate market value for charts. this is amount * current rate / purchaes rate
+          Math.round(
+          $scope.manipulateData[i].boughtAmount 
+          * $scope.manipulateData[i].refreshed 
+          / $scope.manipulateData[i].value, 2) 
+        ); 
+        console.log("currencies",$scope.labels);
+        console.log("COST BASIS ",$scope.costBasis);
+        console.log("market values ",$scope.marketValues);
       }
+      for(var k = 0; k < $scope.labels.length; k++){
+        $scope.gainLoss.push( $scope.marketValues[k] - $scope.costBasis[k]); //populate gainLoss for charts
+      }
+      $scope.data.push($scope.costBasis); //for charts
+      $scope.data.push($scope.marketValues); //for charts
+      $scope.data.push($scope.gainLoss); //for charts
+      console.log($scope.data);
     });
 
   } //end of $scope.update
+
+
     
 
-})
+}) //end of dashboardView
 
+.controller('charts',function(){})
