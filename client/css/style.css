@@ -392,19 +392,47 @@ header {
       width: 85px; }
     header .logo .title {
       display: inline-block; }
+      @media (max-width: 767px) {
+        header .logo .title {
+          display: none; } }
   header .logout {
     float: right;
-    padding-top: 30px; }
+    padding-top: 20px; }
     header .logout a {
-      border: 2px solid white;
+      border: 2px solid #FFF;
       background: none;
-      color: white;
+      color: #FFF;
       border-radius: 25px;
-      width: 150px; }
+      width: 150px;
+      margin-top: 10px; }
       header .logout a:hover {
         background: white;
         color: #333844;
         border: 2px solid white; }
+
+#login a {
+  border: 2px solid #FFF;
+  background: none;
+  color: #FFF;
+  border-radius: 25px;
+  width: 150px;
+  margin-top: 10px; }
+  #login a:hover {
+    background: white;
+    color: #333844;
+    border: 2px solid white; }
+
+#login form button {
+  border: 2px solid #FFF;
+  background: none;
+  color: #FFF;
+  border-radius: 25px;
+  width: 150px;
+  margin-top: 10px; }
+  #login form button:hover {
+    background: white;
+    color: #333844;
+    border: 2px solid white; }
 
 .savedSearches {
   padding: 10px;
@@ -412,34 +440,41 @@ header {
   .savedSearches .top-section {
     margin: 15px; }
   .savedSearches a {
-    border: 2px solid white;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid #FFF;
     background: none;
-    color: white;
+    color: #FFF;
     border-radius: 25px;
-    width: 200px;
-    margin-left: 5px;
-    margin-right: 5px; }
+    width: 150px;
+    margin-top: 10px; }
     .savedSearches a:hover {
       background: white;
       color: #333844;
       border: 2px solid white; }
-  .savedSearches .box {
-    border: 1px solid #424545;
-    height: 150px;
-    margin: 5px; }
-    .savedSearches .box:hover {
-      background: #333844; }
-    .savedSearches .box .currency {
-      font-size: 52px;
-      color: #00a8cc; }
-      .savedSearches .box .currency .sm_container2 {
-        line-height: .9; }
-        .savedSearches .box .currency .sm_container2 i {
-          color: white;
-          font-size: 35px; }
-    .savedSearches .box .current .sm_container {
-      height: 75px;
-      padding: 20px; }
+  .savedSearches .chart {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .savedSearches .largerContainer {
+    padding-left: 0 !important;
+    padding-right: 0 !important; }
+    .savedSearches .largerContainer .box {
+      border: 1px solid #424545;
+      height: 150px;
+      margin: 5px; }
+      .savedSearches .largerContainer .box:hover {
+        background: #333844; }
+      .savedSearches .largerContainer .box .currency {
+        font-size: 52px;
+        color: #00a8cc; }
+        .savedSearches .largerContainer .box .currency .sm_container2 {
+          line-height: .9; }
+          .savedSearches .largerContainer .box .currency .sm_container2 i {
+            color: white;
+            font-size: 35px; }
+      .savedSearches .largerContainer .box .current .sm_container {
+        height: 70px;
+        padding: 15px; }
 
 .userSearch {
   padding: 10px;
@@ -455,9 +490,9 @@ header {
     .userSearch .border:hover {
       background: #333844; }
     .userSearch .border a {
-      border: 2px solid white;
+      border: 2px solid #FFF;
       background: none;
-      color: white;
+      color: #FFF;
       border-radius: 25px;
       width: 150px;
       margin-top: 10px; }
@@ -466,11 +501,12 @@ header {
         color: #333844;
         border: 2px solid white; }
     .userSearch .border .details button {
-      border: 2px solid white;
+      border: 2px solid #FFF;
       background: none;
-      color: white;
+      color: #FFF;
       border-radius: 25px;
-      width: 150px; }
+      width: 150px;
+      margin-top: 10px; }
       .userSearch .border .details button:hover {
         background: white;
         color: #333844;

@@ -2,6 +2,7 @@ angular.module('astonishingOwls', [
     'astonishingOwls.factory',
     'astonishingOwls.auth',
     'astonishingOwls.search',
+    'chart.js',
     'ngRoute'
 ])
 
