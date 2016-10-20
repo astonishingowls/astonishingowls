@@ -18,13 +18,17 @@
 
     <div ng-controller="dashboardView" class="savedSearches col-xs-12 col-md-8">
       <button ng-click="update()">Update Data!</button>
-     <!--  <div ng-repeat="something in something" class="col-xs-12">
+      <div ng-repeat="item in manipulateData" class="col-xs-12">
         <div class="search col-xs-12 col-md-6">
-          <div class="box"> {{ something }}
+          <div class="box"> 
+            <ul>
+              <li>Currency: {{ item.cxy }}</li>
+              <li>Date bought: {{ item.date }}</li>
+              <li>Purchase value: {{ item.value }}</li>
+            </ul> 
           </div>
         </div>
-      </div> -->
-      {{ manipulateData }}
+      </div>
     </div>
 
     <div class="userSearch col-xs-12 col-md-4">
