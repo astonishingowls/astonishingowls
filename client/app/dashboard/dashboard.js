@@ -10,24 +10,22 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.historyRate = {};
   $scope.selectedCurrency = ''; //it's the full currency name
   $scope.inputCurrency = ''; //it's the three letter keys
-  $scope.dates = {}; //will capture dates incl today, 1wk ago, 1mo ago, 1yr ago
   $scope.passedToDB = [];
   $scope.downloadedData = [];
 
-  $scope.getKeys = function(){
+  $scope.refreshView = function(){
+    //get keys for selected currency in dropdown list
     $scope.inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency);
+    //re-initialize historyRate views
     $scope.historyRate = {};
   }
 
   $scope.getSelectedCurrency = function(){
 
-    $scope.dates.today = formatDate(new Date(new Date().setDate(new Date().getDate())));
-    $scope.dates.sevenDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 7)));
-    $scope.dates.thirtyDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 30)));
-    $scope.dates.yearAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 365)));
-    sevenDaysAgo = $scope.dates.sevenDaysAgo;
-    thirtyDaysAgo = $scope.dates.thirtyDaysAgo;
-    yearAgo = $scope.dates.yearAgo;
+    var today = formatDate(new Date(new Date().setDate(new Date().getDate())));
+    var sevenDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 7)));
+    var thirtyDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 30)));
+    var yearAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 365)));
 
     Search.getall().then(function(res){
       var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
@@ -35,7 +33,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       $scope.passedToDB.push({ 
         time: "today", 
         cxy: inputCurrency, 
-        date: $scope.dates.today, 
+        date: today, 
         value: $scope.historyRate.todayRate 
       });
       console.log("today pushed")
@@ -47,7 +45,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       $scope.passedToDB.push({ 
         time: "last week", 
         cxy: inputCurrency, 
-        date: $scope.dates.sevenDaysAgo, 
+        date: sevenDaysAgo, 
         value: $scope.historyRate.sevenDaysAgo 
       });
       console.log("last week pushed")
@@ -60,7 +58,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         $scope.passedToDB.push({ 
           time: "last month", 
           cxy: inputCurrency, 
-          date: $scope.dates.thirtyDaysAgo, 
+          date: thirtyDaysAgo, 
           value: $scope.historyRate.thirtyDaysAgo 
         });
       console.log("last month pushed")
@@ -73,11 +71,12 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         $scope.passedToDB.push({ 
           time: "last year", 
           cxy: inputCurrency, 
-          date: $scope.dates.yearAgo, 
+          date: yearAgo, 
           value: $scope.historyRate.yearAgo 
         });
       console.log("last year pushed")
-      $scope.historyRate.loaded = true;
+      $scope.historyRate.ratesLoaded = true;
+      $scope.historyRate.buttonShow = true;
       })
     })
 
@@ -125,14 +124,12 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   //Initializin getall function when page is loaded.
   Search.getall().then(function(res){
-    // console.log(res.rates, ' GETALL Initialize')
     $scope.availableOptions.rates = res.rates;
   })
 
 
   //Initializing to get all list of currencies
   Search.getListOfCurrencies().then(function(res){
-    // console.log(res , ' getListOfCurrencies')
     $scope.listOfCurrency = res
   })
 
@@ -145,6 +142,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.initializing = true;
 
   $scope.update = function(){
+    //set up "initializing" conditions, where if "initializing" is true:
     if($scope.initializing){
       //you have to download the data directly from the database
       Search.getDB()
@@ -160,7 +158,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       });
       $scope.initializing = false;
     } else { 
-      //you download the data from the updated results from the search bar through the shared factory
+      //else you download the data from the updated results from the search bar through the shared factory
       $scope.downloadedData = SharedVariables.getData(); 
       console.log("line 153++++++++",$scope.downloadedData);
       console.log("line 154++++++++",SharedVariables.getData());
@@ -171,6 +169,10 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       console.log($scope.manipulateData);
     }
 
+    //After data is downloaded from the database, 
+    //Following code takes all user's saved currencies and downloads current values
+    //for "cost vs. purchased" comparison
+    //The "refreshed" values are set to a .refreshed property for each item in manipulateData
     Search.getall().then( (res) => {
       console.log("res.rates????",res.rates);
       for(var i = 0; i < $scope.manipulateData.length; i++){
@@ -181,17 +183,6 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     });
 
   } //end of $scope.update
-
-  // $interval(function () {
-  //   Search.getall().then(function(res){
-  //     console.log("res.rates????",res.rates);
-  //     for (var i = 0; i < $scope.manipulateData.length; i++){
-  //       var cxySearch = $scope.manipulateData[i].cxy;
-  //       $scope.manipulateData[i].value = res.rates[cxySearch]
-  //       console.log("cxySearch: ",cxySearch, "manip[i]: ", $scope.manipulateData[i], "value: ", res.rates[cxySearch]);
-  //     }
-  //   })
-  // }, 15000);
     
 
 })

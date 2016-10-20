@@ -39,17 +39,26 @@
       <h1 class="title">New Search</h1>
         <form name="currencyList">
           <label for="repeatSelect"> Currency List: </label>
-          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency' ng-change='getKeys(); getSelectedCurrency()'></select>
-          <div class="details" ng-show="historyRate.loaded">
-            <p>{{ inputCurrency}} -- {{ selectedCurrency }}</p>
+          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency' ng-change='refreshView(); getSelectedCurrency()'></select>
+          <div class="details" ng-show="historyRate.ratesLoaded">
+            <p>{{ selectedCurrency }} - - ( {{ inputCurrency}} )</p>
             <p>Today's Rate: {{ historyRate.todayRate }}</p>
             <p>Last Week: {{ historyRate.sevenDaysAgo }}</p>
             <p>Last Month: {{ historyRate.thirtyDaysAgo }}</p>
             <p>Last Year: {{ historyRate.yearAgo}}</p>
-<!--             <button class="btn btn-default" type='submit'>Submit</button> -->
           </div>
         </form>
-        <a ng-show="historyRate.loaded" ng-click="postToDB()" class="btn btn-default">BUY!!!!!</a>
+
+        <div ng-show="historyRate.ratesLoaded">
+          <a ng-show="historyRate.buttonShow" class="btn btn-default" 
+            ng-click="historyRate.buttonShow = !historyRate.buttonShow">Add to positions</a>
+          <div ng-hide="historyRate.buttonShow">
+            <p>How much would you want to buy?</p>
+            <input type="number" ng-model="boughtAmount">
+            <a ng-click="postToDB()">Confirm purchase</a>
+          </div>
+        </div>
+        
     </div>
 
 <!--     <footer class="footer col-xs-12">
