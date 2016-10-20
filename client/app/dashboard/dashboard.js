@@ -1,4 +1,4 @@
-angular.module('astonishingOwls.search', ['chart.js'])
+angular.module('astonishingOwls.search', [])
 
 
 .controller('searchCurrency', 

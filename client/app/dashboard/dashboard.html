@@ -20,14 +20,12 @@
     <div ng-controller="dashboardView" class="savedSearches col-xs-12">
       <div class="top-section col-xs-12">
         <h1 class="title">Saved Searches</h1>
-        <a ng-click="update()" class="btn btn-default">Update my positions!</a>
+        <a ng-click="update()" class="btn btn-default">Update Position!</a>
         <a href="#newSearch" class="btn btn-default">New Search</a>
-
       </div>
-      <div ng-repeat="item in manipulateData" class="col-xs-12 col-md-4">
-        <div class="search col-xs-12">
-          <div class="box">
-            <!--<ul>-->
+      <div class="myContainer col-xs-12 col-md-6">
+        <div ng-repeat="item in manipulateData" class="largerContainer col-xs-12 col-md-6">
+            <div class="box">
               <div class="currency col-xs-6">
                 <div class="sm_container2">
                   <i class="fa fa-usd faa-ring animated" aria-hidden="true"></i>
@@ -36,8 +34,6 @@
                   {{ item.cxy }}
                 </div>
               </div>
-              <!--<li>Date bought: {{ item.date }}</li>-->
-              <!--<li>Purchase rate: {{ item.value }}</li>-->
               <div class="current col-xs-6">
                 <div class="sm_container">
                   Current Rate: {{ item.refreshed }}
@@ -46,23 +42,26 @@
                   Gain / Loss: {{ item.boughtAmount * (item.refreshed / item.value - 1 ) | number: 2 }}
                 </div>
               </div>
-              <!--<li>Amount purchased (US-equivalent): {{ item.boughtAmount | number: 2}}</li>-->
-              <!--<li>Market value (US-equivalent): {{ item.boughtAmount * item.refreshed / item.value | number: 2 }}</li>-->
-            <!--</ul>-->
+            </div>
           </div>
+      </div>
+
+      <div class="chart-section col-xs-12 col-md-6">
+        <div class="chart col-xs-12">
+          <canvas id="base" class="chart-bar"
+                  chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="options"
+                  chart-series="series" chart-dataset-override="datasetOverride">
+          </canvas>
+        </div>
+        <div class="chart col-xs-12">
+          <canvas id="pie" class="chart chart-doughnut"
+                  chart-data="marketValues" chart-labels="labels" chart-options="optionsPie"
+          </canvas>
         </div>
       </div>
 
-      <canvas id="base" class="chart-bar"
-        chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="options"
-        chart-series="series" chart-dataset-override="datasetOverride" >
-      </canvas> 
-
-      <canvas id="pie" class="chart chart-doughnut"
-        chart-data="marketValues" chart-labels="labels" chart-options="optionsPie"
-      </canvas> 
-
     </div>
+
 
 
     <div class="userSearch col-xs-12" id="newSearch">
