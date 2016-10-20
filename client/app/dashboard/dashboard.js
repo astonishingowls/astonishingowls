@@ -78,15 +78,19 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
 
   $scope.postToDB = function(){
-    Search.postDB($scope.passedToDB);
-    $scope.passedToDB = [];
-    Search.getDB()
-    .then( (resp) => {
-      $scope.downloadedData = resp.data.savedSearch;
-      SharedVariables.setDownloadedData($scope.downloadedData);
-      console.log("line 87 ++++++++",SharedVariables.getData());
-
-    });
+    if($scope.passedToDB.length === 4){
+      Search.postDB($scope.passedToDB);
+      $scope.passedToDB = [];
+      Search.getDB()
+      .then( (resp) => {
+        $scope.downloadedData = resp.data.savedSearch;
+        SharedVariables.setDownloadedData($scope.downloadedData);
+        console.log("line 87 ++++++++",SharedVariables.getData());
+      });
+    } else {
+      $scope.passedToDB = [];
+      console.log("Please add something!")
+    }
   }; //end of .postToDB function
 
 
