@@ -17,41 +17,45 @@
     </header>
 
     <div ng-controller="dashboardView" class="savedSearches col-xs-12 col-md-8">
-      <button ng-click="update()">Update Data!</button>
-      <div ng-repeat="item in manipulateData" class="col-xs-12">
-        <div class="search col-xs-12 col-md-6">
-          <div class="box"> 
+      <div class="top-section col-xs-12">
+        <h1 class="title">Saved Searches</h1>
+        <a ng-click="update()" class="btn btn-default">Update Data!</a>
+      </div>
+      <div ng-repeat="item in manipulateData" class="col-xs-12 col-md-6">
+        <div class="search col-xs-12">
+          <div class="box">
             <ul>
               <li>Currency: {{ item.cxy }}</li>
               <li>Date bought: {{ item.date }}</li>
               <li>Purchase value: {{ item.value }}</li>
-            </ul> 
+            </ul>
           </div>
         </div>
       </div>
     </div>
 
     <div class="userSearch col-xs-12 col-md-4">
+      <h1 class="title">New Search</h1>
         <form name="currencyList" ng-submit="getSelectedCurrency()">
           <label for="repeatSelect"> Currency List: </label>
           <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'></select>
           <div class="details">
-            <p>Selected: {{selectedCurrency}}</p>
-            <p>Today:{{historyRate.todayRate}}</p>
-            <p>Week Ago:{{historyRate.sevenDaysAgo}}</p>
-            <p>30 days ago:{{historyRate.thirtyDaysAgo}}</p>
-            <p>365 days:{{historyRate.yearAgo}}</p>
-            <button class="btn btn-default"  type='submit'>Submit</button>
+            <p>Selected: {{ selectedCurrency }}</p>
+            <p>Today: {{ historyRate.todayRate }}</p>
+            <p>Week Ago: {{ historyRate.sevenDaysAgo }}</p>
+            <p>30 days ago: {{ historyRate.thirtyDaysAgo }}</p>
+            <p>365 days: {{ historyRate.yearAgo}}</p>
+            <button class="btn btn-default" type='submit'>Submit</button>
           </div>
         </form>
-        <button ng-click="postToDB()">BUY BUY BUY!!!!!</button>
+        <a ng-click="postToDB()" class="btn btn-default">BUY BUY BUY!!!!!</a>
     </div>
 
-    <footer class="footer col-xs-12">
+<!--     <footer class="footer col-xs-12">
       <p>Made with by <i class="fa fa-heart faa-pulse animated" aria-hidden="true"></i> Astonishing Owls Inc. </p>
     </footer>
 
-
+ -->
 
   </body>
 </html>
