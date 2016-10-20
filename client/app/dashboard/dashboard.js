@@ -159,7 +159,8 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         console.log($scope.manipulateData);
       });
       $scope.initializing = false;
-    } else {
+    } else { 
+      //you download the data from the updated results from the search bar through the shared factory
       $scope.downloadedData = SharedVariables.getData(); 
       console.log("line 153++++++++",$scope.downloadedData);
       console.log("line 154++++++++",SharedVariables.getData());
@@ -169,6 +170,16 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       }
       console.log($scope.manipulateData);
     }
+
+    Search.getall().then( (res) => {
+      console.log("res.rates????",res.rates);
+      for(var i = 0; i < $scope.manipulateData.length; i++){
+        //code
+        var cxySearch = $scope.manipulateData[i].cxy;
+        $scope.manipulateData[i].refreshed = res.rates[cxySearch];
+      }
+    });
+
   } //end of $scope.update
 
   // $interval(function () {
