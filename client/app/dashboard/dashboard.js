@@ -35,7 +35,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         time: "today", 
         cxy: inputCurrency, 
         date: today, 
-        value: $scope.historyRate.todayRate,
+        value: $scope.historyRate.todayRate
       });
       console.log("today pushed")
     })
@@ -47,7 +47,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         time: "last week", 
         cxy: inputCurrency, 
         date: sevenDaysAgo, 
-        value: $scope.historyRate.sevenDaysAgo 
+        value: $scope.historyRate.sevenDaysAgo   
       });
       console.log("last week pushed")
      })
