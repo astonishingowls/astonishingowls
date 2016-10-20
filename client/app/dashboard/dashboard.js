@@ -8,10 +8,16 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.availableOptions = {}
   $scope.listOfCurrency = {};
   $scope.historyRate = {};
-  $scope.selectedCurrency = '';
+  $scope.selectedCurrency = ''; //it's the full currency name
+  $scope.inputCurrency = ''; //it's the three letter keys
   $scope.dates = {}; //will capture dates incl today, 1wk ago, 1mo ago, 1yr ago
   $scope.passedToDB = [];
   $scope.downloadedData = [];
+
+  $scope.getKeys = function(){
+    $scope.inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency);
+    $scope.historyRate = {};
+  }
 
   $scope.getSelectedCurrency = function(){
 

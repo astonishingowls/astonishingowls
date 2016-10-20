@@ -38,9 +38,9 @@
       <h1 class="title">New Search</h1>
         <form name="currencyList" ng-submit="getSelectedCurrency()">
           <label for="repeatSelect"> Currency List: </label>
-          <select ng-model='selectedCurrency' ng-options='x for (x, y) in listOfCurrency'></select>
+          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency' ng-change='getKeys()'></select>
           <div class="details">
-            <p>Selected: {{ selectedCurrency }}</p>
+            <p>Query: {{ inputCurrency}} -- {{ selectedCurrency }}</p>
             <p>Today: {{ historyRate.todayRate }}</p>
             <p>Week Ago: {{ historyRate.sevenDaysAgo }}</p>
             <p>30 days ago: {{ historyRate.thirtyDaysAgo }}</p>
