@@ -8,6 +8,7 @@
     <header class="navigation col-xs-12">
       <div class="logo">
         <img src="../../assets/logo.png"/>
+        <p class="title">Astonishing Owls</p>
       </div>
 
       <div ng-controller="logoutController" class="logout">
@@ -16,33 +17,53 @@
 
     </header>
 
-    <div ng-controller="dashboardView" class="savedSearches col-xs-12 col-md-8">
+    <div ng-controller="dashboardView" class="savedSearches col-xs-12">
       <div class="top-section col-xs-12">
         <h1 class="title">Saved Searches</h1>
         <a ng-click="update()" class="btn btn-default">Update my positions!</a>
+        <a href="#newSearch" class="btn btn-default">New Search</a>
+
       </div>
-      <div ng-repeat="item in manipulateData" class="col-xs-12 col-md-6">
+      <div ng-repeat="item in manipulateData" class="col-xs-12 col-md-4">
         <div class="search col-xs-12">
           <div class="box">
-            <ul>
-              <li>Currency: {{ item.cxy }}</li>
-              <li>Date bought: {{ item.date }}</li>
-              <li>Purchase rate: {{ item.value }}</li>
-              <li>Current rate: {{ item.refreshed }}</li>
-              <li>Amount purchased (US-equivalent): {{ item.boughtAmount | number: 2}}</li>
-              <li>Market value (US-equivalent): {{ item.boughtAmount * item.refreshed / item.value | number: 2 }}</li>
-              <li>Gain / loss (US-equivalent): {{ item.boughtAmount * (item.refreshed / item.value - 1 ) | number: 2 }} </li>
-            </ul>
+            <!--<ul>-->
+              <div class="currency col-xs-6">
+                <div class="sm_container2">
+                  <i class="fa fa-usd faa-ring animated" aria-hidden="true"></i>
+                </div>
+                <div class="sm_container">
+                  {{ item.cxy }}
+                </div>
+              </div>
+              <!--<li>Date bought: {{ item.date }}</li>-->
+              <!--<li>Purchase rate: {{ item.value }}</li>-->
+              <div class="current col-xs-6">
+                <div class="sm_container">
+                  Current Rate: {{ item.refreshed }}
+                </div>
+                <div class="sm_container">
+                  Gain / Loss: {{ item.boughtAmount * (item.refreshed / item.value - 1 ) | number: 2 }}
+                </div>
+              </div>
+              <!--<li>Amount purchased (US-equivalent): {{ item.boughtAmount | number: 2}}</li>-->
+              <!--<li>Market value (US-equivalent): {{ item.boughtAmount * item.refreshed / item.value | number: 2 }}</li>-->
+            <!--</ul>-->
           </div>
         </div>
       </div>
     </div>
 
-    <div class="userSearch col-xs-12 col-md-4">
-      <h1 class="title">New Search</h1>
+
+    <div class="userSearch col-xs-12" id="newSearch">
+
+
+      <div class="border col-xs-12 col-md-6">
+        <h1 class="title">New Search</h1>
         <form name="currencyList">
           <label for="repeatSelect"> Currency List: </label>
-          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency' ng-change='refreshView(); getSelectedCurrency()'></select>
+          <select ng-model='selectedCurrency' ng-options='y for (x, y) in listOfCurrency'
+                  ng-change='refreshView(); getSelectedCurrency()'></select>
           <div class="details" ng-show="historyRate.ratesLoaded">
             <p>{{ selectedCurrency }} - - ( {{ inputCurrency}} )</p>
             <p>Today's Rate: {{ historyRate.todayRate }}</p>
@@ -51,25 +72,27 @@
             <p>Last Year: {{ historyRate.yearAgo}}</p>
           </div>
         </form>
-
         <div ng-show="historyRate.ratesLoaded">
-          <a ng-show="historyRate.buttonShow" class="btn btn-default" 
-            ng-click="historyRate.buttonShow = !historyRate.buttonShow">Add to positions</a>
+          <a ng-show="historyRate.buttonShow" class="btn btn-default"
+             ng-click="historyRate.buttonShow = !historyRate.buttonShow">Add to positions</a>
           <div ng-hide="historyRate.buttonShow">
             <p>How much would you want to buy? (Amounts in USD)</p>
             <input type="number" ng-model="boughtAmount">
-            <p> {{ boughtAmount }} </p>
-            <a class="btn btn-default" ng-click="postToDB(); historyRate.ratesLoaded = !historyRate.ratesLoaded">Confirm purchase</a>
+            <!--<p> {{ boughtAmount }} </p>-->
+            <a class="btn btn-default" ng-click="postToDB(); historyRate.ratesLoaded = !historyRate.ratesLoaded">Confirm
+              purchase</a>
           </div>
         </div>
-        
+      </div>
+
     </div>
 
-<!--     <footer class="footer col-xs-12">
+
+
+    <footer class="footer col-xs-12">
       <p>Made with by <i class="fa fa-heart faa-pulse animated" aria-hidden="true"></i> Astonishing Owls Inc. </p>
     </footer>
 
- -->
 
   </body>
 </html>
