@@ -138,7 +138,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 }])
 
 
-.controller('dashboardView',function($scope, Search, SharedVariables){
+.controller('dashboardView',function($scope, $interval, Search, SharedVariables){
   $scope.downloadedData = SharedVariables.getData();
   $scope.manipulateData = [];
   $scope.initializing = true;
@@ -169,6 +169,17 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       console.log($scope.manipulateData);
     }
   } //end of $scope.update
+
+  // $interval(function () {
+  //   Search.getall().then(function(res){
+  //     console.log("res.rates????",res.rates);
+  //     for (var i = 0; i < $scope.manipulateData.length; i++){
+  //       var cxySearch = $scope.manipulateData[i].cxy;
+  //       $scope.manipulateData[i].value = res.rates[cxySearch]
+  //       console.log("cxySearch: ",cxySearch, "manip[i]: ", $scope.manipulateData[i], "value: ", res.rates[cxySearch]);
+  //     }
+  //   })
+  // }, 15000);
     
 
 })
