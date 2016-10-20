@@ -405,7 +405,20 @@ header {
         border: 2px solid white; }
 
 .savedSearches {
-  padding: 10px; }
+  padding: 10px;
+  text-align: center; }
+  .savedSearches .top-section {
+    margin: 15px; }
+  .savedSearches a {
+    border: 2px solid white;
+    background: none;
+    color: white;
+    border-radius: 25px;
+    width: 150px; }
+    .savedSearches a:hover {
+      background: white;
+      color: #333844;
+      border: 2px solid white; }
   .savedSearches .box {
     border: 1px solid #424545;
     height: 150px;
@@ -413,7 +426,29 @@ header {
 
 .userSearch {
   padding: 10px;
-  border: 1px solid #FFF; }
+  border: 1px solid #FFF;
+  text-align: center; }
+  .userSearch a {
+    border: 2px solid white;
+    background: none;
+    color: white;
+    border-radius: 25px;
+    width: 150px;
+    margin-top: 10px; }
+    .userSearch a:hover {
+      background: white;
+      color: #333844;
+      border: 2px solid white; }
+  .userSearch .details button {
+    border: 2px solid white;
+    background: none;
+    color: white;
+    border-radius: 25px;
+    width: 150px; }
+    .userSearch .details button:hover {
+      background: white;
+      color: #333844;
+      border: 2px solid white; }
 
 .footer {
   text-align: center;
