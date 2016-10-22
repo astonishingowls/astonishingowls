@@ -222,6 +222,10 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     $scope.marketValues = [];
     $scope.gainLoss = [];
     $scope.data = [];
+    $scope.ngIfShowData = true; //On click, change to true for ng-if to show data
+    $scope.objectOfSavedCXY = {}
+    $scope.totalBought = 0;
+    console.log( $scope.objectOfSavedCXY, '$scope.objectOfSavedCXY')
 
     //set up "initializing" conditions, where if "initializing" is true:
     if($scope.initializing){
@@ -278,6 +282,12 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       $scope.data.push($scope.marketValues); //for charts
       $scope.data.push($scope.gainLoss); //for charts
       console.log($scope.data);
+
+      //Creates Object of currency on update.
+      for(var k = 0; k < $scope.labels.length; k++){
+        $scope.objectOfSavedCXY[$scope.labels[k]] = $scope.marketValues[k];
+        $scope.totalBought += $scope.marketValues[k];
+      }
     });
 
   } //end of $scope.update

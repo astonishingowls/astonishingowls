@@ -57,6 +57,10 @@
           <canvas id="pie" class="chart chart-doughnut"
                   chart-data="marketValues" chart-labels="labels" chart-options="optionsPie" chart-legend="true">
           </canvas>
+          <div ng-if="ngIfShowData">
+            <div ng-repeat="(k, v) in objectOfSavedCXY" >{{k}}: ${{v}}</div>
+          Total: ${{totalBought}}
+          </div>
         </div>
       </div>
 
