@@ -179,7 +179,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     }
   ];
   $scope.options = {
-    // legend: {display: true},
+    legend: {display: true},
     title: {
             display: true,
             text: 'Current Holding'
@@ -318,17 +318,16 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       }
       for(var k = 0; k < $scope.labels.length; k++){
         $scope.gainLoss.push( $scope.marketValues[k] - $scope.costBasis[k]); //populate gainLoss for charts
+
+       //Creates Object of currency on update for charts
+        $scope.objectOfSavedCXY[$scope.labels[k]] = $scope.marketValues[k];
+        $scope.totalBought += $scope.marketValues[k];
       }
       $scope.data.push($scope.costBasis); //for charts
       $scope.data.push($scope.marketValues); //for charts
       $scope.data.push($scope.gainLoss); //for charts
       console.log($scope.data);
 
-      //Creates Object of currency on update.
-      for(var k = 0; k < $scope.labels.length; k++){
-        $scope.objectOfSavedCXY[$scope.labels[k]] = $scope.marketValues[k];
-        $scope.totalBought += $scope.marketValues[k];
-      }
     });
 
   } //end of $scope.update
