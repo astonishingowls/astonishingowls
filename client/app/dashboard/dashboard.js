@@ -155,22 +155,23 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.marketValues = [];
   $scope.gainLoss = [];
   $scope.data = []; //array of array for each series
+  // console.log($scope.data, ' LINE 158')
   $scope.datasetOverride = [
     {
       yAxisID: 'y-axis-1',
-      label: "Bar chart",
+      // label: "Bar chart",
       borderWidth: 1,
       type: 'bar'
     },
     {
       yAxisID: 'y-axis-1',
-      label: "Bar chart",
+      // label: "Bar chart",
       borderWidth: 1,
       type: 'bar'
     },
     {
       yAxisID: 'y-axis-2',
-      label: "Line chart",
+      // label: "Line chart",
       borderWidth: 3,
       hoverBackgroundColor: "rgba(255,99,132,0.4)",
       hoverBorderColor: "rgba(255,99,132,1)",
