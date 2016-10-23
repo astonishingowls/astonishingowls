@@ -228,10 +228,11 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
           });
           var currentValue = dataset.data[tooltipItem.index];
           var percent = Math.floor(((currentValue/total) * 100)+0.5);
+          var label = data.labels[tooltipItem.index];
           // console.log(tooltipItem , ' tooltipItem+++');
           // console.log(dataset , ' dataset+++');
           // console.log(data , ' data+++');
-          return percent + "%";
+          return label + ' : ' +percent + "%";
         }
       }
     },
