@@ -179,6 +179,10 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   ];
   $scope.options = {
     // legend: {display: true},
+    title: {
+            display: true,
+            text: 'Current Holding'
+        },
     scales: {
       yAxes: [
         {
@@ -203,9 +207,37 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     }
   };
   $scope.optionsPie = {
-    legend: {display: true},
+    title: {
+            display: true,
+            text: 'Percentage of Currency Holding'
+        },
+    legend: {
+              display: true,
+              position: 'top',
+              labels:{
+                fontSize:14
+               }
+            },
+    showAllTooltips: true,
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var dataset = data.datasets[tooltipItem.datasetIndex];
+          var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+            return previousValue + currentValue;
+          });
+          var currentValue = dataset.data[tooltipItem.index];
+          var percent = Math.floor(((currentValue/total) * 100)+0.5);
+          // console.log(tooltipItem , ' tooltipItem+++');
+          // console.log(dataset , ' dataset+++');
+          // console.log(data , ' data+++');
+          return percent + "%";
+        }
+      }
+    },
     tooltipEvents: [],
     showTooltips: true,
+    showAllTooltips: true,
     tooltipCaretSize: 0,
     onAnimationComplete: function () {
         this.showTooltip(this.segments, true);
