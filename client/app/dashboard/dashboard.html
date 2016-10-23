@@ -21,7 +21,7 @@
       <div class="top-section col-xs-12">
         <h1 class="title">Saved Searches</h1>
         <a ng-click="update()" class="btn btn-default">Update Position!</a>
-        <a href="#newSearch" class="btn btn-default">New Search</a>
+        <!--<a ng-click="scrollTo('newSearch')" class="btn btn-default">New Search</a>-->
       </div>
       <div class="myContainer col-xs-12 col-md-6">
         <div ng-repeat="item in manipulateData" class="largerContainer col-xs-12 col-md-6">
@@ -47,17 +47,23 @@
       </div>
 
       <div class="chart-section col-xs-12 col-md-6">
+
+        <h4 ng-show="data.length > 1">Comparative analytics: position holdings and gain / loss summary</h4>
         <div class="chart col-xs-12">
           <canvas id="base" class="chart-bar"
                   chart-data="data" chart-labels="labels" chart-colors="colors" chart-options="options"
                   chart-series="series" chart-dataset-override="datasetOverride">
           </canvas>
         </div>
+
+        <h4 ng-show="data.length > 1">Portfolio summary</h4>
         <div class="chart col-xs-12">
           <canvas id="pie" class="chart chart-doughnut"
-                  chart-data="marketValues" chart-labels="labels" chart-options="optionsPie"
+                  chart-data="marketValues" chart-labels="labels"  chart-legend="true"
+                  chart-colors="colors" chart-options="optionsPie">
           </canvas>
         </div>
+
       </div>
 
     </div>
@@ -87,7 +93,6 @@
           <div ng-hide="historyRate.buttonShow">
             <p>How much would you want to buy? (Amounts in USD)</p>
             <input type="number" ng-model="boughtAmount">
-            <!--<p> {{ boughtAmount }} </p>-->
             <a class="btn btn-default" ng-click="postToDB(); historyRate.ratesLoaded = !historyRate.ratesLoaded">Confirm
               purchase</a>
           </div>
