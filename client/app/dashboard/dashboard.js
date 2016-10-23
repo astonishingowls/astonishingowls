@@ -148,7 +148,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.initializing = true;
 
   //for bar charts
-  $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
+  $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72' ];
   $scope.labels = []; //labels for x axis
   $scope.series = ['Purchased','Market Value', 'Gain/Loss']; //data being downloaded, i.e. bought, current, gain/loss
   $scope.costBasis = [];
@@ -158,19 +158,19 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.datasetOverride = [
     {
       yAxisID: 'y-axis-1',
-      label: "Bar chart",
+      label: $scope.series[0],
       borderWidth: 1,
       type: 'bar'
     },
     {
       yAxisID: 'y-axis-1',
-      label: "Bar chart",
+      label: $scope.series[1],
       borderWidth: 1,
       type: 'bar'
     },
     {
       yAxisID: 'y-axis-2',
-      label: "Line chart",
+      label: $scope.series[2],
       borderWidth: 3,
       hoverBackgroundColor: "rgba(255,99,132,0.4)",
       hoverBorderColor: "rgba(255,99,132,1)",
@@ -203,13 +203,9 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   };
   $scope.optionsPie = {
     tooltipEvents: [],
-    showTooltips: true,
-    tooltipCaretSize: 0,
-    onAnimationComplete: function () {
-        this.showTooltip(this.segments, true);
-    },
+    tooltipCaretSize: 0
 };
-  //end of bar chart variables
+  //end of chart variables
 
 
 
@@ -270,7 +266,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         console.log("market values ",$scope.marketValues);
       }
       for(var k = 0; k < $scope.labels.length; k++){
-        $scope.gainLoss.push( $scope.marketValues[k] - $scope.costBasis[k]); //populate gainLoss for charts
+        $scope.gainLoss.push( $scope.marketValues[k] / $scope.costBasis[k] - 1); //populate gainLoss for charts
       }
       $scope.data.push($scope.costBasis); //for charts
       $scope.data.push($scope.marketValues); //for charts
@@ -284,5 +280,3 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     
 
 }) //end of dashboardView
-
-.controller('charts',function(){})
