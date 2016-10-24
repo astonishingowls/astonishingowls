@@ -217,7 +217,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.optionsPie = {
     title: {
             display: true,
-            text: 'Percentage of Currency Holding'
+            text: 'Portfolio Summary'
         },
     legend: {
               display: true,
