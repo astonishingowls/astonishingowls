@@ -430,7 +430,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 79vh; }
+  height: 100vh; }
   .login_body #login .tagline {
     margin-bottom: 15px;
     text-align: center; }
