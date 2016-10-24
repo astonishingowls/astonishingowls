@@ -2,10 +2,6 @@ node_modules/
 bower_components/
 *.log
 
-client/sass/
-.sass-cache/
-*.css.map
-
 build/
 dist/
 
