@@ -1,8 +1,11 @@
 @import '../modules/variables';
 
-header {
+header.navigation {
+    position: absolute;
+    z-index: 1000;
     background-color: $light-charcoal;
     height: 100px;
+
 
     .logo {
         display: inline-block;

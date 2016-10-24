@@ -1,1 +1,4 @@
-Will fill more of this in later, but what this file should detail is info for prospective contributors to this repo on how to most effectively submit contributions to this repo, i.e. best steps for creating good issues or pull requests, links to external documentation, mailing lists, or code of conduct, or community and behavioral expectations
+These are some features that we wanted to continue to build out:
+    - Time series over a set period of time
+    - Options to sell currencies
+    - Predictions for potential purchases using charts or numbers
