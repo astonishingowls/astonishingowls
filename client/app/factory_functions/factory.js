@@ -48,6 +48,7 @@ angular.module('astonishingOwls.factory', [])
     })
   }
 
+  //Receive all currency available from server api call
   var getListOfCurrencies = function(){
     return $http({
       method: 'GET',
@@ -58,26 +59,10 @@ angular.module('astonishingOwls.factory', [])
     });
   }
 
-  //Receive user input data from input field, and pass data to server api call
-  var getTimeSeries = function(userInput){
-    console.log(userInput, ' :userInput factory.js')
-    return $http({
-      method: 'GET',
-      url: '/api/getTimeSeries',
-      params: {"startDate": userInput.startDate,
-                "endDate": userInput.endDate,
-                "symbols": userInput.symbols}
-    })
-  }
-
-  var testingGetAll = getall();
-  getall();
-
   return {
     getall: getall,
     getHistorical: getHistorical,
     getListOfCurrencies: getListOfCurrencies,
-    getTimeSeries: getTimeSeries,
     postDB: postDB,
     getDB: getDB
   };
@@ -203,7 +188,7 @@ function ($q, $timeout, $http) {
 
 }]) // End of AuthService factory
 
-
+//keysGrabber grabs key as value from object
 .factory('keysGrabber',function(){
  return function(value, object){
    for(var key in object){
@@ -230,8 +215,8 @@ function ($q, $timeout, $http) {
 }) //end of formatDate
 
 .factory('SharedVariables', function(){
-  var downloadedData = []; 
-  
+  var downloadedData = [];
+
   return {
     setDownloadedData: function(value) {
       downloadedData = value;
