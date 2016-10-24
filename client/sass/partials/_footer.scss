@@ -1,0 +1,14 @@
+.footer {
+  text-align: center;
+  background-color: $light-charcoal;
+  position: fixed;
+  bottom: 0;
+
+  p {
+    margin-top: 10px;
+
+    i {
+      color: red;
+    }
+  }
+}

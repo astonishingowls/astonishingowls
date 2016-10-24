@@ -1,0 +1,38 @@
+@import '../modules/variables';
+
+header {
+    background-color: $light-charcoal;
+    height: 100px;
+    margin-bottom: 15px;
+
+    .logo {
+        display: inline-block;
+        padding-top: 5px;
+
+        img {
+            width: 85px;
+        }
+
+        .title {
+            display: inline-block;
+
+            @media #{$mq-xs} {
+                display: none;
+            }
+        }
+
+    }
+
+    .logout {
+        float: right;
+        padding-top: 20px;
+
+        a {
+            @include whiteButton($white);
+
+        }
+    }
+
+
+
+}

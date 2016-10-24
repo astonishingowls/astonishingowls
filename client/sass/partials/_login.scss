@@ -1,0 +1,14 @@
+@import '../mixins/mixins';
+@import '../modules/variables';
+
+#login {
+    a {
+        @include whiteButton($white);
+    }
+
+    form {
+        button {
+            @include whiteButton($white);
+        }
+    }
+}

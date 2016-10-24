@@ -1,0 +1,33 @@
+@import '../modules/variables';
+
+.userSearch {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 100px;
+
+    .border {
+        border: 2px solid $white;
+        padding: 5px;
+        margin: 0 auto;
+        text-align: center;
+        float: none;
+        max-width: 700px;
+
+        &:hover {
+            background: $light-charcoal;
+        }
+
+        a {
+            @include whiteButton($white);
+        }
+
+        .details {
+
+            button {
+                @include whiteButton($white);
+            }
+        }
+    }
+
+
+}
