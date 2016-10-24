@@ -205,7 +205,10 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         {
           id: 'y-axis-2',
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            callback: function(value, index, values) {
+                return  (value*100).toFixed(2) + '%';
+            }
           },
           type: 'linear',
           display: true,
