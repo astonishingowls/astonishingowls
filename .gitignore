@@ -6,6 +6,9 @@ bower_components/
 build/
 dist/
 
+# api_key
+server/config/api-key.js
+
 ### node etc ###
 
 # Logs
