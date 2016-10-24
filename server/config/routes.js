@@ -11,7 +11,7 @@ var database = require('../db/dbmodels');
 
 //Router for registration. With successful registration, 
 //instantiates new user here. savedSearch is an empty array
-//what's laid out in commented out code is the form of data that is pushed
+//what's in commented out code is the form of data that is pushed
 //to this empty array when users add a currency to the database
 router.post('/register', function (req, res) {
     database.User.register(new database.User({
