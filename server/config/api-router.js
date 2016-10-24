@@ -2,7 +2,7 @@
 var express = require('express');
 // var api = express.Router();
 var utils = require('./utils');
-var api_key = 'be114d521d8940e1b03aaed7cc810422';
+var api_key = require('./api-key')();
 var request = require('request');
 
 
