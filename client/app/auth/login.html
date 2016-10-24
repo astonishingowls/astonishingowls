@@ -1,4 +1,22 @@
-<div id="login" class="col-xs-12 col-md-4">
+    <header class="navigation col-xs-12">
+      <div class="logo">
+        <img src="../../assets/logo.png"/>
+        <p class="title">Astonishing Owls</p>
+      </div>
+
+      <div class="logout">
+        <a ng-disabled="disabled" href="#/register">Register</a>
+        <a ng-disabled="disabled" href="#/login">Login</a>
+      </div>
+
+    </header>
+
+    <div class="backgroundImage">
+      <img class="loginwall" src="../../assets/loginWall.jpg"/>
+      <h3><strong>We're the Astonishing Owls. <br/> Bringing the power of FX to your fingertips.</strong></h3>
+    </div>
+
+    <div id="login loginwall" class="col-xs-12 col-md-4">
     <h1>Login</h1>
     <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
     <form class="form" ng-submit="login()">
