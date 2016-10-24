@@ -194,7 +194,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
               if(parseInt(value) > 1000){
                 return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
               } else {
-                return '$' + value;
+                return '$' + value.toFixed(3);
               }
             }
           },

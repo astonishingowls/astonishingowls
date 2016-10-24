@@ -58,6 +58,7 @@
                   chart-data="marketValues" chart-labels="labels" chart-options="optionsPie" chart-legend="true">
           </canvas>
           <div  ng-if="ngIfShowData">
+            <h4>Today's Position</h4>
             <div ng-repeat="(k, v) in objectOfSavedCXY" >{{k}}: ${{v}}</div>
           Total: ${{totalBought}}
           </div>
