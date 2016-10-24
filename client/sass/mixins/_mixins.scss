@@ -1,0 +1,25 @@
+@import '../modules/variables';
+
+@mixin vertical-center-flex($height) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $height;
+}
+
+@mixin whiteButton($white) {
+    border: 2px solid $white;
+    background: none;
+    color: $white;
+    border-radius: 25px;
+    width: 150px;
+    margin-top: 10px;
+
+    &:hover {
+        background: white;
+        color: $light-charcoal;
+        border: 2px solid white;
+
+    }
+}
+

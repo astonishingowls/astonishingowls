@@ -1,0 +1,58 @@
+@import '../modules/variables';
+
+.savedSearches {
+    padding: 10px;
+    text-align: center;
+
+
+    .top-section {
+        margin: 15px;
+    }
+
+    a {
+        margin-left: 10px;
+        margin-right: 10px;
+        @include whiteButton($white);
+    }
+
+    .chart {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .largerContainer {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        .box {
+            border: 1px solid $lightest-charcoal;
+            height: 150px;
+            margin: 5px;
+
+            &:hover {
+                background: $light-charcoal;
+            }
+
+            .currency {
+                font-size: 52px;
+                color: $teal;
+
+                .sm_container2 {
+                    line-height: .9;
+                    i {
+                        color: white;
+                        font-size: 35px;
+                    }
+                }
+            }
+
+            .current {
+
+                .sm_container {
+                    height: 70px;
+                    padding: 15px;
+                }
+            }
+        }
+    }
+}
