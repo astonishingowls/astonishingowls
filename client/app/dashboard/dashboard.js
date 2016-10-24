@@ -27,7 +27,8 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     $scope.historyRate = {};
   }
 
-    //getSelectedCurrency calls getHistorical function in factory. Calls four different date data point, today, 7 days, 30 days, and 365 days to receive each date currency data.
+    //getSelectedCurrency calls getHistorical function in factory. Calls four different date
+    //data point, today, 7 days, 30 days, and 365 days to receive each date currency data.
   $scope.getSelectedCurrency = function(){
 
     //uses formatDate function from factory to convert date into  YYYY-MM-DD format.
@@ -96,7 +97,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       $scope.passedToDB[0].boughtAmount = $scope.boughtAmount;
       Search.postDB($scope.passedToDB)
       .then( () => {
-        Search.getDB()
+        Search.getDB() //gets the data from the db but within a promise to make it more synchronous
         .then( (resp) => {
           $scope.downloadedData = resp.data.savedSearch;
           SharedVariables.setDownloadedData($scope.downloadedData);
