@@ -1,7 +1,7 @@
 angular.module('astonishingOwls.search', [])
 
 
-.controller('searchCurrency', 
+.controller('searchCurrency',
 ['$scope', '$location', 'Search','keysGrabber','formatDate','SharedVariables',
 function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
@@ -31,10 +31,10 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     Search.getall().then(function(res){
       var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
       $scope.historyRate.todayRate = res.rates[inputCurrency];
-      $scope.passedToDB.push({ 
-        time: "today", 
-        cxy: inputCurrency, 
-        date: today, 
+      $scope.passedToDB.push({
+        time: "today",
+        cxy: inputCurrency,
+        date: today,
         value: $scope.historyRate.todayRate
       });
       console.log("today pushed")
@@ -43,11 +43,11 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       Search.getHistorical(sevenDaysAgo).then(function(res){
       var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
       $scope.historyRate.sevenDaysAgo = res.data.rates[inputCurrency];
-      $scope.passedToDB.push({ 
-        time: "last week", 
-        cxy: inputCurrency, 
-        date: sevenDaysAgo, 
-        value: $scope.historyRate.sevenDaysAgo   
+      $scope.passedToDB.push({
+        time: "last week",
+        cxy: inputCurrency,
+        date: sevenDaysAgo,
+        value: $scope.historyRate.sevenDaysAgo
       });
       console.log("last week pushed")
      })
@@ -56,11 +56,11 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       Search.getHistorical(thirtyDaysAgo).then(function(res){
         var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
         $scope.historyRate.thirtyDaysAgo = res.data.rates[inputCurrency];
-        $scope.passedToDB.push({ 
-          time: "last month", 
-          cxy: inputCurrency, 
-          date: thirtyDaysAgo, 
-          value: $scope.historyRate.thirtyDaysAgo 
+        $scope.passedToDB.push({
+          time: "last month",
+          cxy: inputCurrency,
+          date: thirtyDaysAgo,
+          value: $scope.historyRate.thirtyDaysAgo
         });
       console.log("last month pushed")
       })
@@ -69,11 +69,11 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       Search.getHistorical(yearAgo).then(function(res){
         var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
         $scope.historyRate.yearAgo = res.data.rates[inputCurrency];
-        $scope.passedToDB.push({ 
-          time: "last year", 
-          cxy: inputCurrency, 
-          date: yearAgo, 
-          value: $scope.historyRate.yearAgo 
+        $scope.passedToDB.push({
+          time: "last year",
+          cxy: inputCurrency,
+          date: yearAgo,
+          value: $scope.historyRate.yearAgo
         });
       console.log("last year pushed")
       $scope.historyRate.ratesLoaded = true;
@@ -89,7 +89,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       console.log("passed to DB",$scope.passedToDB)
       $scope.passedToDB[0].boughtAmount = $scope.boughtAmount;
       Search.postDB($scope.passedToDB)
-      .then( () => {//Sara, I promisified this because I think there was an async issue 
+      .then( () => {//Sara, I promisified this because I think there was an async issue
         Search.getDB()
         .then( (resp) => {
           $scope.downloadedData = resp.data.savedSearch;
@@ -155,22 +155,23 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.marketValues = [];
   $scope.gainLoss = [];
   $scope.data = []; //array of array for each series
+  // console.log($scope.data, ' LINE 158')
   $scope.datasetOverride = [
     {
       yAxisID: 'y-axis-1',
-      label: $scope.series[0],
+      // label: "Bar chart",
       borderWidth: 1,
       type: 'bar'
     },
     {
       yAxisID: 'y-axis-1',
-      label: $scope.series[1],
+      // label: "Bar chart",
       borderWidth: 1,
       type: 'bar'
     },
     {
       yAxisID: 'y-axis-2',
-      label: $scope.series[2],
+      // label: "Line chart",
       borderWidth: 3,
       hoverBackgroundColor: "rgba(255,99,132,0.4)",
       hoverBorderColor: "rgba(255,99,132,1)",
@@ -178,12 +179,24 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     }
   ];
   $scope.options = {
+    legend: {display: true},
+    // title: {
+    //         display: true,
+    //         text: 'Current Holding'
+    //     },
     scales: {
       yAxes: [
         {
           id: 'y-axis-1',
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            callback: function(value, index, values) {
+              if(parseInt(value) > 1000){
+                return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              } else {
+                return '$' + value.toFixed(3);
+              }
+            }
           },
           type: 'linear',
           display: true,
@@ -202,8 +215,43 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     }
   };
   $scope.optionsPie = {
+    // title: {
+    //         display: true,
+    //         text: 'Portfolio Summary'
+    //     },
+    legend: {
+              display: true,
+              position: 'top',
+              labels:{
+                fontSize:14
+               }
+            },
+    showAllTooltips: true,
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var dataset = data.datasets[tooltipItem.datasetIndex];
+          var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+            return previousValue + currentValue;
+          });
+          var currentValue = dataset.data[tooltipItem.index];
+          var percent = Math.floor(((currentValue/total) * 100)+0.5);
+          var label = data.labels[tooltipItem.index];
+          // console.log(tooltipItem , ' tooltipItem+++');
+          // console.log(dataset , ' dataset+++');
+          // console.log(data , ' data+++');
+          return label + ' : ' +percent + "%";
+        }
+      }
+    },
     tooltipEvents: [],
-    tooltipCaretSize: 0
+
+    showTooltips: true,
+    showAllTooltips: true,
+    tooltipCaretSize: 0,
+    onAnimationComplete: function () {
+        this.showTooltip(this.segments, true);
+    }
 };
   //end of chart variables
 
@@ -213,9 +261,13 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     //reinitialize charts data
     $scope.labels = []; //repopulated after Search.getDB is called
     $scope.costBasis = []; //repopulated after Search.getDB is called
-    $scope.marketValues = []; 
+    $scope.marketValues = [];
     $scope.gainLoss = [];
-    $scope.data = []; 
+    $scope.data = [];
+    $scope.ngIfShowData = true; //On click, change to true for ng-if to show data
+    $scope.objectOfSavedCXY = {}
+    $scope.totalBought = 0;
+    console.log( $scope.objectOfSavedCXY, '$scope.objectOfSavedCXY')
 
     //set up "initializing" conditions, where if "initializing" is true:
     if($scope.initializing){
@@ -232,9 +284,9 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
       });
       $scope.initializing = false;
-    } else { 
+    } else {
       //else you download the data from the updated results from the search bar through the shared factory
-      $scope.downloadedData = SharedVariables.getData(); 
+      $scope.downloadedData = SharedVariables.getData();
       console.log("line 153++++++++",$scope.manipulateData);
       console.log("line 154++++++++",SharedVariables.getData());
       $scope.manipulateData = [];
@@ -244,7 +296,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
       console.log($scope.manipulateData);
     }
 
-    //After data is downloaded from the database, 
+    //After data is downloaded from the database,
     //Following code takes all user's saved currencies and downloads current values
     //for "cost vs. purchased" comparison
     //The "refreshed" values are set to a .refreshed property for each item in manipulateData
@@ -257,26 +309,31 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         $scope.costBasis.push($scope.manipulateData[i].boughtAmount); //populate cost basis for charts
         $scope.marketValues.push( //populate market value for charts. this is amount * current rate / purchaes rate
           Math.round(
-          $scope.manipulateData[i].boughtAmount 
-          * $scope.manipulateData[i].refreshed 
-          / $scope.manipulateData[i].value, 2) 
-        ); 
+          $scope.manipulateData[i].boughtAmount
+          * $scope.manipulateData[i].refreshed
+          / $scope.manipulateData[i].value, 2)
+        );
         console.log("currencies",$scope.labels);
         console.log("COST BASIS ",$scope.costBasis);
         console.log("market values ",$scope.marketValues);
       }
       for(var k = 0; k < $scope.labels.length; k++){
         $scope.gainLoss.push( $scope.marketValues[k] / $scope.costBasis[k] - 1); //populate gainLoss for charts
+
+       //Creates Object of currency on update for charts
+        $scope.objectOfSavedCXY[$scope.labels[k]] = $scope.marketValues[k];
+        $scope.totalBought += $scope.marketValues[k];
       }
       $scope.data.push($scope.costBasis); //for charts
       $scope.data.push($scope.marketValues); //for charts
       $scope.data.push($scope.gainLoss); //for charts
       console.log($scope.data);
+
     });
 
   } //end of $scope.update
 
 
-    
+
 
 }) //end of dashboardView
