@@ -189,6 +189,8 @@ function ($q, $timeout, $http) {
 }]) // End of AuthService factory
 
 //keysGrabber grabs key as value from object
+//This is relevant in the ng-options select window we designed 
+//in the New Search fields
 .factory('keysGrabber',function(){
  return function(value, object){
    for(var key in object){
@@ -214,9 +216,10 @@ function ($q, $timeout, $http) {
   }
 }) //end of formatDate
 
+//This is a shared service that was written to share data
+//between the two different controllers
 .factory('SharedVariables', function(){
   var downloadedData = [];
-
   return {
     setDownloadedData: function(value) {
       downloadedData = value;
