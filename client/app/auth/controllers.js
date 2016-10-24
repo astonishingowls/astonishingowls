@@ -27,8 +27,7 @@ angular.module('astonishingOwls.auth', [])
                     });
 
             };
-
-        }])
+}])
 
 .controller('logoutController',
     ['$scope', '$location', 'AuthService',
@@ -44,7 +43,7 @@ angular.module('astonishingOwls.auth', [])
 
             };
 
-        }])
+}])
 
 .controller('registerController',
     ['$scope', '$location', 'AuthService',
@@ -74,4 +73,4 @@ angular.module('astonishingOwls.auth', [])
 
             };
 
-        }]);
+}]);
