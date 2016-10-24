@@ -1,20 +1,36 @@
-<div id="login" class="col-xs-12 col-md-4">
-    <h1>Register</h1>
-    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-    <form class="form" ng-submit="register()">
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
-        </div>
-    </form>
+<header class="navigation col-xs-12">
+    <div class="logo">
+        <img src="../../assets/logo.png"/>
+        <p class="title">Astonishing Owls</p>
+    </div>
+    <div class="switchPage">
+        <a class="btn btn-default" ng-disabled="disabled" href="#/login">Log In</a>
+    </div>
+</header>
 
-    <a class="btn btn-default" ng-disabled="disabled" href="#/login">Log In</a>
-
+<div class="login_body col-xs-12">
+    <div id="login" class="col-xs-12 col-md-6">
+        <div class="tagline col-xs-12">
+            <h3>We're the Astonishing Owls. Bringing the power of FX to your fingertips</h3>
+        </div>
+        <h1>Register</h1>
+        <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+        <form class="form" ng-submit="register()">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+            </div>
+        </form>
+    </div>
 </div>
+
+<footer class="footer col-xs-12">
+    <p>Made with by <i class="fa fa-heart faa-pulse animated" aria-hidden="true"></i> Astonishing Owls Inc. </p>
+</footer>
