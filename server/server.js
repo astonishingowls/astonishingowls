@@ -10,7 +10,6 @@ var hash = require('bcrypt-nodejs');
 var path = require('path');
 var passport = require('passport');
 var localStrategy = require('passport-local');
-var controller = require('./controllers/index');
 
 
 var app = express();
