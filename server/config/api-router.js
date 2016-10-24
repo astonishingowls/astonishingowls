@@ -1,10 +1,8 @@
 //The following is the routing logic for the back-end API calls
+
 var express = require('express');
-// var api = express.Router();
-var api_key = require('./api-key')();
+var api_key = require('./api-key')(); //invokes method established in api-key.js to give the API key
 var request = require('request');
-
-
 
 module.exports = function(app,express){
 
@@ -46,26 +44,6 @@ module.exports = function(app,express){
     var url = 'https://openexchangerates.org/api/currencies.json';
     request(url, function(err,response,body){
       if(err){ console.error("error downloading list of currencies");}
-      else {
-        res.send(response.body);
-      }
-    });
-  });
-
-  app.get('/api/getTimeSeries', (req,res) => { //have not tested this one yet. will do so when/if we pay for time series
-    //Get historical exchange rates for a given time period, where available, using the time series /
-    //bulk download API endpoint. Please read all the details before integrating.
-    //For more info: https://docs.openexchangerates.org/docs/time-series-json
-
-    var url = 'https://openexchangerates.org/api/time-series.json'+
-    '?app_id='+api_key+ //from above
-    '&start='+req.query.startDate+ //in format YYYY-MM-DD
-    '&end='+req.query.endDate+ //in format YYYY-MM-DD
-    '&base=USD'+ //base currency in three-letter symbols
-    '&symbols='+req.query.symbols+ //other currencies in three-letter symbols, separated by commas, i.e. GBP,EUR,HKD
-    '&prettyprint=1';
-    request(url, function(err,response,body){
-      if(err){ console.error("error downloading historical time series data");}
       else {
         res.send(response.body);
       }

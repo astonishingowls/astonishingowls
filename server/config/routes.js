@@ -1,4 +1,5 @@
 //The following is the server-side router logic for Authentication
+
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
@@ -6,7 +7,12 @@ var passport = require('passport');
 var database = require('../db/dbmodels');
 
 
-//These are routers for authentication!!!
+//These are routers for authentication
+
+//Router for registration. With successful registration, 
+//instantiates new user here. savedSearch is an empty array
+//what's laid out in commented out code is the form of data that is pushed
+//to this empty array when users add a currency to the database
 router.post('/register', function (req, res) {
     database.User.register(new database.User({
         username: req.body.username,
@@ -48,7 +54,6 @@ router.post('/login', function (req, res, next) {
                     err: 'Could not log in user'
                 });
             }
-            console.log("who is my user????????",user); //TEST!!!
             res.status(200).json({
                 status: 'Login successful!'
             });

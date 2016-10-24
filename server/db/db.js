@@ -2,6 +2,10 @@
 var mongoose = require('mongoose');
 var mongodb = require('mongodb');
 
+//Legacy group: you're welcome to use our developer version of the
+//database we set up here in the second part of the "OR" logic. 
+//May be best though to replace the hard-coded developer database
+//with your own
 var dbUrl = process.env.MONGOURI || 'mongodb://heroku_s13dqq10:c5b7hlbujuecnetp4mppna4p43@ds057386.mlab.com:57386/heroku_s13dqq10'
 
 mongoose.connect(dbUrl, function(err, res) {

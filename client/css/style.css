@@ -381,44 +381,46 @@ textarea {
   font: inherit;
   /* 2 */ }
 
-header {
+header.navigation {
+  position: absolute;
+  z-index: 1000;
   background-color: #333844;
   height: 100px; }
-  header .logo {
+  header.navigation .logo {
     display: inline-block;
     padding-top: 5px; }
-    header .logo img {
+    header.navigation .logo img {
       width: 85px; }
-    header .logo .title {
+    header.navigation .logo .title {
       display: inline-block; }
       @media (max-width: 767px) {
-        header .logo .title {
+        header.navigation .logo .title {
           display: none; } }
-  header .logout {
+  header.navigation .logout {
     float: right;
     padding-top: 20px; }
-    header .logout a {
+    header.navigation .logout a {
       border: 2px solid #FFF;
       background: none;
       color: #FFF;
       border-radius: 25px;
       width: 150px;
       margin-top: 10px; }
-      header .logout a:hover {
+      header.navigation .logout a:hover {
         background: white;
         color: #333844;
         border: 2px solid white; }
-  header .switchPage {
+  header.navigation .switchPage {
     float: right;
     padding-top: 20px; }
-    header .switchPage a {
+    header.navigation .switchPage a {
       border: 2px solid #FFF;
       background: none;
       color: #FFF;
       border-radius: 25px;
       width: 150px;
       margin-top: 10px; }
-      header .switchPage a:hover {
+      header.navigation .switchPage a:hover {
         background: white;
         color: #333844;
         border: 2px solid white; }
@@ -459,7 +461,8 @@ header {
 
 .savedSearches {
   padding: 10px;
-  text-align: center; }
+  text-align: center;
+  margin-top: 100px; }
   .savedSearches .top-section {
     margin: 15px; }
   .savedSearches a {
@@ -498,6 +501,12 @@ header {
       .savedSearches .largerContainer .box .current .sm_container {
         height: 70px;
         padding: 15px; }
+
+.chart-section {
+  display: none; }
+  @media (min-width: 992px) and (max-width: 1199px), (min-width: 1200px) and (max-width: 1599px), (min-width: 1600px) {
+    .chart-section {
+      display: block; } }
 
 .userSearch {
   padding: 10px;

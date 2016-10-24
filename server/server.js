@@ -11,8 +11,10 @@ var path = require('path');
 var passport = require('passport');
 var localStrategy = require('passport-local');
 
-
+//initiate express session
 var app = express();
+
+//middleware
 app.use(bodyparser.urlencoded({extended: true}));
 // app.use(bodyparser.json();
 app.use(bodyparser());
@@ -25,18 +27,13 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(express.static(__dirname + '/../client'));
 
-//configure out server with routing file in /server/config/api-router
+//configure our server with routing file in /server/config/api-router
 require('./config/api-router.js')(app, express);
 
-
-
-
-
 //These are routers for helper functions that ping the database
-
+//GET and POST requests to the database are written here
 app.get('/database', (req, res) => {
   var id = req.user._id;
   database.User.findById(id, function (err, doc){
@@ -55,11 +52,6 @@ app.post('/database', (req, res) => {
 });
 //End of database stuff
 
-
-
-
-
-
 // configure passport
 passport.use(new localStrategy(database.User.authenticate()));
 passport.serializeUser(database.User.serializeUser());
@@ -69,6 +61,7 @@ passport.deserializeUser(database.User.deserializeUser());
 var routes = require('./config/routes.js');
 app.use('/user/', routes);
 
+//set and run the port and server
 app.set('port',process.env.PORT || 8000);
 var port = app.get('port');
 app.listen(port);

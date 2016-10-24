@@ -16,8 +16,9 @@ models.User = mongoose.model('User', userSchema);
 
 module.exports = models;
 
-    // //Each is an object representing different points in time
-    // { time: String, cxy: String, date: String, value: Number}, //as of point in time downloaded
-    // { time: String, cxy: String, date: String, value: Number}, //as of one week ago
-    // { time: String, cxy: String, date: String, value: Number}, //as of last month
-    // { time: String, cxy: String, date: String, value: Number} //as of one year ago
+//Just as a reminder, the following is the array that is pushed to the savedSearch
+//array of arrays each time the user saves a currency favorite
+// [{ time: String, cxy: String, date: String, value: Number}, //as of point in time downloaded
+// { time: String, cxy: String, date: String, value: Number}, //as of one week ago
+// { time: String, cxy: String, date: String, value: Number}, //as of last month
+// { time: String, cxy: String, date: String, value: Number}] //as of one year ago

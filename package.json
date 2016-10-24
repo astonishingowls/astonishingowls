@@ -36,13 +36,11 @@
     "gulp-shell": "^0.5.2",
     "mongoose": "^4.6.3",
     "morgan": "^1.7.0",
-    "mysql": "^2.11.1",
     "node-sass": "^3.10.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
-    "request": "^2.75.0",
-    "sequelize": "^3.24.3"
+    "request": "^2.75.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
