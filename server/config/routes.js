@@ -4,7 +4,6 @@ var router = express.Router();
 var passport = require('passport');
 
 var database = require('../db/dbmodels');
-var controller = require('../controllers/index');
 
 
 //These are routers for authentication!!!
