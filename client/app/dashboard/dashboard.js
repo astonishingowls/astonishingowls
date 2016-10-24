@@ -14,6 +14,8 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
   $scope.downloadedData = [];
   $scope.boughtAmount;
 
+  //When user selects currency from list, ng-change calls refreshView and getSelectedCurrency
+  //refreshView shows user which currency is selected in country, symbol
   $scope.refreshView = function(){
     //get keys for selected currency in dropdown list
     $scope.inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency);
@@ -21,13 +23,16 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     $scope.historyRate = {};
   }
 
+    //getSelectedCurrency calls getHistorical function in factory. Calls four different date data point, today, 7 days, 30 days, and 365 days to receive each date currency data.
   $scope.getSelectedCurrency = function(){
 
+    //uses formatDate function from factory to convert date into  YYYY-MM-DD format.
     var today = formatDate(new Date(new Date().setDate(new Date().getDate())));
     var sevenDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 7)));
     var thirtyDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 30)));
     var yearAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 365)));
 
+    //getall function pushes new data(four different date data) from user and pushes to database.
     Search.getall().then(function(res){
       var inputCurrency = keysGrabber($scope.selectedCurrency, $scope.listOfCurrency)
       $scope.historyRate.todayRate = res.rates[inputCurrency];
@@ -37,7 +42,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         date: today,
         value: $scope.historyRate.todayRate
       });
-      console.log("today pushed")
+      // console.log("today pushed")
     })
     .then( () => {
       Search.getHistorical(sevenDaysAgo).then(function(res){
@@ -49,7 +54,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
         date: sevenDaysAgo,
         value: $scope.historyRate.sevenDaysAgo
       });
-      console.log("last week pushed")
+      // console.log("last week pushed")
      })
     })
     .then( () => {
@@ -62,7 +67,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
           date: thirtyDaysAgo,
           value: $scope.historyRate.thirtyDaysAgo
         });
-      console.log("last month pushed")
+      // console.log("last month pushed")
       })
     })
     .then( () => {
@@ -75,7 +80,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
           date: yearAgo,
           value: $scope.historyRate.yearAgo
         });
-      console.log("last year pushed")
+      // console.log("last year pushed")
       $scope.historyRate.ratesLoaded = true;
       $scope.historyRate.buttonShow = true;
       })
@@ -183,7 +188,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     // title: {
     //         display: true,
     //         text: 'Current Holding'
-    //     },
+    //     },  //uncomment to use native chartJS title display
     scales: {
       yAxes: [
         {
@@ -221,7 +226,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     // title: {
     //         display: true,
     //         text: 'Portfolio Summary'
-    //     },
+    //     }, //uncomment to use native chartJS title display
     legend: {
               display: true,
               position: 'top',
