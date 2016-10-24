@@ -19,7 +19,7 @@ module.exports = function(app,express){
     });
   });
 
-  app.get('/api/getHistorical', (req,res) => { //confirm with John
+  app.get('/api/getHistorical', (req,res) => {
     //Get historical exchange rates for any date available from the Open Exchange Rates API.
     //Like latest.json, the /historical route provides a standard response object containing
     //all the conversion rates for all available symbols/currencies on your requested date,
