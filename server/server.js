@@ -11,7 +11,7 @@ var path = require('path');
 var passport = require('passport');
 var localStrategy = require('passport-local');
 
-//initiate express session
+//initiate express
 var app = express();
 
 //middleware
