@@ -5,8 +5,8 @@
     background-image: url('../../assets/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    @include vertical-center-flex(100vh);
 
+    @include vertical-center-flex(100vh);
 
     #login {
         .tagline {
