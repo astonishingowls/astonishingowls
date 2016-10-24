@@ -383,8 +383,7 @@ textarea {
 
 header {
   background-color: #333844;
-  height: 100px;
-  margin-bottom: 15px; }
+  height: 100px; }
   header .logo {
     display: inline-block;
     padding-top: 5px; }
@@ -409,30 +408,54 @@ header {
         background: white;
         color: #333844;
         border: 2px solid white; }
+  header .switchPage {
+    float: right;
+    padding-top: 20px; }
+    header .switchPage a {
+      border: 2px solid #FFF;
+      background: none;
+      color: #FFF;
+      border-radius: 25px;
+      width: 150px;
+      margin-top: 10px; }
+      header .switchPage a:hover {
+        background: white;
+        color: #333844;
+        border: 2px solid white; }
 
-#login a {
-  border: 2px solid #FFF;
-  background: none;
-  color: #FFF;
-  border-radius: 25px;
-  width: 150px;
-  margin-top: 10px; }
-  #login a:hover {
-    background: white;
-    color: #333844;
-    border: 2px solid white; }
-
-#login form button {
-  border: 2px solid #FFF;
-  background: none;
-  color: #FFF;
-  border-radius: 25px;
-  width: 150px;
-  margin-top: 10px; }
-  #login form button:hover {
-    background: white;
-    color: #333844;
-    border: 2px solid white; }
+.login_body {
+  background-image: url("../../assets/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 79vh; }
+  .login_body #login .tagline {
+    margin-bottom: 15px;
+    text-align: center; }
+  .login_body #login a {
+    border: 2px solid #FFF;
+    background: none;
+    color: #FFF;
+    border-radius: 25px;
+    width: 150px;
+    margin-top: 10px; }
+    .login_body #login a:hover {
+      background: white;
+      color: #333844;
+      border: 2px solid white; }
+  .login_body #login form button {
+    border: 2px solid #FFF;
+    background: none;
+    color: #FFF;
+    border-radius: 25px;
+    width: 150px;
+    margin-top: 10px; }
+    .login_body #login form button:hover {
+      background: white;
+      color: #333844;
+      border: 2px solid white; }
 
 .savedSearches {
   padding: 10px;

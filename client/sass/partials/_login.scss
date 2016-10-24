@@ -1,14 +1,27 @@
 @import '../mixins/mixins';
 @import '../modules/variables';
 
-#login {
-    a {
-        @include whiteButton($white);
-    }
+.login_body {
+    background-image: url('../../assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include vertical-center-flex(79vh);
 
-    form {
-        button {
+
+    #login {
+        .tagline {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        a {
             @include whiteButton($white);
+        }
+
+        form {
+            button {
+                @include whiteButton($white);
+            }
         }
     }
 }
