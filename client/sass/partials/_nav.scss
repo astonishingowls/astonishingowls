@@ -3,7 +3,6 @@
 header {
     background-color: $light-charcoal;
     height: 100px;
-    margin-bottom: 15px;
 
     .logo {
         display: inline-block;
@@ -29,7 +28,15 @@ header {
 
         a {
             @include whiteButton($white);
+        }
+    }
 
+    .switchPage {
+        float: right;
+        padding-top: 20px;
+
+        a {
+            @include whiteButton($white);
         }
     }
 
