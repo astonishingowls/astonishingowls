@@ -3,7 +3,8 @@
 angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter'])
 
 .controller('exportController',function($scope, $interval, Search, uiGridExporterService) {
-  //options for the ui-grid, enables exports and formats them
+  //options for the ui-grid, enables export options (csv, pdf) and formats them
+  //data property is what will be rendered in the chart
   $scope.options = {
     enableGridMenu: true,
     enableSelectAll: true,
