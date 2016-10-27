@@ -4,6 +4,8 @@ angular.module('astonishingOwls', [
     'astonishingOwls.search',
     'chart.js',
     'exportChart',
+    'ui.grid',
+    'ui.grid.exporter',
     'ngRoute'
 ])
 
