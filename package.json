@@ -7,7 +7,7 @@
     "start": "gulp styles",
     "start:es6": "gulp start:es6",
     "postinstall": "./node_modules/bower/bin/bower install",
-    "test": "mocha specs/**/*.js"
+    "test": "exit 0"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "morgan": "^1.7.0",
     "node-sass": "^3.10.1",
     "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
     "request": "^2.75.0"
