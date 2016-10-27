@@ -30,6 +30,11 @@ angular.module('astonishingOwls', [
           templateUrl: 'app/auth/register.html',
           controller: 'registerController'
       })
+      .when('/excel', {
+          templateUrl: 'app/dashboard/excel.html',
+          controller: 'excelController',
+          access: {restricted: true}
+      })
       .otherwise({
           redirectTo: '/'
       });
