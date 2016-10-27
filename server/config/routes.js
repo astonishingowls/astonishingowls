@@ -9,7 +9,7 @@ var database = require('../db/dbmodels');
 
 //These are routers for authentication
 
-//Router for registration. With successful registration, 
+//Router for registration. With successful registration,
 //instantiates new user here. savedSearch is an empty array
 //what's in commented out code is the form of data that is pushed
 //to this empty array when users add a currency to the database
@@ -34,9 +34,9 @@ router.post('/register', function (req, res) {
                 return res.status(200).json({
                     status: 'Registration successful!'
                 });
-            }); 
-        }); 
-}); 
+            });
+        });
+});
 
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
