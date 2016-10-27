@@ -11,6 +11,7 @@
         <p class="title">CurrencC</p>
       </div>
       <div ng-controller="logoutController" class="logout">
+        <a href="#/export" class="btn btn-default">Export Charts</a>
         <a ng-click='logout()' class="btn btn-default">Logout</a>
       </div>
     </header>
@@ -19,8 +20,6 @@
       <div class="top-section col-xs-12">
         <h1 class="title">Saved Searches</h1>
         <a ng-click="update()" class="btn btn-default">Update Position!</a>
-        <a href="#/export" class="btn btn-default">Export Charts</a>
-        <!--<a ng-click="scrollTo('newSearch')" class="btn btn-default">New Search</a>-->
       </div>
       <div class="myContainer col-xs-12 col-md-6">
         <div ng-repeat="item in manipulateData" class="largerContainer col-xs-12 col-md-6">
