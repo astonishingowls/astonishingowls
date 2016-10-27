@@ -563,3 +563,13 @@ input {
 
 select#repeatSelect {
   color: black !important; }
+
+.grid {
+  position: fixed;
+  width: 90%;
+  height: auto;
+  top: 30%;
+  right: 5%;
+  color:black;
+  background-color: white;
+}
