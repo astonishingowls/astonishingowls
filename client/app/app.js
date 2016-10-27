@@ -3,6 +3,7 @@ angular.module('astonishingOwls', [
     'astonishingOwls.auth',
     'astonishingOwls.search',
     'chart.js',
+    'exportChart',
     'ngRoute'
 ])
 
@@ -30,10 +31,9 @@ angular.module('astonishingOwls', [
           templateUrl: 'app/auth/register.html',
           controller: 'registerController'
       })
-      .when('/excel', {
-          templateUrl: 'app/dashboard/excel.html',
-          controller: 'excelController',
-          access: {restricted: true}
+      .when('/export', {
+          templateUrl: 'app/export/export.html',
+          controller: 'exportController'
       })
       .otherwise({
           redirectTo: '/'
