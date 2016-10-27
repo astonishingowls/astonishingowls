@@ -2,13 +2,14 @@
 
 angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter'])
 
-.controller('exportController',function($scope, $interval, Search, uiGridExporterService) {
+.controller('exportController',function($scope, $interval, Search, uiGridExporterService, uiGridConstants) {
   //options for the ui-grid, enables export options (csv, pdf) and formats them
   //data property is what will be rendered in the chart
   $scope.options = {
     enableGridMenu: true,
     enableSelectAll: true,
-    exporterCsvFilename: 'myFile.csv',
+    showGridFooter: true,
+    exporterCsvFilename: 'currencyChart.csv',
     exporterPdfDefaultStyle: {fontSize: 9},
     exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
     exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
@@ -23,7 +24,7 @@ angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter
     },
     exporterPdfOrientation: 'portrait',
     exporterPdfPageSize: 'LETTER',
-    exporterPdfMaxGridWidth: 500,
+    exporterPdfMaxGridWidth: 400,
     exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
     onRegisterApi: function(gridApi){
       $scope.gridApi = gridApi;
@@ -45,11 +46,9 @@ angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter
       $scope.dataPositions.push($scope.dbData[a][0]);
     }
     $scope.options.data = $scope.dataPositions;
-    console.log($scope.dataPositions, "++dataPositions++");
-    // console.log($scope.dbData, "+++dbData+");
+
     //get an array of the currencies over time- their history
     for(var i = 0; i < $scope.dbData.length; i += 1) {
-      console.log('$scope.dbData[i]+++', i, $scope.dbData[i].length);
       if($scope.dbData[i].length) {
         for(var z = 0; z < $scope.dbData[i].length; z += 1) {
           $scope.dataPositionHistory.push($scope.dbData[i][z]);
@@ -58,6 +57,5 @@ angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter
         }
       }
     }
-    // console.log($scope.dataPositionHistory, "++dataPositionHistory++");
   });
 });
