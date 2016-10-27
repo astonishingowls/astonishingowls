@@ -5,6 +5,7 @@ var nodemon = require('gulp-nodemon');
 var babel = require('gulp-babel');
 var browserSync = require('browser-sync').create();
 var gutil = require('gulp-util');
+var KarmaServer = require('karma').Server;
 
 
 
@@ -50,6 +51,13 @@ gulp.task('start', ['serve'], function () {
     files: paths.src.scripts.concat(paths.src.html, paths.src.style),
     proxy: 'localhost:8000'
   });
+});
+
+// Run our karma tests
+gulp.task('karma', function (done) {
+  new KarmaServer({
+    configFile: __dirname + '/karma.conf.js'
+  }, done).start();
 });
 
 
@@ -118,4 +126,27 @@ gulp.task('start:es6', ['serve:es6'], function () {
   });
 
   gulp.watch(paths.scripts, ['babel']);
+});
+
+// Tests can be written in ES6 too!
+gulp.task('karma:es6', function(done) {
+  new KarmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    preprocessors: {
+      [paths.src.scripts]: ['babel'],
+      [paths.test]: ['babel']
+    },
+    babelPreprocessor: {
+      options: {
+        presets: ['es2015'],
+        sourceMap: 'inline'
+      },
+      filename: function (file) {
+        return file.originalPath;
+      },
+      sourceFileName: function (file) {
+        return file.originalPath;
+      }
+    }
+  }, done).start();
 });
