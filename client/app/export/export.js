@@ -12,8 +12,8 @@ angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter
     exporterCsvFilename: 'currencyChart.csv',
     exporterPdfDefaultStyle: {fontSize: 9},
     exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
-    exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
-    exporterPdfHeader: { text: "My Header", style: 'headerStyle' },
+    exporterPdfTableHeaderStyle: {fontSize: 12, bold: true, italics: false, color: 'black'},
+    exporterPdfHeader: { text: "Positions Summary", style: 'headerStyle' },
     exporterPdfFooter: function ( currentPage, pageCount ) {
       return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
     },

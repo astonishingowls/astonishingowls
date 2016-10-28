@@ -3,9 +3,9 @@
           <img src="../../assets/All-currency-symbol.svg.png"/>
           <p class="title">CurrenC</p>
       </div>
-      <div class="switchPage">
+      <div class="switchPage" ng-controller="logoutController" class="logout">
           <a href="#/dashboard" class="btn btn-default">Dashboard</a>
-          <a class="btn btn-default" ng-disabled="disabled" href="#/login">Login</a>
+          <a class="btn btn-default" ng-disabled="disabled" ng-click="logout()">Logout</a>
       </div>
   </header>
   <div class="gridTitle">
@@ -22,5 +22,5 @@
 
 
   <footer class="footer col-xs-12">
-      <p>Made with <i class="fa fa-heart faa-pulse animated" aria-hidden="true"></i> by Astonishing Owls Inc. </p>
+      <p>Made with <i class="fa fa-heart faa-pulse animated" aria-hidden="true"></i> by CurrenC Inc. </p>
   </footer>
