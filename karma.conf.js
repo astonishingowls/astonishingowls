@@ -42,7 +42,8 @@ module.exports = function(config) {
     'client/app/**/*.js',
 
     // the spec files
-    'specs/client/routesTest.js'
+    'specs/client/routesTest.js',
+    'specs/client/SearchFactoryTests.js'
     ],
 
     // preprocess matching files before serving them to the browser
