@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var database = require('./db/dbmodels');
+var oauth = require('./oauth.js');
 
 var debug = require('debug')('passport-mongo');
 var hash = require('bcrypt-nodejs');
@@ -52,10 +53,13 @@ app.post('/database', (req, res) => {
   .then( () => res.status(201).send(req.data));
 });
 
+// route for authtication with google passport
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-  app.get('/auth/google/callback',
+// route for if google authentication is successful redirect to dashboard
+// otherwise redirect to login
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
@@ -65,29 +69,32 @@ app.get('/auth/google',
 
 // configure passport
 passport.use(new localStrategy(database.User.authenticate()));
-passport.serializeUser(database.User.serializeUser());
-passport.deserializeUser(database.User.deserializeUser());
+// passport.serializeUser(database.User.serializeUser());
+// passport.deserializeUser(database.User.deserializeUser());
 
+// configure google passport
+// oauth is exported from oauth.js
 passport.use(new GoogleStrategy({
-    clientID: "714313995643-muhg5t6obmuokajn432hbaaj50v27ko9.apps.googleusercontent.com",
-    clientSecret: "PpedpdIu6NKl4ww-EsK2M2Aw",
-    callbackURL: "https://currenc.herokuapp.com/auth/google/callback"
+  clientID: oauth.google.clientID,
+  clientSecret: oauth.google.clientSecret,
+  callbackURL: oauth.google.callbackURL,
+  passReqToCallback: true
   },
-  function(accessToken, refreshToken, profile, done) {
-       User.findOrCreate({ googleId: profile.id }, function (err, user) {
-         return done(err, user);
-       });
+  function(request, accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      return done(null, profile);
+    });
   }
 ));
 
-passport.serializeUser(function(user, callback){
+passport.serializeUser(function(user, done){
         console.log('serializing user.');
-        callback(null, user.id);
+        done(null, user);
     });
 
-passport.deserializeUser(function(user, callback){
+passport.deserializeUser(function(obj, done){
        console.log('deserialize user.');
-       callback(null, user.id);
+       done(null, obj);
     });
 
 
