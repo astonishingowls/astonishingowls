@@ -37,4 +37,9 @@ dist/
 node_modules/
 bower_components/
 
+#api-key
 api-key.js
+
+#dependencies
+angular-ui-grid
+cpdfmake
