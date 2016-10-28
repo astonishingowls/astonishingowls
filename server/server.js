@@ -71,7 +71,7 @@ passport.deserializeUser(database.User.deserializeUser());
 passport.use(new GoogleStrategy({
     clientID: "714313995643-muhg5t6obmuokajn432hbaaj50v27ko9.apps.googleusercontent.com",
     clientSecret: "PpedpdIu6NKl4ww-EsK2M2Aw",
-    callbackURL: "https://localhost:8000//auth/google/callback"
+    callbackURL: "https://currenc.herokuapp.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
        User.findOrCreate({ googleId: profile.id }, function (err, user) {
