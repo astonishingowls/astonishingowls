@@ -40,6 +40,6 @@ bower_components/
 #api-key
 api-key.js
 
-#dependencies
+# dependencies
 angular-ui-grid
-cpdfmake
+pdfmake
