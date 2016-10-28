@@ -1,5 +1,5 @@
 //There are two controllers in this file, and these are the two that
-//make up the page. There is a "searchCurrency" controller and 
+//make up the page. There is a "searchCurrency" controller and
 //also a "dashboardView" controller
 angular.module('astonishingOwls.search', [])
 
@@ -10,11 +10,11 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   $scope.availableOptions = {} //this is the result of the latest.JSON API call. gets most recent rates
   $scope.listOfCurrency = {}; //this is the result of the currencies.JSON API call
-  $scope.historyRate = {}; //this is the object that's set up to take in the result of the four API 
+  $scope.historyRate = {}; //this is the object that's set up to take in the result of the four API
   //calls that are run after the search button is hit, showing today's rate, last week's rate, last mo, last yr
   $scope.selectedCurrency = ''; //full currency name, i.e. "United States Dollar"
   $scope.inputCurrency = ''; //it's the three letter keys, i.e. "USD"
-  $scope.passedToDB = []; //this is the array that is passed to the database 
+  $scope.passedToDB = []; //this is the array that is passed to the database
   $scope.downloadedData = []; //this is the result of downloading data from the database
   $scope.boughtAmount; //this captures what the user inputs into the "amount" in the search field
 
@@ -37,7 +37,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     var thirtyDaysAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 30)));
     var yearAgo = formatDate(new Date(new Date().setDate(new Date().getDate() - 365)));
 
-    //getall function pushes new data(four different date data) from user and pushes to 
+    //getall function pushes new data(four different date data) from user and pushes to
     //passedToDB variable, in preparation for when that passedToDB variable is ultimately
     //pushed to the database.
     Search.getall().then(function(res){
@@ -226,8 +226,8 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
 
   $scope.update = function(){
     //reinitialize charts data
-    $scope.labels = []; 
-    $scope.costBasis = []; 
+    $scope.labels = [];
+    $scope.costBasis = [];
     $scope.marketValues = [];
     $scope.gainLoss = [];
     $scope.data = [];
@@ -286,6 +286,7 @@ function($scope, $location, Search, keysGrabber, formatDate, SharedVariables){
     });
 
   } //end of $scope.update
-
+  //call update when dashboardView rendered
+  $scope.update();
 
 }) //end of dashboardView
