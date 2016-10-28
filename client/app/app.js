@@ -3,6 +3,7 @@ angular.module('astonishingOwls', [
     'astonishingOwls.auth',
     'astonishingOwls.search',
     'chart.js',
+    'exportChart',
     'ngRoute'
 ])
 
@@ -29,6 +30,10 @@ angular.module('astonishingOwls', [
       .when('/register', {
           templateUrl: 'app/auth/register.html',
           controller: 'registerController'
+      })
+      .when('/export', {
+          templateUrl: 'app/export/export.html',
+          controller: 'exportController'
       })
       .otherwise({
           redirectTo: '/'

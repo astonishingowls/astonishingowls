@@ -4,12 +4,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var database = require('./db/dbmodels');
+var oauth = require('./oauth.js');
 
 var debug = require('debug')('passport-mongo');
 var hash = require('bcrypt-nodejs');
 var path = require('path');
 var passport = require('passport');
 var localStrategy = require('passport-local');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 //initiate express
 var app = express();
@@ -50,12 +52,51 @@ app.post('/database', (req, res) => {
   )
   .then( () => res.status(201).send(req.data));
 });
+
+// route for authtication with google passport
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// route for if google authentication is successful redirect to dashboard
+// otherwise redirect to login
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
 //End of database stuff
 
 // configure passport
 passport.use(new localStrategy(database.User.authenticate()));
-passport.serializeUser(database.User.serializeUser());
-passport.deserializeUser(database.User.deserializeUser());
+// passport.serializeUser(database.User.serializeUser());
+// passport.deserializeUser(database.User.deserializeUser());
+
+// configure google passport
+// oauth is exported from oauth.js
+passport.use(new GoogleStrategy({
+  clientID: oauth.google.clientID,
+  clientSecret: oauth.google.clientSecret,
+  callbackURL: oauth.google.callbackURL,
+  passReqToCallback: true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      return done(null, profile);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done){
+        console.log('serializing user.');
+        done(null, user);
+    });
+
+passport.deserializeUser(function(obj, done){
+       console.log('deserialize user.');
+       done(null, obj);
+    });
+
 
 // require routes
 var routes = require('./config/routes.js');
