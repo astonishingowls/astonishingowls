@@ -36,6 +36,11 @@ angular.module('astonishingOwls', [
           controller: 'exportController',
           access: {restricted: true}
       })
+      .when('/predict', {
+          templateUrl: 'app/predict/predict.html',
+          controller: 'predictController',
+          access: {restricted: true}
+      })
       .otherwise({
           redirectTo: '/'
       });
