@@ -4,7 +4,8 @@ angular.module('astonishingOwls', [
     'astonishingOwls.search',
     'chart.js',
     'exportChart',
-    'ngRoute'
+    'ngRoute',
+    'predict'
 ])
 
 .config(function ($routeProvider) {
