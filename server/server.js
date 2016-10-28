@@ -77,7 +77,7 @@ app.post('/database', (req, res) => {
   //   });
   //
   //  stream.on('error', function(error) {
-  //   throw error;
+  //   console.log(error);
   //  });
   // });
   // })
