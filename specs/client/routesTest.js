@@ -11,4 +11,10 @@ describe('Routing', function () {
     expect($route.routes['/login'].controller).to.equal('loginController');
     expect($route.routes['/login'].templateUrl).to.equal('app/auth/login.html');
   });
+
+  it('Should have an /export route, template, and controller', function () {
+    expect($route.routes['/export']).to.be.defined;
+    expect($route.routes['/export'].controller).to.equal('exportController');
+    expect($route.routes['/export'].templateUrl).to.equal('app/export/export.html');
+  });
 });
