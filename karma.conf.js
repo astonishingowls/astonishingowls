@@ -31,10 +31,12 @@ module.exports = function(config) {
     'client/lib/angular/angular.js',
     'client/lib/angular-route/angular-route.js',
     'client/lib/angular-mocks/angular-mocks.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js',
+    'https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js',
 
     // find other sources for tests
-    'client/lib/chart.js/src/**/*.js',
-    'client/lib/chart.js/src/chart.js',
+    // 'client/lib/chart.js/src/**/*.js',
+    // 'client/lib/chart.js/src/chart.js',
     'client/lib/angular-ui-grid/ui-grid.js',
 
     // our app code
@@ -45,19 +47,17 @@ module.exports = function(config) {
     ],
 
     // list of files to exclude
-    exclude: [
-        'client/lib/angular/angular-loader.js',
-        'client/lib/angular/*.min.js',
-        'client/lib/angular/angular-scenario.js'
-    ],
+    // exclude: [
+    //     'client/lib/angular/angular-loader.js',
+    //     'client/lib/angular/*.min.js',
+    //     'client/lib/angular/angular-scenario.js'
+    // ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
      'client/**/*.js': ['babel'],
-     'spec/client/*.js': ['babel'],
-     'client/lib/chart.js/src/chart.js': ['browserify'],
-     'client/lib/chart.js/src/**/*.js': ['browserify']
+     'spec/client/*.js': ['babel']
    },
    babelPreprocessor: {
      options: {
