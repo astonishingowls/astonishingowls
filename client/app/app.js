@@ -33,7 +33,8 @@ angular.module('astonishingOwls', [
       })
       .when('/export', {
           templateUrl: 'app/export/export.html',
-          controller: 'exportController'
+          controller: 'exportController',
+          access: {restricted: true}
       })
       .otherwise({
           redirectTo: '/'
