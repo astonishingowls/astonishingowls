@@ -10,6 +10,7 @@ var hash = require('bcrypt-nodejs');
 var path = require('path');
 var passport = require('passport');
 var localStrategy = require('passport-local');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 //initiate express
 var app = express();
@@ -50,12 +51,45 @@ app.post('/database', (req, res) => {
   )
   .then( () => res.status(201).send(req.data));
 });
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+  app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
 //End of database stuff
 
 // configure passport
 passport.use(new localStrategy(database.User.authenticate()));
 passport.serializeUser(database.User.serializeUser());
 passport.deserializeUser(database.User.deserializeUser());
+
+passport.use(new GoogleStrategy({
+    clientID: "714313995643-muhg5t6obmuokajn432hbaaj50v27ko9.apps.googleusercontent.com",
+    clientSecret: "PpedpdIu6NKl4ww-EsK2M2Aw",
+    callbackURL: "https://localhost:8000//auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+       User.findOrCreate({ googleId: profile.id }, function (err, user) {
+         return done(err, user);
+       });
+  }
+));
+
+passport.serializeUser(function(user, callback){
+        console.log('serializing user.');
+        callback(null, user.id);
+    });
+
+passport.deserializeUser(function(user, callback){
+       console.log('deserialize user.');
+       callback(null, user.id);
+    });
+
 
 // require routes
 var routes = require('./config/routes.js');
