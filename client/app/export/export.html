@@ -3,9 +3,9 @@
           <img src="../../assets/All-currency-symbol.svg.png"/>
           <p class="title">CurrenC</p>
       </div>
-      <div class="switchPage">
+      <div class="switchPage" ng-controller="logoutController" class="logout">
           <a href="#/dashboard" class="btn btn-default">Dashboard</a>
-          <a class="btn btn-default" ng-disabled="disabled" href="#/login">Login</a>
+          <a class="btn btn-default" ng-disabled="disabled" ng-click="logout()">Logout</a>
       </div>
   </header>
   <div class="gridTitle">
