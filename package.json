@@ -31,6 +31,11 @@
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
+<<<<<<< HEAD
+    "google-oauth-jwt": "^0.2.0",
+=======
+    "googleapis": "^14.1.0",
+>>>>>>> updatePredict
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
@@ -46,7 +51,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
-    "request": "^2.75.0",
+    "request": "^2.76.0",
     "twitter": "^1.4.0"
   },
   "devDependencies": {
