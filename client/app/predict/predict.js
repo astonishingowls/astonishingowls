@@ -23,7 +23,7 @@ function($scope, $location, Search, formatDate, SharedVariables ){
     Search.getPrediction()
     .then(function(res){
       
-      $scope.prediction = res.outputValue;
+        $scope.prediction = res.data.outputValue;
 
     });
 

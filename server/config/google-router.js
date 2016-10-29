@@ -28,7 +28,7 @@ module.exports = function(app,express){
   //   });
   // });
 
-  app.get('/api/predict', (req,res) => {
+  app.post('/api/predict', (req,res) => {
 
     var jwtClient = new google.auth.JWT(
       key.client_email,
@@ -44,30 +44,31 @@ module.exports = function(app,express){
         return;
       }
 
-   var request = {
-          // TODO: Change placeholders below to appropriate parameter values for the 'predict' method:
+      var request = {
+        // TODO: Change placeholders below to appropriate parameter values for the 'predict' method:
 
-          // * The project associated with the model.
-      project: "",
+        // * The project associated with the model.
+        project: "currency-147719",
 
-          // * The name of a hosted model.
-      hostedModelName: "",
+        // * The name of a trained model.
+        id: req.body.currency,
 
-      resource: {},
+        resource: req.body.query,
 
-          // Auth client
-      auth: jwtClient
-    };
+        // Auth client
+        auth: jwtClient
+      };
 
-    prediction.hostedmodels.predict(request, function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-      }
+      prediction.trainedmodels.predict(request, function(err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(result, 'this is the result');
+          res.send(result);
+        }
+      });
     });
   });
-});
 
 
 };
