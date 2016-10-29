@@ -3,9 +3,36 @@
 angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter'])
 
 .controller('exportController',function($scope, $interval, Search, uiGridExporterService, uiGridConstants) {
-  //options for the ui-grid, enables export options (csv, pdf) and formats them
+  //options for the ui-grid: options sets export options (csv, pdf) and formatting
   //data property is what will be rendered in the chart
   $scope.options = {
+    enableGridMenu: true,
+    enableSelectAll: true,
+    showGridFooter: true,
+    exporterCsvFilename: 'currencyChart.csv',
+    exporterPdfDefaultStyle: {fontSize: 9},
+    exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+    exporterPdfTableHeaderStyle: {fontSize: 12, bold: true, italics: false, color: 'black'},
+    exporterPdfHeader: { text: "Positions Summary", style: 'headerStyle' },
+    exporterPdfFooter: function ( currentPage, pageCount ) {
+      return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+    },
+    exporterPdfCustomFormatter: function ( docDefinition ) {
+      docDefinition.styles.headerStyle = { fontSize: 22, bold: true };
+      docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+      return docDefinition;
+    },
+    exporterPdfOrientation: 'portrait',
+    exporterPdfPageSize: 'LETTER',
+    exporterPdfMaxGridWidth: 400,
+    exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
+    onRegisterApi: function(gridApi){
+      $scope.gridApi = gridApi;
+    },
+    data: []
+  };
+  //optionsB is for the second grid, which shows historical data
+  $scope.optionsB = {
     enableGridMenu: true,
     enableSelectAll: true,
     showGridFooter: true,
@@ -38,8 +65,6 @@ angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter
     $scope.dbData = resp.data.savedSearch;
     $scope.dataPositionHistory = [];
     $scope.dataPositions = [];
-    //variable for number of columns for creating an exportable chart
-    var columns = $scope.dbData.length;
 
     //reformat dbData:
     for(var a = 0; a < $scope.dbData.length; a += 1) {
@@ -52,10 +77,9 @@ angular.module('exportChart', ['ui.grid', 'ui.grid.selection', 'ui.grid.exporter
       if($scope.dbData[i].length) {
         for(var z = 0; z < $scope.dbData[i].length; z += 1) {
           $scope.dataPositionHistory.push($scope.dbData[i][z]);
-          // $scope.options.data.push($scope.dbData[i][z]);
-            //.boughtAmount, .cxy, .date, .time
         }
       }
     }
+    $scope.optionsB.data = $scope.dataPositionHistory;
   });
 });
