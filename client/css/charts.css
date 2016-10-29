@@ -1,3 +1,5 @@
+/*styling for export.html, positions title and two charts*/
+/*wraps .grids div and  the two grid divs*/
 div .Chart {
   position: relative;
   top: 120px;
@@ -6,19 +8,19 @@ div .Chart {
   width: 100%;
   left: 4%;
 }
-
+/*wraps the two grids*/
 .grids {
   display: flex;
   justify-content:center;
+  flex-direction: column;
   align-self: center;
   width: 90%;
-  flex-direction: column;
-  color: black;
-  background-color: #f2f2f2;
-  /*margin: 30px;*/
   padding-top: 5px;
   border-radius: 10px;
+  color: black;
+  background-color: #f2f2f2;
 }
+/*title for individual charts*/
 .Chart h4 {
   color:black;
   font-weight: bold;
@@ -34,15 +36,17 @@ div .Chart {
   color:black;
   background-color: white;
 }*/
+/*first grid*/
 .grid {
   padding:12px;
   margin: 12px;
 }
+/*second grid*/
 .gridB {
   margin-top: 100px;
   margin: 12px;
 }
-
+/*div containing page headers*/
 .gridTitle {
   position: relative;
   top:105px;
@@ -63,7 +67,7 @@ div .Chart {
   margin:0;
   padding: 0;
 }
-
+/*button to return to dashboard*/
 .switchPage a {
   border: 2px solid #FFF;
   background: none;
