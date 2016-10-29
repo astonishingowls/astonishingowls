@@ -1,3 +1,4 @@
+//tests for routes, if they exist, have the correct controller and templateUrls
 describe('Routing', function () {
   var $route;
   beforeEach(module('astonishingOwls'));
@@ -17,4 +18,22 @@ describe('Routing', function () {
     expect($route.routes['/export'].controller).to.equal('exportController');
     expect($route.routes['/export'].templateUrl).to.equal('app/export/export.html');
   });
+
+  it('Should have a /dashboard route, template, and controller', function () {
+    expect($route.routes['/dashboard']).to.be.defined;
+    expect($route.routes['/dashboard'].controller).to.equal('searchCurrency');
+    expect($route.routes['/dashboard'].templateUrl).to.equal('app/dashboard/dashboard.html');
+  });
+
+  it('Should have a /register route, template, and controller', function () {
+    expect($route.routes['/register']).to.be.defined;
+    expect($route.routes['/register'].controller).to.equal('registerController');
+    expect($route.routes['/register'].templateUrl).to.equal('app/auth/register.html');
+  });
+
+  it('Should have a /logout route, template, and controller', function () {
+    expect($route.routes['/logout']).to.be.defined;
+    expect($route.routes['/logout'].controller).to.equal('logoutController');
+  });
+
 });

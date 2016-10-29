@@ -1,3 +1,4 @@
+//tests the factory for required functions
 describe('Factory', function () {
   beforeEach(module('astonishingOwls.factory'));
 
