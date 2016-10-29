@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'browserify'],
+    frameworks: ['mocha', 'chai', 'browserify','sinon'],
 
     plugins : [
       'karma-mocha',
@@ -22,7 +22,8 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-babel-preprocessor',
       'karma-spec-reporter',
-      'karma-mocha-reporter'
+      'karma-mocha-reporter',
+      'karma-sinon'
     ],
 
     // list of files / patterns to load in the browser
@@ -31,27 +32,21 @@ module.exports = function(config) {
     'client/lib/angular/angular.js',
     'client/lib/angular-route/angular-route.js',
     'client/lib/angular-mocks/angular-mocks.js',
+    'https://code.jquery.com/jquery-2.2.1.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js',
     'https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js',
 
     // find other sources for tests
-    // 'client/lib/chart.js/src/**/*.js',
-    // 'client/lib/chart.js/src/chart.js',
     'client/lib/angular-ui-grid/ui-grid.js',
 
     // our app code
     'client/app/**/*.js',
 
     // the spec files
-    'specs/client/routesTest.js'
+    'specs/client/routesTest.js',
+    'specs/client/SearchFactoryTests.js',
+    'specs/client/exportControllerTests.js'
     ],
-
-    // list of files to exclude
-    // exclude: [
-    //     'client/lib/angular/angular-loader.js',
-    //     'client/lib/angular/*.min.js',
-    //     'client/lib/angular/angular-scenario.js'
-    // ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
