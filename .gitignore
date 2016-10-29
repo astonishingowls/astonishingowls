@@ -39,6 +39,7 @@ bower_components/
 
 #api-key
 server/config/api-key.js
+server/config/Currency.json
 
 # dependencies
 angular-ui-grid
