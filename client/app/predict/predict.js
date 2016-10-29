@@ -1,6 +1,11 @@
 angular.module('predict', [])
 
+<<<<<<< HEAD
 .controller('predictController', ['$scope', '$location', 'Search','formatDate','SharedVariables', function($scope, Search){
+=======
+.controller('predictController', ['$scope', '$location', 'Search', 'formatDate','SharedVariables',
+function($scope, $location, Search, formatDate, SharedVariables ){
+>>>>>>> updatePredict
 
   // $scope.availableOptions = {} //this is the result of the latest.JSON API call. gets most recent rates
   // $scope.listOfCurrency = {}; //this is the result of the currencies.JSON API call
@@ -15,7 +20,12 @@ angular.module('predict', [])
 
 
 
+<<<<<<< HEAD
     Search.getPrediction().then(function(res){
+=======
+    Search.getPrediction()
+    .then(function(res){
+>>>>>>> updatePredict
       $scope.prediction = res.outputValue;
 
     });
