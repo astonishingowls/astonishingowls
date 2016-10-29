@@ -11,6 +11,7 @@ angular.module('astonishingOwls.factory', [])
       url: '/database'
     })
     .then(function (resp) {
+      console.log("response---", resp);
       return resp;
     });
   };
@@ -22,6 +23,7 @@ angular.module('astonishingOwls.factory', [])
       data: data
     })
     .then(function (resp) {
+      console.log("Posttttt response---", resp);
     });
   };
 
@@ -59,12 +61,47 @@ angular.module('astonishingOwls.factory', [])
     });
   }
 
+//
+  var getPrediction = function(){
+    return $http({
+      method: 'POST',
+      url: '/api/predict',
+      data: {
+        currency:"CHF",
+        query: {
+        "input": {
+          "csvInstance": [
+            "20190531"
+          ]
+        }
+      }
+    }
+    })
+    .then(function (resp) {
+      return resp;
+
+    });
+  };
+  var getPredictionList = function(){
+    return $http({
+      method: 'GET',
+      url: '/api/predict'
+    })
+    .then(function (resp) {
+      return resp;
+
+    });
+  };
+
+//
   return {
     getall: getall,
     getHistorical: getHistorical,
     getListOfCurrencies: getListOfCurrencies,
     postDB: postDB,
-    getDB: getDB
+    getDB: getDB,
+    getPrediction: getPrediction,
+    getPredictionList: getPredictionList
   };
 }) // End of Search factory
 
@@ -189,7 +226,7 @@ function ($q, $timeout, $http) {
 }]) // End of AuthService factory
 
 //keysGrabber grabs key as value from object
-//This is relevant in the ng-options select window we designed 
+//This is relevant in the ng-options select window we designed
 //in the New Search fields
 .factory('keysGrabber',function(){
  return function(value, object){

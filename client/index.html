@@ -2,7 +2,7 @@
 <html ng-app='astonishingOwls'>
   <head>
     <meta charset="utf-8">
-    <title>Astonishing Owls</title>
+    <title>CurrenC</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="lib/font-awesome-animation/src/font-awesome-animation.css">
     <link rel="shortcut icon" href="assets/myfav.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/charts.css" />
+    <link rel="stylesheet" type="text/css" href="lib/angular-ui-grid/ui-grid.min.css">
   </head>
   <body>
     <!--<h1>AstonishingOwls</h1>-->
@@ -22,9 +24,19 @@
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-mocks/angular-mocks.js"></script>
-    <script src="assets/Chart.min.js"></script>
+
+    <!-- <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="../node_modules/angular-chart.js/dist/angular-chart.min.js"></script> -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
     <script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
 
+    <script src="lib/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="lib/pdfmake/build/pdfmake.js"></script>
+    <script src="lib/pdfmake/build/vfs_fonts.js"></script>
+
+    <script src="app/predict/predict.js"></script>
+    <script src="app/export/export.js"></script>
     <script src="app/dashboard/dashboard.js"></script>
     <script src="app/auth/controllers.js"></script>
     <script src="app/factory_functions/factory.js"></script>

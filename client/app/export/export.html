@@ -1,0 +1,26 @@
+  <header class="navigation col-xs-12">
+      <div class="logo">
+          <img src="../../assets/All-currency-symbol.svg.png"/>
+          <p class="title">CurrenC</p>
+      </div>
+      <div class="switchPage" ng-controller="logoutController" class="logout">
+          <a href="#/dashboard" class="btn btn-default">Dashboard</a>
+          <a class="btn btn-default" ng-disabled="disabled" ng-click="logout()">Logout</a>
+      </div>
+  </header>
+
+  <div class="gridTitle">
+    <h1 class="title">Exportable Charts</h1>
+    <h3>now featuring .csv and .pdf</h3>
+  </div>
+
+  <div ng-controller="exportController" class="Chart col-xs-12">
+        <div class="grids">
+          <div>
+          <h4>Positions</h4>
+          <div ui-grid="options" ui-grid-selection ui-grid-exporter class="grid"></div>
+        </div>
+          <h4>Position History</h4>
+          <div ui-grid="optionsB" ui-grid-selection ui-grid-exporter class="gridB"></div>
+      </div>
+  </div>

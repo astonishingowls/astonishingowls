@@ -3,7 +3,9 @@ angular.module('astonishingOwls', [
     'astonishingOwls.auth',
     'astonishingOwls.search',
     'chart.js',
-    'ngRoute'
+    'exportChart',
+    'ngRoute',
+    'predict'
 ])
 
 .config(function ($routeProvider) {
@@ -29,6 +31,16 @@ angular.module('astonishingOwls', [
       .when('/register', {
           templateUrl: 'app/auth/register.html',
           controller: 'registerController'
+      })
+      .when('/export', {
+          templateUrl: 'app/export/export.html',
+          controller: 'exportController',
+          access: {restricted: true}
+      })
+      .when('/predict', {
+          templateUrl: 'app/predict/predict.html',
+          controller: 'predictController',
+          access: {restricted: true}
       })
       .otherwise({
           redirectTo: '/'

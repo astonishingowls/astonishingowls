@@ -36,3 +36,12 @@ dist/
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules/
 bower_components/
+
+#api-key
+server/config/api-key.js
+server/config/Currency.json
+
+
+# dependencies
+angular-ui-grid
+pdfmake
