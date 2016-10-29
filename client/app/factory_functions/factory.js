@@ -61,12 +61,34 @@ angular.module('astonishingOwls.factory', [])
     });
   }
 
+//
+  var getPrediction = function(){
+    return $http({
+      method: 'POST',
+      url: '/api/predict',
+      data: {
+        "input": {
+          "csvInstance": [
+            "20180531"
+          ]
+        }
+      }
+
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+
+//
   return {
     getall: getall,
     getHistorical: getHistorical,
     getListOfCurrencies: getListOfCurrencies,
     postDB: postDB,
-    getDB: getDB
+    getDB: getDB,
+    getPrediction: getPrediction
   };
 }) // End of Search factory
 

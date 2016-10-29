@@ -43,6 +43,8 @@ app.use(express.static(__dirname + '/../client'));
 //configure our server with routing file in /server/config/api-router
 require('./config/api-router.js')(app, express);
 
+require('./config/google-router.js')(app, express);
+
 //These are routers for helper functions that ping the database
 //GET and POST requests to the database are written here
 app.get('/database', (req, res) => {
