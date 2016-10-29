@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'browserify'],
+    frameworks: ['mocha', 'chai', 'browserify','sinon'],
 
     plugins : [
       'karma-mocha',
@@ -22,7 +22,8 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-babel-preprocessor',
       'karma-spec-reporter',
-      'karma-mocha-reporter'
+      'karma-mocha-reporter',
+      'karma-sinon'
     ],
 
     // list of files / patterns to load in the browser
@@ -43,7 +44,8 @@ module.exports = function(config) {
 
     // the spec files
     'specs/client/routesTest.js',
-    'specs/client/SearchFactoryTests.js'
+    'specs/client/SearchFactoryTests.js',
+    'specs/client/exportControllerTests.js'
     ],
 
     // preprocess matching files before serving them to the browser
