@@ -67,16 +67,19 @@ angular.module('astonishingOwls.factory', [])
       method: 'POST',
       url: '/api/predict',
       data: {
+        currency:"CHF",
+        query: {
         "input": {
           "csvInstance": [
-            "20180531"
+            "20190531"
           ]
         }
       }
-
+    }
     })
     .then(function (resp) {
-      return resp.data;
+      return resp;
+
     });
   };
 
