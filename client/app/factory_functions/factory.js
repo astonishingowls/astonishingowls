@@ -11,6 +11,7 @@ angular.module('astonishingOwls.factory', [])
       url: '/database'
     })
     .then(function (resp) {
+      console.log("response---", resp);
       return resp;
     });
   };
@@ -22,6 +23,7 @@ angular.module('astonishingOwls.factory', [])
       data: data
     })
     .then(function (resp) {
+      console.log("Posttttt response---", resp);
     });
   };
 
@@ -189,7 +191,7 @@ function ($q, $timeout, $http) {
 }]) // End of AuthService factory
 
 //keysGrabber grabs key as value from object
-//This is relevant in the ng-options select window we designed 
+//This is relevant in the ng-options select window we designed
 //in the New Search fields
 .factory('keysGrabber',function(){
  return function(value, object){
