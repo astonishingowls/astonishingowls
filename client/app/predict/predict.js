@@ -18,16 +18,21 @@ function($scope, $location, Search, formatDate, SharedVariables ){
   $scope.prediction = '';
 
 
-
+ $scope.items = [];
 
     Search.getPrediction()
     .then(function(res){
-      
+
         $scope.prediction = res.data.outputValue;
 
     });
 
+    Search.getPredictionList()
+    .then(function(res){
 
+        $scope.items = res.data.items;
+
+    });
 
 
 }]);

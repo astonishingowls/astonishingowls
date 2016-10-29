@@ -82,7 +82,16 @@ angular.module('astonishingOwls.factory', [])
 
     });
   };
+  var getPredictionList = function(){
+    return $http({
+      method: 'GET',
+      url: '/api/predict'
+    })
+    .then(function (resp) {
+      return resp;
 
+    });
+  };
 
 //
   return {
@@ -91,7 +100,8 @@ angular.module('astonishingOwls.factory', [])
     getListOfCurrencies: getListOfCurrencies,
     postDB: postDB,
     getDB: getDB,
-    getPrediction: getPrediction
+    getPrediction: getPrediction,
+    getPredictionList: getPredictionList
   };
 }) // End of Search factory
 
