@@ -564,7 +564,32 @@ input {
 select#repeatSelect {
   color: black !important; }
 
-.grid {
+div .Chart {
+  position: relative;
+  top: 150px;
+  margin:6px;
+  padding:6px;
+}
+
+.grids {
+  display: flex;
+  justify-content:center;
+  align-self: center;
+  width: 90%;
+  flex-direction: column;
+  color: black;
+  background-color: #e5e5e5;
+  margin: 30px;
+  padding-top: 5px;
+  border-radius: 10px;
+}
+.Chart h4 {
+  color:black;
+  font-weight: bold;
+  text-align: center;
+}
+/*styling for one grid, use if remove gridB and .grids container */
+/*.grid {
   position: fixed;
   width: 90%;
   height: auto;
@@ -572,6 +597,14 @@ select#repeatSelect {
   right: 5%;
   color:black;
   background-color: white;
+}*/
+.grid {
+  padding:12px;
+  margin: 12px;
+}
+.gridB {
+  margin-top: 100px;
+  margin: 12px;
 }
 
 .gridTitle {
